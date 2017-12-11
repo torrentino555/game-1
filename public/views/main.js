@@ -29,7 +29,6 @@ const wall = document.querySelector('img.wall');
 wall.setAttribute('src','../images/banner.png');
 
  function signin(login) {
-
     login.onSubmit((formdata) => {
         const authValidation = LoginValidate(formdata[0], formdata[1]);
         console.log(formdata[0], formdata[1]);
@@ -41,6 +40,7 @@ wall.setAttribute('src','../images/banner.png');
             .then(() => {
                 let logout = document.querySelector('a.back');
                 logout.addEventListener('click', function () {
+                    document.querySelector('div.wrapper').remove();
                     userService.logout()
                     new Router().go('/')
                 })
@@ -60,6 +60,7 @@ wall.setAttribute('src','../images/banner.png');
                  let logout = document.querySelector('a.back');
                  logout.addEventListener('click', function () {
                      userService.logout()
+                     document.querySelector('div.wrapper').remove();
                      new Router().go('/')
                  })
              })
