@@ -888,7 +888,8 @@ function signin(login) {
                 userService.logout();
                 new __WEBPACK_IMPORTED_MODULE_3__modules_router__["default"]().go('/');
             });
-        }).then(() => new __WEBPACK_IMPORTED_MODULE_5__modules_mediator__["default"]().publish('VIEW_LOAD'));
+        });
+        //   .then (() => new Mediator().publish('VIEW_LOAD'))
     });
 }
 
@@ -905,7 +906,8 @@ function signup(registration) {
                 document.querySelector('div.choose').remove();
                 new __WEBPACK_IMPORTED_MODULE_3__modules_router__["default"]().go('/');
             });
-        }).then(() => new __WEBPACK_IMPORTED_MODULE_5__modules_mediator__["default"]().publish('VIEW_LOAD'));
+        });
+        //     .then (() => new Mediator().publish('VIEW_LOAD'))
     });
 }
 
