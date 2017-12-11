@@ -1,6 +1,7 @@
 import Block from '../baseview';
 import './main-page.scss';
 import ChangeTheme from './mainStyle';
+const imageWall = "wall";
 
 export const buttons = [
     {
@@ -47,7 +48,7 @@ export class MainPage extends Block {
         if (document.querySelector('img.wall') === null){
             const application = document.getElementById('application');
             application.appendChildBlock("wall",
-                new Block('img', ["wall"]));
+                new Block('img', [imageWall]));
         }
       const wrape = document.querySelector('div.wrapper');
         if (wrape.childNodes[0] !== undefined) {
