@@ -21,7 +21,7 @@ class UserService {
      * @return {Promise}
      */
     signup(username, email, password) {
-        return Http.Post('/signup', {username,email, password});
+        return Http.Post('/', {username,email, password});
     }
 
     /**
