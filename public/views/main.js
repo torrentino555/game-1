@@ -46,7 +46,7 @@ wall.setAttribute('src','../images/banner.png');
                     new Router().go('/')
                 })
             })
-         //   .then (() => new Mediator().publish('VIEW_LOAD'))
+            .then (() => new Mediator().publish('VIEW_LOAD'))
     });
 }
 
