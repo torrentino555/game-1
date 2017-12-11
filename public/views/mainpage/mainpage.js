@@ -25,11 +25,6 @@ export const buttons = [
         text: 'Information',
         value:'/info'
 
-    },
-    {
-        //name: 'Change-theme',
-        name: 'Change-theme',
-        text: 'Change Theme'
     }
 ];
 
@@ -52,7 +47,7 @@ export class MainPage extends Block {
         if (document.querySelector('img.wall') === null){
             const application = document.getElementById('application');
             application.appendChildBlock("wall",
-                new Block('img', [imageWall]));
+                new Block('img', ["wall"]));
         }
       const wrape = document.querySelector('div.wrapper');
         if (wrape.childNodes[0] !== undefined) {
@@ -70,13 +65,6 @@ export class MainPage extends Block {
         linkThird.setAttribute('value','/signup');
         const linkFour = document.querySelector('a.buttonFour');
         linkFour.setAttribute('value','/info');
-
-
-        let changer = document.querySelector('a.buttonChange-theme');
-        changer.setAttribute('value','/game');
-        changer.addEventListener('click', () => {
-            ChangeTheme();
-        });
 
         const logo = document.querySelector('img.logo');
         logo.setAttribute('src','../images/logo2.png');
