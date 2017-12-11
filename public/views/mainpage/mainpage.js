@@ -47,8 +47,8 @@ export class MainPage extends Block {
     creation() {
         if (document.querySelector('img.wall') === null){
             const application = document.getElementById('application');
-            application.appendChildBlock("wall",
-                new Block('img', [imageWall]));
+            this.appendChildBlock('wall',new Block ('img',['wall']))
+            application.appendChild(this._element);
         }
       const wrape = document.querySelector('div.wrapper');
         if (wrape.childNodes[0] !== undefined) {
