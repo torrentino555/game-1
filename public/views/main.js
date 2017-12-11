@@ -6,7 +6,7 @@ import LoginValidate from '../blocks/autheficate/loginAuth';
 import Router from "../modules/router";
 
 import UserService from '../servises/user-service';
-
+import Mediator from '../modules/mediator'
 const userService = new UserService();
 const application = new Block(document.getElementById('application'));
 
@@ -46,6 +46,7 @@ wall.setAttribute('src','../images/banner.png');
                     new Router().go('/')
                 })
             })
+            .then (() => new Mediator().publish('VIEW_LOAD'))
     });
 }
 
@@ -66,7 +67,7 @@ wall.setAttribute('src','../images/banner.png');
                      new Router().go('/')
                  })
              })
-
+             .then (() => new Mediator().publish('VIEW_LOAD'))
      });
  }
 

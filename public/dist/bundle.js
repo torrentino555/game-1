@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 19);
+/******/ 	return __webpack_require__(__webpack_require__.s = 20);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -294,6 +294,75 @@ class Router {
 
 /***/ }),
 /* 4 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/**
+ * Константы для проверки размеров полей
+ */
+const MAX_LOGIN_LENGTH = 30;
+const MIN_LOGIN_LENGTH = 3;
+
+const MAX_PASSWORD_LENGTH = 30;
+const MIN_PASSWORD_LENGTH = 4;
+
+/**
+ * Класс для валидации полей
+ * методы возвращают true если валидация прошла или строку с текстом ошибки
+ * @class Validate
+ */
+class Validate {
+
+    static userError() {
+        let nameForm = 'form.login-form';
+        if (document.querySelector('form.login-form') === null) {
+            nameForm = 'form.registration-form';
+        }
+        let form = document.querySelector(nameForm);
+
+        let div = document.createElement('div');
+        div.className = "message-error";
+        div.innerHTML = "<p> Sorry,user is already exist </p> ";
+        if (form.getElementsByTagName('p').length === 0) {
+            form.appendChild(div);
+        }
+    }
+    static formError(formName) {
+        let form = document.querySelector(formName);
+        let div = document.createElement('div');
+        div.className = "message-error";
+        div.innerHTML = "<p> Hey,not valid data input :) </p> ";
+        if (form.getElementsByTagName('p').length === 0) {
+            form.appendChild(div);
+        }
+    }
+
+    static validateLogin(login) {
+        if (login.length < MIN_LOGIN_LENGTH || login.length > MAX_LOGIN_LENGTH || !isNaN(login)) {
+            return;
+        }
+        return true;
+    }
+
+    static validateEmail(email) {
+        if (!email.match(/@/)) {
+            return;
+        }
+        return true;
+    }
+
+    static validatePassword(password) {
+        if (password.length < MIN_PASSWORD_LENGTH || password.length > MAX_PASSWORD_LENGTH) {
+            return;
+        }
+        return true;
+    }
+}
+
+/* harmony default export */ __webpack_exports__["a"] = (Validate);
+
+/***/ }),
+/* 5 */
 /***/ (function(module, exports) {
 
 /*
@@ -375,7 +444,7 @@ function toComment(sourceMap) {
 
 
 /***/ }),
-/* 5 */
+/* 6 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /*
@@ -421,7 +490,7 @@ var singleton = null;
 var	singletonCounter = 0;
 var	stylesInsertedAtTop = [];
 
-var	fixUrls = __webpack_require__(26);
+var	fixUrls = __webpack_require__(27);
 
 module.exports = function(list, options) {
 	if (typeof DEBUG !== "undefined" && DEBUG) {
@@ -734,82 +803,13 @@ function updateLink (link, options, obj) {
 
 
 /***/ }),
-/* 6 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/**
- * Константы для проверки размеров полей
- */
-const MAX_LOGIN_LENGTH = 30;
-const MIN_LOGIN_LENGTH = 3;
-
-const MAX_PASSWORD_LENGTH = 30;
-const MIN_PASSWORD_LENGTH = 4;
-
-/**
- * Класс для валидации полей
- * методы возвращают true если валидация прошла или строку с текстом ошибки
- * @class Validate
- */
-class Validate {
-
-    static userError() {
-        let nameForm = 'form.login-form';
-        if (document.querySelector('form.login-form') === null) {
-            nameForm = 'form.registration-form';
-        }
-        let form = document.querySelector(nameForm);
-
-        let div = document.createElement('div');
-        div.className = "message-error";
-        div.innerHTML = "<p> Sorry,user is already exist </p> ";
-        if (form.getElementsByTagName('p').length === 0) {
-            form.appendChild(div);
-        }
-    }
-    static formError(formName) {
-        let form = document.querySelector(formName);
-        let div = document.createElement('div');
-        div.className = "message-error";
-        div.innerHTML = "<p> Hey,not valid data input :) </p> ";
-        if (form.getElementsByTagName('p').length === 0) {
-            form.appendChild(div);
-        }
-    }
-
-    static validateLogin(login) {
-        if (login.length < MIN_LOGIN_LENGTH || login.length > MAX_LOGIN_LENGTH || !isNaN(login)) {
-            return;
-        }
-        return true;
-    }
-
-    static validateEmail(email) {
-        if (!email.match(/@/)) {
-            return;
-        }
-        return true;
-    }
-
-    static validatePassword(password) {
-        if (password.length < MIN_PASSWORD_LENGTH || password.length > MAX_PASSWORD_LENGTH) {
-            return;
-        }
-        return true;
-    }
-}
-
-/* harmony default export */ __webpack_exports__["a"] = (Validate);
-
-/***/ }),
 /* 7 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(29);
+var content = __webpack_require__(30);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // Prepare cssTransformation
 var transform;
@@ -817,7 +817,7 @@ var transform;
 var options = {}
 options.transform = transform
 // add the styles to the DOM
-var update = __webpack_require__(5)(content, options);
+var update = __webpack_require__(6)(content, options);
 if(content.locals) module.exports = content.locals;
 // Hot Module Replacement
 if(false) {
@@ -842,10 +842,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "signup", function() { return signup; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "signin", function() { return signin; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__baseview__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__blocks_autheficate_registrationAuth__ = __webpack_require__(20);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__blocks_autheficate_loginAuth__ = __webpack_require__(21);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__blocks_autheficate_registrationAuth__ = __webpack_require__(21);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__blocks_autheficate_loginAuth__ = __webpack_require__(22);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__modules_router__ = __webpack_require__(3);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__servises_user_service__ = __webpack_require__(22);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__servises_user_service__ = __webpack_require__(23);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__modules_mediator__ = __webpack_require__(10);
 
 
 
@@ -874,20 +875,20 @@ const wall = document.querySelector('img.wall');
 wall.setAttribute('src', '../images/banner.png');
 
 function signin(login) {
-
     login.onSubmit(formdata => {
         const authValidation = Object(__WEBPACK_IMPORTED_MODULE_2__blocks_autheficate_loginAuth__["a" /* default */])(formdata[0], formdata[1]);
         console.log(formdata[0], formdata[1]);
         if (authValidation === false) {
             return;
         }
-        userService.signin(formdata[0], formdata[1]).then(() => new __WEBPACK_IMPORTED_MODULE_3__modules_router__["default"]().go('/multiplayer')).then(() => game.appendChildBlock('game', new __WEBPACK_IMPORTED_MODULE_0__baseview__["a" /* default */]('a', ['logout']).setText('logout'))).then(() => {
-            let logout = document.querySelector('a.logout');
+        userService.login(formdata[0], formdata[1]).then(() => new __WEBPACK_IMPORTED_MODULE_3__modules_router__["default"]().go('/game')).then(() => document.querySelector('form.login-form').remove()).then(() => {
+            let logout = document.querySelector('a.back');
             logout.addEventListener('click', function () {
+                document.querySelector('div.choose').remove();
                 userService.logout();
                 new __WEBPACK_IMPORTED_MODULE_3__modules_router__["default"]().go('/');
             });
-        });
+        }).then(() => new __WEBPACK_IMPORTED_MODULE_5__modules_mediator__["default"]().publish('VIEW_LOAD'));
     });
 }
 
@@ -897,13 +898,14 @@ function signup(registration) {
         if (authValidation === false) {
             return;
         }
-        userService.signup(formdata[0], formdata[1], formdata[2]).then(() => new __WEBPACK_IMPORTED_MODULE_3__modules_router__["default"]().go('/multiplayer')).then(() => game.appendChildBlock('game', new __WEBPACK_IMPORTED_MODULE_0__baseview__["a" /* default */]('a', ['logout']).setText('logout'))).then(() => {
-            let logout = document.querySelector('a.logout');
+        userService.signup(formdata[0], formdata[1], formdata[2]).then(() => new __WEBPACK_IMPORTED_MODULE_3__modules_router__["default"]().go('/game')).then(() => document.querySelector('form.registration-form').remove()).then(() => {
+            let logout = document.querySelector('a.back');
             logout.addEventListener('click', function () {
                 userService.logout();
+                document.querySelector('div.choose').remove();
                 new __WEBPACK_IMPORTED_MODULE_3__modules_router__["default"]().go('/');
             });
-        });
+        }).then(() => new __WEBPACK_IMPORTED_MODULE_5__modules_mediator__["default"]().publish('VIEW_LOAD'));
     });
 }
 
@@ -915,7 +917,7 @@ function signup(registration) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__blocks_forms_validation__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__blocks_forms_validation__ = __webpack_require__(4);
 
 
 const baseUrl = `${window.location.protocol}//${window.location.host}`;
@@ -1073,6 +1075,54 @@ Http.BaseUrl = null;
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+
+class Mediator {
+    constructor() {
+        if (Mediator.__instance) {
+            return Mediator.__instance;
+        }
+
+        this.channels = new Map();
+
+        Mediator.__instance = this;
+    }
+
+    subscribe(name, func) {
+
+        if (!this.channels.get(name)) {
+            this.channels.set(name, []);
+        }
+        this.channels.get(name).push(func);
+        return this;
+    }
+
+    publish(name, payload = null) {
+        if (!this.channels.get(name)) {
+            return;
+        }
+        this.channels.get(name).forEach(func => {
+            func(payload);
+        });
+    }
+
+    unsubscribe(name, f) {
+        if (!this.channels.get(name)) {
+            return;
+        }
+        this.channels.get(name).splice(this.channels.get(name).indexOf(f), 1);
+        return;
+    }
+
+}
+/* harmony export (immutable) */ __webpack_exports__["default"] = Mediator;
+
+
+/***/ }),
+/* 11 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
 /**
  * Модуль, реализующий общее поведение для каждого блока
  * @module Block
@@ -1145,11 +1195,11 @@ class Generator {
 /* harmony default export */ __webpack_exports__["a"] = (Generator);
 
 /***/ }),
-/* 11 */
+/* 12 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__block_block__ = __webpack_require__(10);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__block_block__ = __webpack_require__(11);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__forms_scss__ = __webpack_require__(7);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__forms_scss___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__forms_scss__);
 
@@ -1165,7 +1215,7 @@ class Input extends __WEBPACK_IMPORTED_MODULE_0__block_block__["a" /* default */
 /* harmony default export */ __webpack_exports__["a"] = (Input);
 
 /***/ }),
-/* 12 */
+/* 13 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1201,7 +1251,7 @@ class Skill {
 
 
 /***/ }),
-/* 13 */
+/* 14 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1268,15 +1318,15 @@ class Pathfinding {
 
 
 /***/ }),
-/* 14 */
+/* 15 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Shaders__ = __webpack_require__(42);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Program__ = __webpack_require__(43);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Shaders__ = __webpack_require__(40);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Program__ = __webpack_require__(41);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Utils__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__Sprite__ = __webpack_require__(44);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__global_js__ = __webpack_require__(45);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__Sprite__ = __webpack_require__(42);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__global_js__ = __webpack_require__(43);
 
 
 
@@ -1346,7 +1396,7 @@ class GraphicEngine {
 
 
 /***/ }),
-/* 15 */
+/* 16 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1378,7 +1428,7 @@ class Tile {
 
 
 /***/ }),
-/* 16 */
+/* 17 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1425,12 +1475,12 @@ class Loader {
 
 
 /***/ }),
-/* 17 */
+/* 18 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Tile_js__ = __webpack_require__(15);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Skill_js__ = __webpack_require__(12);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Tile_js__ = __webpack_require__(16);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Skill_js__ = __webpack_require__(13);
 
 
 class Action {
@@ -1462,25 +1512,24 @@ class Action {
 
 
 /***/ }),
-/* 18 */
+/* 19 */
 /***/ (function(module, exports) {
 
 module.exports = "data:image/jpeg;base64,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"
 
 /***/ }),
-/* 19 */
+/* 20 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__modules_router__ = __webpack_require__(3);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__views_mainpage_mainpage__ = __webpack_require__(23);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__views_login_login__ = __webpack_require__(28);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__views_signup_registration__ = __webpack_require__(30);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__views_info_info__ = __webpack_require__(31);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__views_multiplayer_game__ = __webpack_require__(34);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__views_singleplay_web__ = __webpack_require__(37);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__views_multiplayer_registration_module_registration_module__ = __webpack_require__(55);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__views_mainpage_mainpage__ = __webpack_require__(24);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__views_login_login__ = __webpack_require__(29);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__views_signup_registration__ = __webpack_require__(31);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__views_info_info__ = __webpack_require__(32);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__views_singleplay_web__ = __webpack_require__(35);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__views_multiplayer_registration_module_registration_module__ = __webpack_require__(53);
 
 
 
@@ -1489,27 +1538,27 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 
-
+//import Game from './views/multiplayer/game';
 
 
 function requireAll(r) {
     r.keys().forEach(r);
 }
 __webpack_require__(8);
-__webpack_require__(58);
+__webpack_require__(56);
 
+requireAll(__webpack_require__(57));
+requireAll(__webpack_require__(58));
 requireAll(__webpack_require__(59));
 requireAll(__webpack_require__(60));
-requireAll(__webpack_require__(61));
-requireAll(__webpack_require__(63));
 
 const login = new __WEBPACK_IMPORTED_MODULE_2__views_login_login__["a" /* default */]();
 const mainMenu = new __WEBPACK_IMPORTED_MODULE_1__views_mainpage_mainpage__["a" /* default */]();
 const signup = new __WEBPACK_IMPORTED_MODULE_3__views_signup_registration__["a" /* default */]();
 const info = new __WEBPACK_IMPORTED_MODULE_4__views_info_info__["a" /* default */]();
-const game = new __WEBPACK_IMPORTED_MODULE_5__views_multiplayer_game__["a" /* default */]();
-const single = new __WEBPACK_IMPORTED_MODULE_6__views_singleplay_web__["a" /* default */]();
-const choose = new __WEBPACK_IMPORTED_MODULE_7__views_multiplayer_registration_module_registration_module__["a" /* default */]();
+//const game = new Game();
+const single = new __WEBPACK_IMPORTED_MODULE_5__views_singleplay_web__["a" /* default */]();
+const choose = new __WEBPACK_IMPORTED_MODULE_6__views_multiplayer_registration_module_registration_module__["a" /* default */]();
 
 /*
 navigator.serviceWorker.register("/service_worker.js", { scope: "/" })
@@ -1521,14 +1570,16 @@ navigator.serviceWorker.register("/service_worker.js", { scope: "/" })
     });
 */
 const router = new __WEBPACK_IMPORTED_MODULE_0__modules_router__["default"]();
-router.register('/', mainMenu).register('/login', login).register('/signup', signup).register('/info', info).register('/multiplayer', game).register('/singleplay', single).register('/game', choose).navigate();
+router.register('/', mainMenu).register('/login', login).register('/signup', signup).register('/info', info)
+// .register('/multiplayer', game)
+.register('/singleplay', single).register('/game', choose).navigate();
 
 /***/ }),
-/* 20 */
+/* 21 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__forms_validation__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__forms_validation__ = __webpack_require__(4);
 
 
 /**
@@ -1560,11 +1611,11 @@ let RegistrationValidate = (login, email, password, password_confirm) => {
 /* harmony default export */ __webpack_exports__["a"] = (RegistrationValidate);
 
 /***/ }),
-/* 21 */
+/* 22 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__forms_validation__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__forms_validation__ = __webpack_require__(4);
 
 
 /**
@@ -1587,12 +1638,12 @@ let LoginValidate = (login, password) => {
 /* harmony default export */ __webpack_exports__["a"] = (LoginValidate);
 
 /***/ }),
-/* 22 */
+/* 23 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__modules_http__ = __webpack_require__(9);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__blocks_forms_validation__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__blocks_forms_validation__ = __webpack_require__(4);
 
 
 
@@ -1661,17 +1712,18 @@ class UserService {
 /* harmony default export */ __webpack_exports__["a"] = (UserService);
 
 /***/ }),
-/* 23 */
+/* 24 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__baseview__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__main_page_scss__ = __webpack_require__(24);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__main_page_scss__ = __webpack_require__(25);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__main_page_scss___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__main_page_scss__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__mainStyle__ = __webpack_require__(27);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__mainStyle__ = __webpack_require__(28);
 
 
 
+const imageWall = "wall";
 
 const buttons = [{
     name: 'First',
@@ -1692,10 +1744,6 @@ const buttons = [{
     text: 'Information',
     value: '/info'
 
-}, {
-    //name: 'Change-theme',
-    name: 'Change-theme',
-    text: 'Change Theme'
 }];
 /* unused harmony export buttons */
 
@@ -1715,7 +1763,13 @@ class MainPage extends __WEBPACK_IMPORTED_MODULE_0__baseview__["a" /* default */
         });
     }
     creation() {
-
+        if (document.querySelector('img.wall') === null) {
+            const application = document.getElementById('application');
+            this.appendChildBlock('wall', new __WEBPACK_IMPORTED_MODULE_0__baseview__["a" /* default */]('img', ['wall']));
+            application.appendChild(this._element);
+            const wall = document.querySelector('img.wall');
+            wall.setAttribute('src', '../images/banner.png');
+        }
         const wrape = document.querySelector('div.wrapper');
         if (wrape.childNodes[0] !== undefined) {
             wrape.removeChild(wrape.childNodes[0]);
@@ -1733,12 +1787,6 @@ class MainPage extends __WEBPACK_IMPORTED_MODULE_0__baseview__["a" /* default */
         const linkFour = document.querySelector('a.buttonFour');
         linkFour.setAttribute('value', '/info');
 
-        let changer = document.querySelector('a.buttonChange-theme');
-        changer.setAttribute('value', '/game');
-        changer.addEventListener('click', () => {
-            Object(__WEBPACK_IMPORTED_MODULE_2__mainStyle__["a" /* default */])();
-        });
-
         const logo = document.querySelector('img.logo');
         logo.setAttribute('src', '../images/logo2.png');
     }
@@ -1748,13 +1796,13 @@ class MainPage extends __WEBPACK_IMPORTED_MODULE_0__baseview__["a" /* default */
 /* harmony default export */ __webpack_exports__["a"] = (MainPage);
 
 /***/ }),
-/* 24 */
+/* 25 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(25);
+var content = __webpack_require__(26);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // Prepare cssTransformation
 var transform;
@@ -1762,7 +1810,7 @@ var transform;
 var options = {}
 options.transform = transform
 // add the styles to the DOM
-var update = __webpack_require__(5)(content, options);
+var update = __webpack_require__(6)(content, options);
 if(content.locals) module.exports = content.locals;
 // Hot Module Replacement
 if(false) {
@@ -1779,10 +1827,10 @@ if(false) {
 }
 
 /***/ }),
-/* 25 */
+/* 26 */
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(4)(undefined);
+exports = module.exports = __webpack_require__(5)(undefined);
 // imports
 
 
@@ -1793,7 +1841,7 @@ exports.push([module.i, "@viewport {\n  width: 640px;\n  height: 440px;\n  zoom:
 
 
 /***/ }),
-/* 26 */
+/* 27 */
 /***/ (function(module, exports) {
 
 
@@ -1888,11 +1936,11 @@ module.exports = function (css) {
 
 
 /***/ }),
-/* 27 */
+/* 28 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (immutable) */ __webpack_exports__["a"] = ChangeTheme;
+/* unused harmony export default */
 const createStylesheet = styles => {
     return styles.reduce((stylesheet, current) => {
 
@@ -1989,12 +2037,12 @@ function ChangeTheme() {
 }
 
 /***/ }),
-/* 28 */
+/* 29 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__blocks_block_block__ = __webpack_require__(10);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__blocks_forms_input__ = __webpack_require__(11);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__blocks_block_block__ = __webpack_require__(11);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__blocks_forms_input__ = __webpack_require__(12);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__blocks_forms_forms_scss__ = __webpack_require__(7);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__blocks_forms_forms_scss___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__blocks_forms_forms_scss__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__modules_router__ = __webpack_require__(3);
@@ -2065,10 +2113,10 @@ class Login extends __WEBPACK_IMPORTED_MODULE_0__blocks_block_block__["a" /* def
 /* harmony default export */ __webpack_exports__["a"] = (Login);
 
 /***/ }),
-/* 29 */
+/* 30 */
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(4)(undefined);
+exports = module.exports = __webpack_require__(5)(undefined);
 // imports
 
 
@@ -2079,12 +2127,12 @@ exports.push([module.i, ".field {\n  font-family: fantasy;\n  outline: 0;\n  bac
 
 
 /***/ }),
-/* 30 */
+/* 31 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__baseview__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__blocks_forms_input__ = __webpack_require__(11);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__blocks_forms_input__ = __webpack_require__(12);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__blocks_forms_forms_scss__ = __webpack_require__(7);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__blocks_forms_forms_scss___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__blocks_forms_forms_scss__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__modules_router__ = __webpack_require__(3);
@@ -2167,12 +2215,12 @@ class Registration extends __WEBPACK_IMPORTED_MODULE_0__baseview__["a" /* defaul
 /* harmony default export */ __webpack_exports__["a"] = (Registration);
 
 /***/ }),
-/* 31 */
+/* 32 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__baseview__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__info_scss__ = __webpack_require__(32);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__info_scss__ = __webpack_require__(33);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__info_scss___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__info_scss__);
 
 
@@ -2219,13 +2267,13 @@ class Info extends __WEBPACK_IMPORTED_MODULE_0__baseview__["a" /* default */] {
 /* harmony default export */ __webpack_exports__["a"] = (Info);
 
 /***/ }),
-/* 32 */
+/* 33 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(33);
+var content = __webpack_require__(34);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // Prepare cssTransformation
 var transform;
@@ -2233,7 +2281,7 @@ var transform;
 var options = {}
 options.transform = transform
 // add the styles to the DOM
-var update = __webpack_require__(5)(content, options);
+var update = __webpack_require__(6)(content, options);
 if(content.locals) module.exports = content.locals;
 // Hot Module Replacement
 if(false) {
@@ -2250,10 +2298,10 @@ if(false) {
 }
 
 /***/ }),
-/* 33 */
+/* 34 */
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(4)(undefined);
+exports = module.exports = __webpack_require__(5)(undefined);
 // imports
 
 
@@ -2264,95 +2312,12 @@ exports.push([module.i, ".info {\n  top: 40%;\n  left: 37.5%;\n  position: absol
 
 
 /***/ }),
-/* 34 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__baseview__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__game_scss__ = __webpack_require__(35);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__game_scss___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__game_scss__);
-
-
-
-const infoBlock = "textBlock";
-const buttonBack = "buttonBack";
-
-class Game extends __WEBPACK_IMPORTED_MODULE_0__baseview__["a" /* default */] {
-    constructor() {
-        super('div', ['game'], {});
-        this.createChildren();
-        return this;
-    }
-
-    createChildren() {
-        this.appendChildBlock("first", new __WEBPACK_IMPORTED_MODULE_0__baseview__["a" /* default */]('div', [infoBlock]).setText("Game"));
-        this.appendChildBlock('game', new __WEBPACK_IMPORTED_MODULE_0__baseview__["a" /* default */]('a', ['logout']).setText('logout'));
-    }
-
-    creation() {
-
-        let test = document.querySelector('div.wrapper');
-        if (test.childNodes[0] !== undefined) {
-            test.removeChild(test.childNodes[0]);
-        }
-        test.appendChild(this._element);
-    }
-
-}
-/* harmony default export */ __webpack_exports__["a"] = (Game);
-
-/***/ }),
 /* 35 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// style-loader: Adds some css to the DOM by adding a <style> tag
-
-// load the styles
-var content = __webpack_require__(36);
-if(typeof content === 'string') content = [[module.i, content, '']];
-// Prepare cssTransformation
-var transform;
-
-var options = {}
-options.transform = transform
-// add the styles to the DOM
-var update = __webpack_require__(5)(content, options);
-if(content.locals) module.exports = content.locals;
-// Hot Module Replacement
-if(false) {
-	// When the styles change, update the <style> tags
-	if(!content.locals) {
-		module.hot.accept("!!../../../node_modules/css-loader/index.js!../../../node_modules/sass-loader/lib/loader.js!./game.scss", function() {
-			var newContent = require("!!../../../node_modules/css-loader/index.js!../../../node_modules/sass-loader/lib/loader.js!./game.scss");
-			if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-			update(newContent);
-		});
-	}
-	// When the module is disposed, remove the <style> tags
-	module.hot.dispose(function() { update(); });
-}
-
-/***/ }),
-/* 36 */
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(4)(undefined);
-// imports
-
-
-// module
-exports.push([module.i, ".game {\n  width: 400px;\n  height: 350px;\n  background: purple;\n  margin: -215px 0 0 -125px;\n  position: absolute;\n  top: 65%;\n  left: 45%;\n  padding: 10px;\n  border: solid 3px black;\n  color: white;\n  font-family: fantasy;\n  font-size: 150%;\n  background-size: cover; }\n", ""]);
-
-// exports
-
-
-/***/ }),
-/* 37 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__baseview__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__DemoGameModule__ = __webpack_require__(38);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__DemoGameModule__ = __webpack_require__(36);
 
 
 
@@ -2360,7 +2325,7 @@ class SinglePlay extends __WEBPACK_IMPORTED_MODULE_0__baseview__["a" /* default 
     constructor() {
         super();
 
-        this.template = __webpack_require__(54);
+        this.template = __webpack_require__(52);
     }
 
     creation() {
@@ -2375,15 +2340,15 @@ class SinglePlay extends __WEBPACK_IMPORTED_MODULE_0__baseview__["a" /* default 
 
 
 /***/ }),
-/* 38 */
+/* 36 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(global) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__InitiativeLine__ = __webpack_require__(39);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Unit__ = __webpack_require__(40);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Pathfinding__ = __webpack_require__(13);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__Background__ = __webpack_require__(41);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__GameManager__ = __webpack_require__(47);
+/* WEBPACK VAR INJECTION */(function(global) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__InitiativeLine__ = __webpack_require__(37);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Unit__ = __webpack_require__(38);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Pathfinding__ = __webpack_require__(14);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__Background__ = __webpack_require__(39);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__GameManager__ = __webpack_require__(45);
 
 
 
@@ -2741,7 +2706,7 @@ class DemoGameModule {
 /* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(1)))
 
 /***/ }),
-/* 39 */
+/* 37 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -2814,11 +2779,11 @@ class InitiativeLine {
 
 
 /***/ }),
-/* 40 */
+/* 38 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Skill__ = __webpack_require__(12);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Skill__ = __webpack_require__(13);
 
 class Unit {
     constructor() {
@@ -2961,13 +2926,13 @@ class Unit {
 
 
 /***/ }),
-/* 41 */
+/* 39 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(global) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__GraphicEngine__ = __webpack_require__(14);
+/* WEBPACK VAR INJECTION */(function(global) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__GraphicEngine__ = __webpack_require__(15);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Utils__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Loader__ = __webpack_require__(16);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Loader__ = __webpack_require__(17);
 
 
 
@@ -3031,7 +2996,7 @@ class Background {
 /* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(1)))
 
 /***/ }),
-/* 42 */
+/* 40 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -3070,7 +3035,7 @@ void main() {
 
 
 /***/ }),
-/* 43 */
+/* 41 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -3111,7 +3076,7 @@ class Program {
 
 
 /***/ }),
-/* 44 */
+/* 42 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -3230,11 +3195,11 @@ class Uniform {
 
 
 /***/ }),
-/* 45 */
+/* 43 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(global) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__DungeonMapMaker__ = __webpack_require__(46);
+/* WEBPACK VAR INJECTION */(function(global) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__DungeonMapMaker__ = __webpack_require__(44);
 
 
 global.actionDeque = [];
@@ -3245,13 +3210,13 @@ global.ratio = 16 / 9;
 /* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(1)))
 
 /***/ }),
-/* 46 */
+/* 44 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* unused harmony export WIDTH */
 /* unused harmony export HEIGHT */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Tile__ = __webpack_require__(15);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Tile__ = __webpack_require__(16);
 
 
 
@@ -3338,19 +3303,19 @@ class DungeonMapMaker {
 
 
 /***/ }),
-/* 47 */
+/* 45 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(global) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__GraphicEngine__ = __webpack_require__(14);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__SpriteManager__ = __webpack_require__(48);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__State__ = __webpack_require__(49);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__Loader__ = __webpack_require__(16);
+/* WEBPACK VAR INJECTION */(function(global) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__GraphicEngine__ = __webpack_require__(15);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__SpriteManager__ = __webpack_require__(46);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__State__ = __webpack_require__(47);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__Loader__ = __webpack_require__(17);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__Utils__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__AnimationManager__ = __webpack_require__(50);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__UnitManager__ = __webpack_require__(51);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__Animation__ = __webpack_require__(53);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__Action__ = __webpack_require__(17);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__AnimationManager__ = __webpack_require__(48);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__UnitManager__ = __webpack_require__(49);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__Animation__ = __webpack_require__(51);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__Action__ = __webpack_require__(18);
 
 
 
@@ -3470,7 +3435,7 @@ class GameManager {
 /* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(1)))
 
 /***/ }),
-/* 48 */
+/* 46 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -3522,7 +3487,7 @@ class SpriteManager {
 
 
 /***/ }),
-/* 49 */
+/* 47 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -3536,7 +3501,7 @@ class State {
 
 
 /***/ }),
-/* 50 */
+/* 48 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -3654,14 +3619,14 @@ class AnimationManager {
 
 
 /***/ }),
-/* 51 */
+/* 49 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(global) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Entity__ = __webpack_require__(52);
+/* WEBPACK VAR INJECTION */(function(global) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Entity__ = __webpack_require__(50);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Utils__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Action__ = __webpack_require__(17);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__Pathfinding__ = __webpack_require__(13);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Action__ = __webpack_require__(18);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__Pathfinding__ = __webpack_require__(14);
 
 
 
@@ -4052,7 +4017,7 @@ class UnitManager {
 /* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(1)))
 
 /***/ }),
-/* 52 */
+/* 50 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -4067,7 +4032,7 @@ class Entity {
 
 
 /***/ }),
-/* 53 */
+/* 51 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -4147,18 +4112,18 @@ class Animation {
 
 
 /***/ }),
-/* 54 */
+/* 52 */
 /***/ (function(module, exports) {
 
 module.exports = "<!DOCTYPE html>\n<html lang=\"en\">\n\n<head>\n  <meta charset=\"UTF-8\">\n  <title>Document</title>\n  <link rel=\"stylesheet\" href=\"/views/singleplay/style.css\">\n</head>\n\n<body>\n  <div class=\"container\">\n    <canvas id=\"background\"></canvas>\n    <canvas id=\"canvas\"></canvas>\n    <div style=\"position: relative;\">\n      <span style=\"position:absolute; left:20.8vw; top:2vh;font-size:1.5vw;color: white\" id=\"time\"></span>\n    </div>\n  </div>\n  <img hidden id=\"win\" style=\"position:absolute;width: 100vw; height: 100vh;\" src=\"/views/singleplay/textures/win.png\">\n  <img hidden id=\"lose\" style=\"position:absolute;width: 100vw; height: 100vh;\" src=\"/views/singleplay/textures/lose.png\">\n  </img>\n</body>\n\n</html>\n";
 
 /***/ }),
-/* 55 */
+/* 53 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__baseview__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__module_scss__ = __webpack_require__(56);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__module_scss__ = __webpack_require__(54);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__module_scss___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__module_scss__);
 
 
@@ -4233,10 +4198,10 @@ class Choose extends __WEBPACK_IMPORTED_MODULE_0__baseview__["a" /* default */] 
     creation() {
         const image = document.querySelector('img.wall');
         if (document.querySelector('div.main-menu') !== null) {
-            console.log(image);
             document.querySelector('div.main-menu').remove();
+        } else if (image !== null) {
+            image.remove();
         }
-        image.remove();
 
         wrape.appendChild(this._element);
         this.footbarCreate();
@@ -4244,24 +4209,19 @@ class Choose extends __WEBPACK_IMPORTED_MODULE_0__baseview__["a" /* default */] 
         this.leftbar();
         let value = document.querySelector('img.person');
         value.setAttribute('src', enity[0].src);
-
-        // const navigator = document.querySelector('a.buttonBack');
-        //     navigator.addEventListener('click', () => {
-        //         new Router().go('/')
-        //     });
     }
 }
 /* harmony export (immutable) */ __webpack_exports__["a"] = Choose;
 
 
 /***/ }),
-/* 56 */
+/* 54 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(57);
+var content = __webpack_require__(55);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // Prepare cssTransformation
 var transform;
@@ -4269,7 +4229,7 @@ var transform;
 var options = {}
 options.transform = transform
 // add the styles to the DOM
-var update = __webpack_require__(5)(content, options);
+var update = __webpack_require__(6)(content, options);
 if(content.locals) module.exports = content.locals;
 // Hot Module Replacement
 if(false) {
@@ -4286,27 +4246,27 @@ if(false) {
 }
 
 /***/ }),
-/* 57 */
+/* 55 */
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(4)(undefined);
+exports = module.exports = __webpack_require__(5)(undefined);
 // imports
 
 
 // module
-exports.push([module.i, ".person {\n  top: 30%;\n  left: 32%;\n  font-size: 120%;\n  position: absolute; }\n\n.enter {\n  display: inline-block;\n  width: 12vw;\n  height: 6vh;\n  line-height: 50px;\n  text-align: center;\n  text-decoration: none;\n  text-shadow: 0 1px rgba(154, 33, 33, 0.2), 0 -1px rgba(82, 11, 11, 0.8);\n  border-radius: 17px;\n  background: #731509 radial-gradient(150% 100% at 50% 5px, rgba(255, 255, 255, 0.2), transparent);\n  box-shadow: inset rgba(0, 0, 0, 0.6) 0 -2px 5px, inset rgba(252, 255, 255, 0.7) 0 2px 5px, rgba(0, 0, 0, 0.8) 0 2px 5px -1px;\n  color: #c58818;\n  /* user-select: none; */\n  position: absolute;\n  border: 2px solid;\n  top: 90%;\n  left: 44%;\n  font-size: 150%; }\n\n.enter:hover {\n  color: white;\n  cursor: pointer; }\n\n.enter:active {\n  padding-bottom: 1px;\n  box-shadow: inset black 0 1px 3px, inset rgba(0, 0, 0, 0.6) 0 -2px 5px, inset rgba(252, 255, 255, 0.7) 0 2px 5px, 0 1px rgba(255, 255, 255, 0.08);\n  color: #80cfd6; }\n\n.back {\n  display: inline-block;\n  width: 10vw;\n  height: 6vh;\n  line-height: 50px;\n  text-align: center;\n  text-decoration: none;\n  text-shadow: 0 1px rgba(154, 33, 33, 0.2), 0 -1px rgba(82, 11, 11, 0.8);\n  border-radius: 17px;\n  background: #731509 radial-gradient(150% 100% at 50% 5px, rgba(255, 255, 255, 0.2), transparent);\n  box-shadow: inset rgba(0, 0, 0, 0.6) 0 -2px 5px, inset rgba(252, 255, 255, 0.7) 0 2px 5px, rgba(0, 0, 0, 0.8) 0 2px 5px -1px;\n  color: #c58818;\n  /* user-select: none; */\n  position: absolute;\n  border: 2px solid;\n  top: 90%;\n  right: 6%;\n  font-size: 150%; }\n\n.back:hover {\n  color: white;\n  cursor: pointer; }\n\n.back:active {\n  padding-bottom: 1px;\n  box-shadow: inset black 0 1px 3px, inset rgba(0, 0, 0, 0.6) 0 -2px 5px, inset rgba(252, 255, 255, 0.7) 0 2px 5px, 0 1px rgba(255, 255, 255, 0.08);\n  color: #80cfd6; }\n\n.choose_left {\n  display: inline-block;\n  outline: none;\n  border: 3px black;\n  border-radius: 100px;\n  transition: 0.2s;\n  background-size: cover;\n  font-family: fantasy;\n  position: absolute;\n  padding: 20px;\n  background-image: url(" + __webpack_require__(18) + ");\n  top: 77%;\n  left: 42%;\n  font-size: 150%;\n  cursor: pointer; }\n\n.choose_left:hover {\n  background: green; }\n\n.choose_right {\n  display: inline-block;\n  outline: none;\n  border: 3px black;\n  border-radius: 100px;\n  transition: 0.2s;\n  background-size: cover;\n  font-family: fantasy;\n  position: absolute;\n  padding: 20px;\n  background-image: url(" + __webpack_require__(18) + ");\n  top: 77%;\n  left: 53%;\n  font-size: 150%;\n  cursor: pointer;\n  transform: rotate(180deg); }\n\n.choose_right:hover {\n  background: green; }\n\n.left_bar {\n  width: 20vw;\n  height: 50vh;\n  background: #382c2f;\n  margin: -215px 0 0 -125px;\n  position: absolute;\n  top: 60%;\n  left: 15%;\n  padding: 10px;\n  border: solid 3px #5b2d0c;\n  color: white;\n  font-family: fantasy;\n  font-size: 150%;\n  background-size: cover; }\n\n.new_character {\n  display: inline-block;\n  width: 12vw;\n  height: 6vh;\n  line-height: 50px;\n  text-align: center;\n  text-decoration: none;\n  text-shadow: 0 1px rgba(154, 33, 33, 0.2), 0 -1px rgba(82, 11, 11, 0.8);\n  border-radius: 17px;\n  background: #731509 radial-gradient(150% 100% at 50% 5px, rgba(255, 255, 255, 0.2), transparent);\n  box-shadow: inset rgba(0, 0, 0, 0.6) 0 -2px 5px, inset rgba(252, 255, 255, 0.7) 0 2px 5px, rgba(0, 0, 0, 0.8) 0 2px 5px -1px;\n  color: #c58818;\n  /* user-select: none; */\n  position: absolute;\n  border: 2px solid;\n  top: 90%;\n  left: 10%;\n  font-size: 150%; }\n\n.new_character:hover {\n  color: white;\n  cursor: pointer; }\n\n.new_character:active {\n  padding-bottom: 1px;\n  box-shadow: inset black 0 1px 3px, inset rgba(0, 0, 0, 0.6) 0 -2px 5px, inset rgba(252, 255, 255, 0.7) 0 2px 5px, 0 1px rgba(255, 255, 255, 0.08);\n  color: #80cfd6; }\n\n.delete {\n  display: inline-block;\n  width: 11vw;\n  height: 5vh;\n  line-height: 50px;\n  text-align: center;\n  text-decoration: none;\n  text-shadow: 0 1px rgba(154, 33, 33, 0.2), 0 -1px rgba(82, 11, 11, 0.8);\n  border-radius: 17px;\n  background: #731509 radial-gradient(150% 100% at 50% 5px, rgba(255, 255, 255, 0.2), transparent);\n  box-shadow: inset rgba(0, 0, 0, 0.6) 0 -2px 5px, inset rgba(252, 255, 255, 0.7) 0 2px 5px, rgba(0, 0, 0, 0.8) 0 2px 5px -1px;\n  color: #c58818;\n  /* user-select: none; */\n  position: absolute;\n  border: 2px solid;\n  top: 75%;\n  left: 10%;\n  font-size: 120%; }\n\n.delete:hover {\n  color: white;\n  cursor: pointer; }\n\n.delete:active {\n  padding-bottom: 1px;\n  box-shadow: inset black 0 1px 3px, inset rgba(0, 0, 0, 0.6) 0 -2px 5px, inset rgba(252, 255, 255, 0.7) 0 2px 5px, 0 1px rgba(255, 255, 255, 0.08);\n  color: #80cfd6; }\n\n@media screen and (min-width: 960px) and (max-width: 1280px) and (orientation: landscape) {\n  .delete {\n    width: 12vw;\n    height: 7vh;\n    top: 91%;\n    left: 8%; }\n  .person {\n    top: 20%;\n    left: 25%; }\n  .enter {\n    top: 115%;\n    left: 43%;\n    font-size: 138%; }\n  .choose_right {\n    top: 99%; }\n  .choose_left {\n    top: 99%; }\n  .back {\n    width: 11vw;\n    height: 7vh;\n    top: 114%;\n    right: 6%; }\n  .left_bar {\n    top: 84%; }\n  .new_character {\n    top: 112%;\n    left: 6%; } }\n\n@media (min-width: 481px) and (max-width: 767px) and (orientation: landscape) {\n  .person {\n    width: 33vw; }\n  .choose_left {\n    padding: 16px;\n    top: 88%; }\n  .choose_right {\n    padding: 16px;\n    top: 88%; }\n  .enter {\n    top: 119%;\n    left: 40%;\n    font-size: 129%;\n    line-height: 44px;\n    width: 19vw;\n    height: 11vh; }\n  .back {\n    top: 119%;\n    font-size: 129%;\n    line-height: 44px;\n    width: 19vw;\n    height: 11vh; }\n  .new_character {\n    top: 119%;\n    font-size: 106%;\n    line-height: 44px;\n    width: 19vw;\n    height: 11vh; }\n  .left_bar {\n    font-size: 95%;\n    width: 20vw;\n    height: 50vh;\n    top: 110%;\n    left: 26%; }\n  .delete {\n    width: 12vw;\n    height: 7vh;\n    line-height: 30px;\n    top: 89%;\n    left: 10%;\n    font-size: 90%; } }\n", ""]);
+exports.push([module.i, ".person {\n  top: 30%;\n  left: 32%;\n  font-size: 120%;\n  position: absolute; }\n\n.enter {\n  display: inline-block;\n  width: 12vw;\n  height: 6vh;\n  line-height: 50px;\n  text-align: center;\n  text-decoration: none;\n  text-shadow: 0 1px rgba(154, 33, 33, 0.2), 0 -1px rgba(82, 11, 11, 0.8);\n  border-radius: 17px;\n  background: #731509 radial-gradient(150% 100% at 50% 5px, rgba(255, 255, 255, 0.2), transparent);\n  box-shadow: inset rgba(0, 0, 0, 0.6) 0 -2px 5px, inset rgba(252, 255, 255, 0.7) 0 2px 5px, rgba(0, 0, 0, 0.8) 0 2px 5px -1px;\n  color: #c58818;\n  /* user-select: none; */\n  position: absolute;\n  border: 2px solid;\n  top: 90%;\n  left: 44%;\n  font-size: 150%; }\n\n.enter:hover {\n  color: white;\n  cursor: pointer; }\n\n.enter:active {\n  padding-bottom: 1px;\n  box-shadow: inset black 0 1px 3px, inset rgba(0, 0, 0, 0.6) 0 -2px 5px, inset rgba(252, 255, 255, 0.7) 0 2px 5px, 0 1px rgba(255, 255, 255, 0.08);\n  color: #80cfd6; }\n\n.back {\n  display: inline-block;\n  width: 10vw;\n  height: 6vh;\n  line-height: 50px;\n  text-align: center;\n  text-decoration: none;\n  text-shadow: 0 1px rgba(154, 33, 33, 0.2), 0 -1px rgba(82, 11, 11, 0.8);\n  border-radius: 17px;\n  background: #731509 radial-gradient(150% 100% at 50% 5px, rgba(255, 255, 255, 0.2), transparent);\n  box-shadow: inset rgba(0, 0, 0, 0.6) 0 -2px 5px, inset rgba(252, 255, 255, 0.7) 0 2px 5px, rgba(0, 0, 0, 0.8) 0 2px 5px -1px;\n  color: #c58818;\n  /* user-select: none; */\n  position: absolute;\n  border: 2px solid;\n  top: 90%;\n  right: 6%;\n  font-size: 150%; }\n\n.back:hover {\n  color: white;\n  cursor: pointer; }\n\n.back:active {\n  padding-bottom: 1px;\n  box-shadow: inset black 0 1px 3px, inset rgba(0, 0, 0, 0.6) 0 -2px 5px, inset rgba(252, 255, 255, 0.7) 0 2px 5px, 0 1px rgba(255, 255, 255, 0.08);\n  color: #80cfd6; }\n\n.choose_left {\n  display: inline-block;\n  outline: none;\n  border: 3px black;\n  border-radius: 100px;\n  transition: 0.2s;\n  background-size: cover;\n  font-family: fantasy;\n  position: absolute;\n  padding: 20px;\n  background-image: url(" + __webpack_require__(19) + ");\n  top: 77%;\n  left: 42%;\n  font-size: 150%;\n  cursor: pointer; }\n\n.choose_left:hover {\n  background: green; }\n\n.choose_right {\n  display: inline-block;\n  outline: none;\n  border: 3px black;\n  border-radius: 100px;\n  transition: 0.2s;\n  background-size: cover;\n  font-family: fantasy;\n  position: absolute;\n  padding: 20px;\n  background-image: url(" + __webpack_require__(19) + ");\n  top: 77%;\n  left: 53%;\n  font-size: 150%;\n  cursor: pointer;\n  transform: rotate(180deg); }\n\n.choose_right:hover {\n  background: green; }\n\n.left_bar {\n  width: 20vw;\n  height: 50vh;\n  background: #382c2f;\n  margin: -215px 0 0 -125px;\n  position: absolute;\n  top: 60%;\n  left: 15%;\n  padding: 10px;\n  border: solid 3px #5b2d0c;\n  color: white;\n  font-family: fantasy;\n  font-size: 150%;\n  background-size: cover; }\n\n.new_character {\n  display: inline-block;\n  width: 12vw;\n  height: 6vh;\n  line-height: 50px;\n  text-align: center;\n  text-decoration: none;\n  text-shadow: 0 1px rgba(154, 33, 33, 0.2), 0 -1px rgba(82, 11, 11, 0.8);\n  border-radius: 17px;\n  background: #731509 radial-gradient(150% 100% at 50% 5px, rgba(255, 255, 255, 0.2), transparent);\n  box-shadow: inset rgba(0, 0, 0, 0.6) 0 -2px 5px, inset rgba(252, 255, 255, 0.7) 0 2px 5px, rgba(0, 0, 0, 0.8) 0 2px 5px -1px;\n  color: #c58818;\n  /* user-select: none; */\n  position: absolute;\n  border: 2px solid;\n  top: 90%;\n  left: 10%;\n  font-size: 150%; }\n\n.new_character:hover {\n  color: white;\n  cursor: pointer; }\n\n.new_character:active {\n  padding-bottom: 1px;\n  box-shadow: inset black 0 1px 3px, inset rgba(0, 0, 0, 0.6) 0 -2px 5px, inset rgba(252, 255, 255, 0.7) 0 2px 5px, 0 1px rgba(255, 255, 255, 0.08);\n  color: #80cfd6; }\n\n.delete {\n  display: inline-block;\n  width: 11vw;\n  height: 5vh;\n  line-height: 50px;\n  text-align: center;\n  text-decoration: none;\n  text-shadow: 0 1px rgba(154, 33, 33, 0.2), 0 -1px rgba(82, 11, 11, 0.8);\n  border-radius: 17px;\n  background: #731509 radial-gradient(150% 100% at 50% 5px, rgba(255, 255, 255, 0.2), transparent);\n  box-shadow: inset rgba(0, 0, 0, 0.6) 0 -2px 5px, inset rgba(252, 255, 255, 0.7) 0 2px 5px, rgba(0, 0, 0, 0.8) 0 2px 5px -1px;\n  color: #c58818;\n  /* user-select: none; */\n  position: absolute;\n  border: 2px solid;\n  top: 75%;\n  left: 10%;\n  font-size: 120%; }\n\n.delete:hover {\n  color: white;\n  cursor: pointer; }\n\n.delete:active {\n  padding-bottom: 1px;\n  box-shadow: inset black 0 1px 3px, inset rgba(0, 0, 0, 0.6) 0 -2px 5px, inset rgba(252, 255, 255, 0.7) 0 2px 5px, 0 1px rgba(255, 255, 255, 0.08);\n  color: #80cfd6; }\n\n@media screen and (min-width: 960px) and (max-width: 1280px) and (orientation: landscape) {\n  .delete {\n    width: 12vw;\n    height: 7vh;\n    top: 91%;\n    left: 8%; }\n  .person {\n    top: 20%;\n    left: 25%; }\n  .enter {\n    top: 115%;\n    left: 43%;\n    font-size: 138%; }\n  .choose_right {\n    top: 99%; }\n  .choose_left {\n    top: 99%; }\n  .back {\n    width: 11vw;\n    height: 7vh;\n    top: 114%;\n    right: 6%; }\n  .left_bar {\n    top: 84%; }\n  .new_character {\n    top: 112%;\n    left: 6%; } }\n\n@media (min-width: 481px) and (max-width: 767px) and (orientation: landscape) {\n  .person {\n    width: 33vw; }\n  .choose_left {\n    padding: 16px;\n    top: 88%; }\n  .choose_right {\n    padding: 16px;\n    top: 88%; }\n  .enter {\n    top: 119%;\n    left: 40%;\n    font-size: 129%;\n    line-height: 44px;\n    width: 19vw;\n    height: 11vh; }\n  .back {\n    top: 119%;\n    font-size: 129%;\n    line-height: 44px;\n    width: 19vw;\n    height: 11vh; }\n  .new_character {\n    top: 119%;\n    font-size: 106%;\n    line-height: 44px;\n    width: 19vw;\n    height: 11vh; }\n  .left_bar {\n    font-size: 95%;\n    width: 20vw;\n    height: 50vh;\n    top: 110%;\n    left: 26%; }\n  .delete {\n    width: 12vw;\n    height: 7vh;\n    line-height: 30px;\n    top: 89%;\n    left: 10%;\n    font-size: 90%; } }\n", ""]);
 
 // exports
 
 
 /***/ }),
-/* 58 */
+/* 56 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
 
 /***/ }),
-/* 59 */
+/* 57 */
 /***/ (function(module, exports) {
 
 function webpackEmptyContext(req) {
@@ -4315,14 +4275,67 @@ function webpackEmptyContext(req) {
 webpackEmptyContext.keys = function() { return []; };
 webpackEmptyContext.resolve = webpackEmptyContext;
 module.exports = webpackEmptyContext;
-webpackEmptyContext.id = 59;
+webpackEmptyContext.id = 57;
+
+/***/ }),
+/* 58 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var map = {
+	"./forms/forms.scss": 7
+};
+function webpackContext(req) {
+	return __webpack_require__(webpackContextResolve(req));
+};
+function webpackContextResolve(req) {
+	var id = map[req];
+	if(!(id + 1)) // check for number or string
+		throw new Error("Cannot find module '" + req + "'.");
+	return id;
+};
+webpackContext.keys = function webpackContextKeys() {
+	return Object.keys(map);
+};
+webpackContext.resolve = webpackContextResolve;
+module.exports = webpackContext;
+webpackContext.id = 58;
+
+/***/ }),
+/* 59 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var map = {
+	"./http.js": 9,
+	"./mediator.js": 10,
+	"./router.js": 3
+};
+function webpackContext(req) {
+	return __webpack_require__(webpackContextResolve(req));
+};
+function webpackContextResolve(req) {
+	var id = map[req];
+	if(!(id + 1)) // check for number or string
+		throw new Error("Cannot find module '" + req + "'.");
+	return id;
+};
+webpackContext.keys = function webpackContextKeys() {
+	return Object.keys(map);
+};
+webpackContext.resolve = webpackContextResolve;
+module.exports = webpackContext;
+webpackContext.id = 59;
 
 /***/ }),
 /* 60 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var map = {
-	"./forms/forms.scss": 7
+	"./banner.png": 61,
+	"./logo2.png": 62,
+	"./mage.png": 63,
+	"./priest.png": 64,
+	"./thief.png": 65,
+	"./warrior.png": 66
 };
 function webpackContext(req) {
 	return __webpack_require__(webpackContextResolve(req));
@@ -4344,135 +4357,34 @@ webpackContext.id = 60;
 /* 61 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var map = {
-	"./http.js": 9,
-	"./mediator.js": 62,
-	"./router.js": 3
-};
-function webpackContext(req) {
-	return __webpack_require__(webpackContextResolve(req));
-};
-function webpackContextResolve(req) {
-	var id = map[req];
-	if(!(id + 1)) // check for number or string
-		throw new Error("Cannot find module '" + req + "'.");
-	return id;
-};
-webpackContext.keys = function webpackContextKeys() {
-	return Object.keys(map);
-};
-webpackContext.resolve = webpackContextResolve;
-module.exports = webpackContext;
-webpackContext.id = 61;
-
-/***/ }),
-/* 62 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-
-class Mediator {
-    constructor() {
-        if (Mediator.__instance) {
-            return Mediator.__instance;
-        }
-
-        this.channels = new Map();
-
-        Mediator.__instance = this;
-    }
-
-    subscribe(name, func) {
-
-        if (!this.channels.get(name)) {
-            this.channels.set(name, []);
-        }
-        this.channels.get(name).push(func);
-        return this;
-    }
-
-    publish(name, payload = null) {
-        if (!this.channels.get(name)) {
-            return;
-        }
-        this.channels.get(name).forEach(func => {
-            func(payload);
-        });
-    }
-
-    unsubscribe(name, f) {
-        if (!this.channels.get(name)) {
-            return;
-        }
-        this.channels.get(name).splice(this.channels.get(name).indexOf(f), 1);
-        return;
-    }
-
-}
-/* harmony export (immutable) */ __webpack_exports__["default"] = Mediator;
-
-
-/***/ }),
-/* 63 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var map = {
-	"./banner.png": 64,
-	"./logo2.png": 65,
-	"./mage.png": 66,
-	"./priest.png": 67,
-	"./thief.png": 68,
-	"./warrior.png": 69
-};
-function webpackContext(req) {
-	return __webpack_require__(webpackContextResolve(req));
-};
-function webpackContextResolve(req) {
-	var id = map[req];
-	if(!(id + 1)) // check for number or string
-		throw new Error("Cannot find module '" + req + "'.");
-	return id;
-};
-webpackContext.keys = function webpackContextKeys() {
-	return Object.keys(map);
-};
-webpackContext.resolve = webpackContextResolve;
-module.exports = webpackContext;
-webpackContext.id = 63;
-
-/***/ }),
-/* 64 */
-/***/ (function(module, exports, __webpack_require__) {
-
 module.exports = __webpack_require__.p + "./banner-8fbe7a02e185423efad976b0be95524b.png";
 
 /***/ }),
-/* 65 */
+/* 62 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "./logo2-3cf843d080ef7f43169fc926bd2e4895.png";
 
 /***/ }),
-/* 66 */
+/* 63 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "./mage-c458dd5d04052ebc27883fbfecf7db54.png";
 
 /***/ }),
-/* 67 */
+/* 64 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "./priest-87d5d9da08d4f88271884f821fd9c79f.png";
 
 /***/ }),
-/* 68 */
+/* 65 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "./thief-44dd92f7e16a9964c45341046cc9cacc.png";
 
 /***/ }),
-/* 69 */
+/* 66 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "./warrior-39d7246a94bd3c09959c9649a740eed9.png";
