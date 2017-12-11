@@ -73,12 +73,13 @@ footbarCreate() {
 }
 creation () {
     const image = document.querySelector('img.wall');
-    if ( document.querySelector('div.main-menu') !== null)
+    if ( document.querySelector('div.main-menu') !== null )
     {
-        console.log(image)
         document.querySelector('div.main-menu').remove();
     }
-    image.remove();
+    else if (image!==null) {
+        image.remove();
+    }
 
     wrape.appendChild(this._element);
        this.footbarCreate();
