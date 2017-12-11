@@ -50,7 +50,7 @@ export class MainPage extends Block {
     }
     creation() {
         if (document.querySelector('img.wall') === null){
-            const application = document.querySelector('div.application');
+            const application = document.getElementById('application');
             application.appendChildBlock("wall",
                 new Block('img', [imageWall]));
         }
