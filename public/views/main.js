@@ -37,10 +37,11 @@ wall.setAttribute('src','../images/banner.png');
         }
         userService.login(formdata[0], formdata[1])
             .then(() => new Router().go('/game'))
+            .then (() =>document.querySelector('form.login-form').remove())
             .then(() => {
                 let logout = document.querySelector('a.back');
                 logout.addEventListener('click', function () {
-                    document.querySelector('div.wrapper').remove();
+                    document.querySelector('div.choose').remove();
                     userService.logout()
                     new Router().go('/')
                 })
@@ -56,11 +57,12 @@ wall.setAttribute('src','../images/banner.png');
          }
          userService.signup(formdata[0], formdata[1], formdata[2])
              .then(() => new Router().go('/game'))
+             .then (() =>document.querySelector('form.registration-form').remove())
              .then(() => {
                  let logout = document.querySelector('a.back');
                  logout.addEventListener('click', function () {
                      userService.logout()
-                     document.querySelector('div.wrapper').remove();
+                     document.querySelector('div.choose').remove();
                      new Router().go('/')
                  })
              })
