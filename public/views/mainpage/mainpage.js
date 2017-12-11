@@ -49,13 +49,16 @@ export class MainPage extends Block {
         });
     }
     creation() {
-
-
+        if (document.querySelector('img.wall') === null){
+            const application = document.querySelector('div.application');
+            application.appendChildBlock("wall",
+                new Block('img', [imageWall]));
+        }
       const wrape = document.querySelector('div.wrapper');
         if (wrape.childNodes[0] !== undefined) {
             wrape.removeChild(wrape.childNodes[0])
         }
-    wrape.appendChild(this._element);
+         wrape.appendChild(this._element);
 
         const linkFirst = document.querySelector('a.buttonFirst');
         linkFirst.setAttribute('value','/login');

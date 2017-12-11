@@ -81,15 +81,10 @@ creation () {
     image.remove();
 
     wrape.appendChild(this._element);
-this.footbarCreate();
-this.choose();
-this.leftbar();
-    let value = document.querySelector('img.person')
-value.setAttribute('src',enity[0].src);
-
-    // const navigator = document.querySelector('a.buttonBack');
-    //     navigator.addEventListener('click', () => {
-    //         new Router().go('/')
-    //     });
+       this.footbarCreate();
+       this.choose();
+       this.leftbar();
+       let value = document.querySelector('img.person')
+       value.setAttribute('src',enity[0].src);
     }
 }
