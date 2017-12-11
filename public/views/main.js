@@ -5,7 +5,6 @@ import LoginValidate from '../blocks/autheficate/loginAuth';
 
 import Router from "../modules/router";
 
-
 import UserService from '../servises/user-service';
 
 const userService = new UserService();
@@ -38,10 +37,9 @@ wall.setAttribute('src','../images/banner.png');
             return;
         }
         userService.signin(formdata[0], formdata[1])
-            .then(() => new Router().go('/multiplayer'))
-            .then(() => game.appendChildBlock('game', new Block('a', ['logout']).setText('logout')))
+            .then(() => new Router().go('/game'))
             .then(() => {
-                let logout = document.querySelector('a.logout');
+                let logout = document.querySelector('a.back');
                 logout.addEventListener('click', function () {
                     userService.logout()
                     new Router().go('/')
@@ -57,10 +55,9 @@ wall.setAttribute('src','../images/banner.png');
              return;
          }
          userService.signup(formdata[0], formdata[1], formdata[2])
-             .then(() => new Router().go('/multiplayer'))
-             .then(() => game.appendChildBlock('game', new Block('a', ['logout']).setText('logout')))
+             .then(() => new Router().go('/game'))
              .then(() => {
-                 let logout = document.querySelector('a.logout');
+                 let logout = document.querySelector('a.back');
                  logout.addEventListener('click', function () {
                      userService.logout()
                      new Router().go('/')
