@@ -35,7 +35,7 @@ wall.setAttribute('src','../images/banner.png');
         if (authValidation === false) {
             return;
         }
-        userService.signin(formdata[0], formdata[1])
+        userService.login(formdata[0], formdata[1])
             .then(() => new Router().go('/game'))
             .then(() => {
                 let logout = document.querySelector('a.back');
