@@ -889,7 +889,7 @@ function signin(login) {
                 new __WEBPACK_IMPORTED_MODULE_3__modules_router__["default"]().go('/');
             });
         });
-        //   .then (() => new Mediator().publish('VIEW_LOAD'))
+        //.then (() => new Mediator().publish('VIEW_LOAD'))
     });
 }
 
@@ -1058,6 +1058,7 @@ class Http {
                 return;
             } else if (response.status >= 400) {
                 __WEBPACK_IMPORTED_MODULE_0__blocks_forms_validation__["a" /* default */].userError();
+                console.log(response.body);
                 let json = response.json();
                 return json.then(response => {
                     throw response;
@@ -1101,9 +1102,11 @@ class Mediator {
 
     publish(name, payload = null) {
         if (!this.channels.get(name)) {
+            console.log('dont-work');
             return;
         }
         this.channels.get(name).forEach(func => {
+            console.log('work');
             func(payload);
         });
     }
