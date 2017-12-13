@@ -51,7 +51,7 @@ class Http {
             xhr.onreadystatechange = function () {
                 if (xhr.readyState !== 4) return;
                 if (+xhr.status >= 400) {
-                    alert(xhr.responseText);
+                   // alert(xhr.responseText);
                     reject(xhr);
                     return;
                 }
@@ -139,13 +139,9 @@ class Http {
                 }
                 else if (response.status >= 400){
                     Validate.userError();
-                    throw 'error'
-                   // console.log(response.body);
-                    //let json = response.json();
-                    //return json.then(response => {throw response;});
+                    let json = response.json();
+                    return json.then(response => {throw response;});
                 }
-            }).catch(function(err) {
-                console.log(err);
             });
     }
 
