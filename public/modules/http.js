@@ -30,6 +30,7 @@ class Http {
         const url = (Http.BaseUrl || baseUrl) + address;
         if (typeof window.fetch !== 'undefined') {
             console.log("function post work");
+            console.log(this._FetchPost(body, url))
             return this._FetchPost(body, url);
         }
         return false;
