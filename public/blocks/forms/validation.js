@@ -17,23 +17,20 @@ class Validate {
 
 static userError () {
     let form;
-    let flag = 0;
     const div = document.createElement('div');
-    if (document.querySelector('form.login-form') === null ) {
-        nameForm = 'form.registration-form';
+    if (document.querySelector('form.login-form') === null && document.getElementsByTagName('p').length === 0) {
         form = document.querySelector('form.registration-form');
         div.className = "message-error";
         div.innerHTML = "<p> Sorry,user is already exist </p> ";
-        flag =1 ;
+        form.appendChild(div);
     }
 
-    else if (document.querySelector('form.login-form') !== null){
+    else if (document.querySelector('form.login-form') !== null && document.getElementsByTagName('p').length === 0){
+        form = document.querySelector('form.login-form');
         div.className = "message-error";
         div.innerHTML = "<p> Sorry,user is not found </p> ";
-        flag = 1;
-    }
-    if (document.getElementsByTagName('p').length === 0 && flag ){
         form.appendChild(div);
+
     }
 
 }
