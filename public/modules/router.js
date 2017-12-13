@@ -46,6 +46,12 @@ export default  class Router{
             return;
         }
 
+        if ((window.innerHeight > window.innerWidth) && ((typeof window.orientation !== "undefined") || (navigator.userAgent.indexOf('IEMobile') !== -1)))
+        {
+            alert('It is game only for laptop view');
+            return ;
+        }
+
         if (window.location.pathname !== path) {
             window.history.pushState({}, '', path);
         }

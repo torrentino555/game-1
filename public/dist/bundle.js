@@ -276,6 +276,11 @@ class Router {
             return;
         }
 
+        if (window.innerHeight > window.innerWidth && (typeof window.orientation !== "undefined" || navigator.userAgent.indexOf('IEMobile') !== -1)) {
+            alert('It is game only for laptop view');
+            return;
+        }
+
         if (window.location.pathname !== path) {
             window.history.pushState({}, '', path);
         }
@@ -314,16 +319,21 @@ const MIN_PASSWORD_LENGTH = 4;
 class Validate {
 
     static userError() {
-        let nameForm = 'form.login-form';
+        let form;
+        let flag = 0;
+        const div = document.createElement('div');
         if (document.querySelector('form.login-form') === null) {
             nameForm = 'form.registration-form';
+            form = document.querySelector('form.registration-form');
+            div.className = "message-error";
+            div.innerHTML = "<p> Sorry,user is already exist </p> ";
+            flag = 1;
+        } else if (document.querySelector('form.login-form') !== null) {
+            div.className = "message-error";
+            div.innerHTML = "<p> Sorry,user is not found </p> ";
+            flag = 1;
         }
-        let form = document.querySelector(nameForm);
-
-        let div = document.createElement('div');
-        div.className = "message-error";
-        div.innerHTML = "<p> Sorry,user is already exist </p> ";
-        if (form.getElementsByTagName('p').length === 0) {
+        if (form.getElementsByTagName('p').length === 0 && flag) {
             form.appendChild(div);
         }
     }
@@ -865,9 +875,15 @@ const game = new __WEBPACK_IMPORTED_MODULE_0__baseview__["a" /* default */]('div
 const images = "logo";
 const imageWall = "wall";
 
+const for_wall = new __WEBPACK_IMPORTED_MODULE_0__baseview__["a" /* default */]('div', ['for_wall']);
+application.appendChildBlock('for_wall', for_wall);
+for_wall.appendChildBlock("wall", new __WEBPACK_IMPORTED_MODULE_0__baseview__["a" /* default */]('img', [imageWall]));
+
 application.appendChildBlock('application', wrapper);
+
 application.appendChildBlock("logo", new __WEBPACK_IMPORTED_MODULE_0__baseview__["a" /* default */]('img', [images]));
-application.appendChildBlock("wall", new __WEBPACK_IMPORTED_MODULE_0__baseview__["a" /* default */]('img', [imageWall]));
+/*application.appendChildBlock("wall",
+    new Block('img', [imageWall]));*/
 const logo = document.querySelector('img.logo');
 logo.setAttribute('src', '../images/logo2.png');
 
@@ -1769,7 +1785,7 @@ class MainPage extends __WEBPACK_IMPORTED_MODULE_0__baseview__["a" /* default */
     }
     creation() {
         if (document.querySelector('img.wall') === null) {
-            const application = document.getElementById('application');
+            const application = document.getElementById('for_wall');
             this.appendChildBlock('wall', new __WEBPACK_IMPORTED_MODULE_0__baseview__["a" /* default */]('img', ['wall']));
             application.appendChild(this._element);
             const wall = document.querySelector('img.wall');
@@ -1840,7 +1856,7 @@ exports = module.exports = __webpack_require__(5)(undefined);
 
 
 // module
-exports.push([module.i, "@viewport {\n  width: 640px;\n  height: 440px;\n  zoom: 2;\n  user-zoom: fixed; }\n\n.buttonFirst {\n  display: inline-block;\n  /*   width: 150px;\n     height: 60px;*/\n  width: 12vw;\n  height: 6vh;\n  line-height: 50px;\n  text-align: center;\n  text-decoration: none;\n  text-shadow: 0 1px rgba(154, 33, 33, 0.2), 0 -1px rgba(82, 11, 11, 0.8);\n  border-radius: 17px;\n  background: #731509 radial-gradient(150% 100% at 50% 5px, rgba(255, 255, 255, 0.2), transparent);\n  box-shadow: inset rgba(0, 0, 0, 0.6) 0 -2px 5px, inset rgba(252, 255, 255, 0.7) 0 2px 5px, rgba(0, 0, 0, 0.8) 0 2px 5px -1px;\n  color: #c58818;\n  /* user-select: none; */\n  position: absolute;\n  border: 2px solid;\n  top: 45%;\n  left: 44%;\n  font-size: 150%; }\n\n.buttonFirst:hover {\n  color: white;\n  cursor: pointer; }\n\n.buttonFirst:active {\n  padding-bottom: 1px;\n  box-shadow: inset black 0 1px 3px, inset rgba(0, 0, 0, 0.6) 0 -2px 5px, inset rgba(252, 255, 255, 0.7) 0 2px 5px, 0 1px rgba(255, 255, 255, 0.08);\n  color: #80cfd6; }\n\n.buttonSecond {\n  display: inline-block;\n  /*   width: 150px;\n     height: 60px;*/\n  width: 12vw;\n  height: 6vh;\n  line-height: 50px;\n  text-align: center;\n  text-decoration: none;\n  text-shadow: 0 1px rgba(154, 33, 33, 0.2), 0 -1px rgba(82, 11, 11, 0.8);\n  border-radius: 17px;\n  background: #731509 radial-gradient(150% 100% at 50% 5px, rgba(255, 255, 255, 0.2), transparent);\n  box-shadow: inset rgba(0, 0, 0, 0.6) 0 -2px 5px, inset rgba(252, 255, 255, 0.7) 0 2px 5px, rgba(0, 0, 0, 0.8) 0 2px 5px -1px;\n  color: #c58818;\n  /* user-select: none; */\n  position: absolute;\n  border: 2px solid;\n  top: 55%;\n  left: 44%;\n  font-size: 150%; }\n\n.buttonSecond:hover {\n  color: white;\n  cursor: pointer; }\n\n.buttonSecond:active {\n  padding-bottom: 1px;\n  box-shadow: inset black 0 1px 3px, inset rgba(0, 0, 0, 0.6) 0 -2px 5px, inset rgba(252, 255, 255, 0.7) 0 2px 5px, 0 1px rgba(255, 255, 255, 0.08);\n  color: #80cfd6; }\n\n.buttonThird {\n  display: inline-block;\n  /*   width: 150px;\n     height: 60px;*/\n  width: 12vw;\n  height: 6vh;\n  line-height: 50px;\n  text-align: center;\n  text-decoration: none;\n  text-shadow: 0 1px rgba(154, 33, 33, 0.2), 0 -1px rgba(82, 11, 11, 0.8);\n  border-radius: 17px;\n  background: #731509 radial-gradient(150% 100% at 50% 5px, rgba(255, 255, 255, 0.2), transparent);\n  box-shadow: inset rgba(0, 0, 0, 0.6) 0 -2px 5px, inset rgba(252, 255, 255, 0.7) 0 2px 5px, rgba(0, 0, 0, 0.8) 0 2px 5px -1px;\n  color: #c58818;\n  position: absolute;\n  border: 2px solid;\n  top: 66%;\n  left: 44%;\n  font-size: 150%; }\n\n.buttonThird:hover {\n  color: white;\n  cursor: pointer; }\n\n.buttonThird:active {\n  padding-bottom: 1px;\n  box-shadow: inset black 0 1px 3px, inset rgba(0, 0, 0, 0.6) 0 -2px 5px, inset rgba(252, 255, 255, 0.7) 0 2px 5px, 0 1px rgba(255, 255, 255, 0.08);\n  color: #80cfd6; }\n\n.buttonFour {\n  display: inline-block;\n  /*   width: 150px;\n     height: 60px;*/\n  width: 12vw;\n  height: 6vh;\n  line-height: 50px;\n  text-align: center;\n  text-decoration: none;\n  text-shadow: 0 1px rgba(154, 33, 33, 0.2), 0 -1px rgba(82, 11, 11, 0.8);\n  border-radius: 17px;\n  background: #731509 radial-gradient(150% 100% at 50% 5px, rgba(255, 255, 255, 0.2), transparent);\n  box-shadow: inset rgba(0, 0, 0, 0.6) 0 -2px 5px, inset rgba(252, 255, 255, 0.7) 0 2px 5px, rgba(0, 0, 0, 0.8) 0 2px 5px -1px;\n  color: #c58818;\n  /* user-select: none; */\n  position: absolute;\n  border: 2px solid;\n  top: 77%;\n  left: 44%;\n  font-size: 150%; }\n\n.buttonFour:hover {\n  color: white;\n  cursor: pointer; }\n\n.buttonFour:active {\n  padding-bottom: 1px;\n  box-shadow: inset black 0 1px 3px, inset rgba(0, 0, 0, 0.6) 0 -2px 5px, inset rgba(252, 255, 255, 0.7) 0 2px 5px, 0 1px rgba(255, 255, 255, 0.08);\n  color: #80cfd6; }\n\n.buttonChange-theme {\n  font-family: fantasy;\n  text-transform: uppercase;\n  outline: 0;\n  background: purple;\n  border: 0;\n  padding: 15px;\n  color: #fff;\n  font-size: 14px;\n  cursor: pointer;\n  right: 5%;\n  width: 120px;\n  top: 5%; }\n  .buttonChange-theme:hover {\n    background: green; }\n  .buttonChange-theme:active {\n    background: white; }\n\n@media screen and (min-width: 960px) and (max-width: 1280px) and (orientation: landscape) {\n  .buttonFirst {\n    top: 56%;\n    left: 41%;\n    width: 21vw;\n    height: 9vh; }\n  .buttonSecond {\n    top: 74%;\n    left: 41%;\n    width: 21vw;\n    height: 9vh; }\n  .buttonThird {\n    top: 94%;\n    left: 41%;\n    width: 21vw;\n    height: 9vh; }\n  .buttonFour {\n    top: 112%;\n    left: 41%;\n    width: 21vw;\n    height: 9vh; } }\n\n@media (min-width: 481px) and (max-width: 767px) and (orientation: landscape) {\n  .buttonFirst {\n    width: 19vw;\n    height: 11vh;\n    line-height: 30px;\n    top: 85%;\n    left: 42%;\n    font-size: 115%; }\n  .buttonSecond {\n    width: 19vw;\n    height: 11vh;\n    line-height: 30px;\n    top: 115%;\n    left: 42%;\n    font-size: 115%; }\n  .buttonThird {\n    width: 19vw;\n    height: 11vh;\n    line-height: 30px;\n    top: 145%;\n    left: 42%;\n    font-size: 115%; }\n  .buttonFour {\n    width: 19vw;\n    height: 11vh;\n    line-height: 30px;\n    top: 175%;\n    left: 42%;\n    font-size: 115%; } }\n", ""]);
+exports.push([module.i, "@viewport {\n  width: 640px;\n  height: 440px;\n  zoom: 2;\n  user-zoom: fixed; }\n\n.buttonFirst {\n  display: inline-block;\n  /*   width: 150px;\n     height: 60px;*/\n  width: 7em;\n  height: 2em;\n  line-height: 60px;\n  text-align: center;\n  text-decoration: none;\n  text-shadow: 0 1px rgba(154, 33, 33, 0.2), 0 -1px rgba(82, 11, 11, 0.8);\n  border-radius: 17px;\n  background: #731509 radial-gradient(150% 100% at 50% 5px, rgba(255, 255, 255, 0.2), transparent);\n  box-shadow: inset rgba(0, 0, 0, 0.6) 0 -2px 5px, inset rgba(252, 255, 255, 0.7) 0 2px 5px, rgba(0, 0, 0, 0.8) 0 2px 5px -1px;\n  color: #c58818;\n  /* user-select: none; */\n  position: absolute;\n  border: 2px solid;\n  top: 46%;\n  left: 44%;\n  font-size: 164%; }\n\n.buttonFirst:hover {\n  color: white;\n  cursor: pointer; }\n\n.buttonFirst:active {\n  padding-bottom: 1px;\n  box-shadow: inset black 0 1px 3px, inset rgba(0, 0, 0, 0.6) 0 -2px 5px, inset rgba(252, 255, 255, 0.7) 0 2px 5px, 0 1px rgba(255, 255, 255, 0.08);\n  color: #80cfd6; }\n\n.buttonSecond {\n  display: inline-block;\n  /*   width: 150px;\n     height: 60px;*/\n  width: 7em;\n  height: 2em;\n  line-height: 60px;\n  text-align: center;\n  text-decoration: none;\n  text-shadow: 0 1px rgba(154, 33, 33, 0.2), 0 -1px rgba(82, 11, 11, 0.8);\n  border-radius: 17px;\n  background: #731509 radial-gradient(150% 100% at 50% 5px, rgba(255, 255, 255, 0.2), transparent);\n  box-shadow: inset rgba(0, 0, 0, 0.6) 0 -2px 5px, inset rgba(252, 255, 255, 0.7) 0 2px 5px, rgba(0, 0, 0, 0.8) 0 2px 5px -1px;\n  color: #c58818;\n  /* user-select: none; */\n  position: absolute;\n  border: 2px solid;\n  top: 58%;\n  left: 44%;\n  font-size: 164%; }\n\n.buttonSecond:hover {\n  color: white;\n  cursor: pointer; }\n\n.buttonSecond:active {\n  padding-bottom: 1px;\n  box-shadow: inset black 0 1px 3px, inset rgba(0, 0, 0, 0.6) 0 -2px 5px, inset rgba(252, 255, 255, 0.7) 0 2px 5px, 0 1px rgba(255, 255, 255, 0.08);\n  color: #80cfd6; }\n\n.buttonThird {\n  display: inline-block;\n  /*   width: 150px;\n     height: 60px;*/\n  width: 7em;\n  height: 2em;\n  line-height: 60px;\n  text-align: center;\n  text-decoration: none;\n  text-shadow: 0 1px rgba(154, 33, 33, 0.2), 0 -1px rgba(82, 11, 11, 0.8);\n  border-radius: 17px;\n  background: #731509 radial-gradient(150% 100% at 50% 5px, rgba(255, 255, 255, 0.2), transparent);\n  box-shadow: inset rgba(0, 0, 0, 0.6) 0 -2px 5px, inset rgba(252, 255, 255, 0.7) 0 2px 5px, rgba(0, 0, 0, 0.8) 0 2px 5px -1px;\n  color: #c58818;\n  position: absolute;\n  border: 2px solid;\n  top: 71%;\n  left: 44%;\n  font-size: 164%; }\n\n.buttonThird:hover {\n  color: white;\n  cursor: pointer; }\n\n.buttonThird:active {\n  padding-bottom: 1px;\n  box-shadow: inset black 0 1px 3px, inset rgba(0, 0, 0, 0.6) 0 -2px 5px, inset rgba(252, 255, 255, 0.7) 0 2px 5px, 0 1px rgba(255, 255, 255, 0.08);\n  color: #80cfd6; }\n\n.buttonFour {\n  display: inline-block;\n  /*   width: 150px;\n     height: 60px;*/\n  width: 7em;\n  height: 2em;\n  line-height: 60px;\n  text-align: center;\n  text-decoration: none;\n  text-shadow: 0 1px rgba(154, 33, 33, 0.2), 0 -1px rgba(82, 11, 11, 0.8);\n  border-radius: 17px;\n  background: #731509 radial-gradient(150% 100% at 50% 5px, rgba(255, 255, 255, 0.2), transparent);\n  box-shadow: inset rgba(0, 0, 0, 0.6) 0 -2px 5px, inset rgba(252, 255, 255, 0.7) 0 2px 5px, rgba(0, 0, 0, 0.8) 0 2px 5px -1px;\n  color: #c58818;\n  /* user-select: none; */\n  position: absolute;\n  border: 2px solid;\n  top: 83%;\n  left: 44%;\n  font-size: 164%; }\n\n.buttonFour:hover {\n  color: white;\n  cursor: pointer; }\n\n.buttonFour:active {\n  padding-bottom: 1px;\n  box-shadow: inset black 0 1px 3px, inset rgba(0, 0, 0, 0.6) 0 -2px 5px, inset rgba(252, 255, 255, 0.7) 0 2px 5px, 0 1px rgba(255, 255, 255, 0.08);\n  color: #80cfd6; }\n\n@media screen and (min-width: 960px) and (max-width: 1280px) and (orientation: landscape) {\n  .buttonFirst {\n    top: 56%;\n    left: 41%;\n    width: 21vw;\n    height: 9vh; }\n  .buttonSecond {\n    top: 74%;\n    left: 41%;\n    width: 21vw;\n    height: 9vh; }\n  .buttonThird {\n    top: 94%;\n    left: 41%;\n    width: 21vw;\n    height: 9vh; }\n  .buttonFour {\n    top: 112%;\n    left: 41%;\n    width: 21vw;\n    height: 9vh; } }\n\n@media (min-width: 481px) and (max-width: 767px) and (orientation: landscape) {\n  .buttonFirst {\n    width: 19vw;\n    height: 11vh;\n    line-height: 30px;\n    top: 85%;\n    left: 42%;\n    font-size: 115%; }\n  .buttonSecond {\n    width: 19vw;\n    height: 11vh;\n    line-height: 30px;\n    top: 115%;\n    left: 42%;\n    font-size: 115%; }\n  .buttonThird {\n    width: 19vw;\n    height: 11vh;\n    line-height: 30px;\n    top: 145%;\n    left: 42%;\n    font-size: 115%; }\n  .buttonFour {\n    width: 19vw;\n    height: 11vh;\n    line-height: 30px;\n    top: 175%;\n    left: 42%;\n    font-size: 115%; } }\n", ""]);
 
 // exports
 
@@ -2126,7 +2142,7 @@ exports = module.exports = __webpack_require__(5)(undefined);
 
 
 // module
-exports.push([module.i, ".field {\n  font-family: fantasy;\n  outline: 0;\n  background: #291b1f;\n  width: 100%;\n  margin: 0 0 15px;\n  padding: 15px;\n  box-sizing: border-box;\n  border: 2px solid #c58818;\n  font-size: 14px;\n  color: white; }\n\n.field:hover {\n  border-radius: 10px;\n  border: 2px solid white; }\n\n.message-error {\n  margin-left: 10px;\n  color: red;\n  font-size: 25px;\n  font-family: fantasy; }\n\n.login-form {\n  font-family: fantasy;\n  outline: 0;\n  /*background: #f2f2f2;*/\n  width: 100%;\n  max-width: 360px;\n  margin: 0 auto 100px;\n  padding: 15px;\n  box-sizing: border-box;\n  border: 2px red;\n  font-size: 14px;\n  position: absolute;\n  top: 38%;\n  left: 37.5%; }\n\n.registration-form {\n  font-family: fantasy;\n  outline: 0;\n  /*background: #f2f2f2;*/\n  width: 100%;\n  max-width: 360px;\n  margin: 0 auto 100px;\n  padding: 15px;\n  box-sizing: border-box;\n  border: 2px red;\n  font-size: 14px;\n  position: absolute;\n  top: 35%;\n  left: 37.5%; }\n\n@media screen and (min-width: 960px) and (max-width: 1280px) and (orientation: landscape) {\n  .login-form {\n    top: 48%;\n    left: 31.5%; }\n  .registration-form {\n    top: 46%;\n    left: 31.5%; } }\n\n@media (min-width: 481px) and (max-width: 767px) and (orientation: landscape) {\n  .field {\n    width: 51%;\n    height: 40px;\n    margin: 0 0 47px;\n    line-height: 1px; }\n  .login-form {\n    top: 66%;\n    left: 37.5%; }\n  .registration-form {\n    top: 66%; } }\n", ""]);
+exports.push([module.i, ".field {\n  font-family: fantasy;\n  outline: 0;\n  background: #291b1f;\n  width: 100%;\n  margin: 0 0 15px;\n  padding: 15px;\n  box-sizing: border-box;\n  border: 2px solid #c58818;\n  font-size: 14px;\n  color: white; }\n\n.field:hover {\n  border-radius: 10px;\n  border: 2px solid white; }\n\n.message-error {\n  margin-left: 10px;\n  color: red;\n  font-size: 25px;\n  font-family: fantasy; }\n\n.login-form {\n  font-family: fantasy;\n  outline: 0;\n  /*background: #f2f2f2;*/\n  width: 100%;\n  max-width: 360px;\n  margin: 0 auto 100px;\n  padding: 15px;\n  box-sizing: border-box;\n  border: 2px red;\n  font-size: 14px;\n  position: absolute;\n  top: 44%;\n  left: 37%; }\n\n.registration-form {\n  font-family: fantasy;\n  outline: 0;\n  /*background: #f2f2f2;*/\n  width: 100%;\n  max-width: 360px;\n  margin: 0 auto 100px;\n  padding: 15px;\n  box-sizing: border-box;\n  border: 2px red;\n  font-size: 14px;\n  position: absolute;\n  top: 41.5%;\n  left: 37.5%; }\n\n@media screen and (min-width: 960px) and (max-width: 1280px) and (orientation: landscape) {\n  .login-form {\n    top: 48%;\n    left: 31.5%; }\n  .registration-form {\n    top: 46%;\n    left: 31.5%; } }\n\n@media (min-width: 481px) and (max-width: 767px) and (orientation: landscape) {\n  .field {\n    width: 51%;\n    height: 40px;\n    margin: 0 0 47px;\n    line-height: 1px; }\n  .login-form {\n    top: 66%;\n    left: 37.5%; }\n  .registration-form {\n    top: 66%; } }\n", ""]);
 
 // exports
 

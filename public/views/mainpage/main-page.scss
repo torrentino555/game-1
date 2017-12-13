@@ -11,9 +11,9 @@
   display: inline-block;
   /*   width: 150px;
      height: 60px;*/
-  width: 12vw;
-  height: 6vh;
-  line-height: 50px;
+  width: 7em;
+  height: 2em;
+  line-height: 60px;
   text-align: center;
   text-decoration: none;
   text-shadow: 0 1px rgba(154, 33, 33, 0.2), 0 -1px rgba(82, 11, 11, 0.8);
@@ -24,9 +24,9 @@
   /* user-select: none; */
   position: absolute;
   border: 2px solid;
-  top:45%;
+  top:46%;
   left:44%;
-  font-size: 150%;
+  font-size: 164%;
 }
 .buttonFirst:hover {
   color: white;
@@ -49,9 +49,9 @@
   display: inline-block;
   /*   width: 150px;
      height: 60px;*/
-  width: 12vw;
-  height: 6vh;
-  line-height: 50px;
+  width: 7em;
+  height: 2em;
+  line-height: 60px;
   text-align: center;
   text-decoration: none;
   text-shadow: 0 1px rgba(154, 33, 33, 0.2), 0 -1px rgba(82, 11, 11, 0.8);
@@ -62,9 +62,9 @@
   /* user-select: none; */
   position: absolute;
   border: 2px solid;
-  top:55%;
+  top:58%;
   left:44%;
-  font-size: 150%;
+  font-size: 164%;
 }
 
 .buttonSecond:hover {
@@ -89,9 +89,9 @@
   display: inline-block;
   /*   width: 150px;
      height: 60px;*/
-  width: 12vw;
-  height: 6vh;
-  line-height: 50px;
+  width: 7em;
+  height: 2em;
+  line-height: 60px;
   text-align: center;
   text-decoration: none;
   text-shadow: 0 1px rgba(154, 33, 33, 0.2), 0 -1px rgba(82, 11, 11, 0.8);
@@ -101,9 +101,9 @@
   color: #c58818;
   position: absolute;
   border: 2px solid;
-  top:66%;
+  top:71%;
   left:44%;
-  font-size: 150%;
+  font-size: 164%;
 }
 
 .buttonThird:hover {
@@ -126,9 +126,9 @@
   display: inline-block;
   /*   width: 150px;
      height: 60px;*/
-  width: 12vw;
-  height: 6vh;
-  line-height: 50px;
+  width: 7em;
+  height: 2em;
+  line-height: 60px;
   text-align: center;
   text-decoration: none;
   text-shadow: 0 1px rgba(154, 33, 33, 0.2), 0 -1px rgba(82, 11, 11, 0.8);
@@ -139,9 +139,9 @@
   /* user-select: none; */
   position: absolute;
   border: 2px solid;
-  top:77%;
+  top:83%;
   left:44%;
-  font-size: 150%;
+  font-size: 164%;
 
 }
 
@@ -160,26 +160,7 @@
           0 1px rgba(255,255,255,.08);
   color: rgb(128,207,214);
 }
-.buttonChange-theme {
-  font-family: fantasy;
-  text-transform: uppercase;
-  outline: 0;
-  background: purple;
-  border: 0;
-  padding: 15px;
-  color: #fff;
-  font-size: 14px;
-  cursor: pointer;
-  right: 5%;
-  width: 120px;
-  top: 5%;
-  &:hover {
-    background: green;
-  }
-  &:active {
-    background: white;
-  }
-}
+
 
 @media screen and (min-width: 960px) and (max-width: 1280px) and (orientation: landscape) {
   .buttonFirst{

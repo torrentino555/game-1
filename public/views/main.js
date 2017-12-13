@@ -16,12 +16,17 @@ const game = new Block('div', ['game']);
 const images = "logo";
 const imageWall = "wall";
 
+const for_wall  = new Block('div', ['for_wall']);
+application.appendChildBlock('for_wall', for_wall);
+for_wall.appendChildBlock("wall",
+    new Block('img', [imageWall]));
 
 application.appendChildBlock('application', wrapper);
+
 application.appendChildBlock("logo",
     new Block('img', [images]));
-application.appendChildBlock("wall",
-    new Block('img', [imageWall]));
+/*application.appendChildBlock("wall",
+    new Block('img', [imageWall]));*/
 const logo = document.querySelector('img.logo');
 logo.setAttribute('src','../images/logo2.png');
 

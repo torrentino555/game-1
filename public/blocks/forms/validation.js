@@ -16,16 +16,23 @@ const MIN_PASSWORD_LENGTH = 4;
 class Validate {
 
 static userError () {
-    let nameForm = 'form.login-form';
+    let form;
+    let flag = 0;
+    const div = document.createElement('div');
     if (document.querySelector('form.login-form') === null ) {
         nameForm = 'form.registration-form';
+        form = document.querySelector('form.registration-form');
+        div.className = "message-error";
+        div.innerHTML = "<p> Sorry,user is already exist </p> ";
+        flag =1 ;
     }
-    let form = document.querySelector(nameForm);
 
-    let div = document.createElement('div');
-    div.className = "message-error";
-    div.innerHTML = "<p> Sorry,user is already exist </p> ";
-    if (form.getElementsByTagName('p').length === 0 ){
+    else if (document.querySelector('form.login-form') !== null){
+        div.className = "message-error";
+        div.innerHTML = "<p> Sorry,user is not found </p> ";
+        flag = 1;
+    }
+    if (form.getElementsByTagName('p').length === 0 && flag ){
         form.appendChild(div);
     }
 
