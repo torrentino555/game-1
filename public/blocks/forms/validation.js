@@ -24,7 +24,7 @@ static userError () {
         form = document.querySelector('form.registration-form');
         div.className = "message-error";
         div.innerHTML = "<p> Sorry,user is already exist </p> ";
-        flag = 1 ;
+        flag =1 ;
     }
 
     else if (document.querySelector('form.login-form') !== null){
@@ -32,7 +32,7 @@ static userError () {
         div.innerHTML = "<p> Sorry,user is not found </p> ";
         flag = 1;
     }
-    if (form ==='undefined' && flag ){
+    if (document.getElementsByTagName('p').length === 0 && flag ){
         form.appendChild(div);
     }
 
