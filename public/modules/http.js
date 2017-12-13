@@ -138,10 +138,13 @@ class Http {
                 }
                 else if (response.status >= 400){
                     Validate.userError();
-                    console.log(response.body);
-                    let json = response.json();
-                    return json.then(response => {throw response;});
+                    throw 'error'
+                   // console.log(response.body);
+                    //let json = response.json();
+                    //return json.then(response => {throw response;});
                 }
+            }).catch(function(err) {
+                console.log(err);
             });
     }
 
