@@ -815,7 +815,7 @@ function updateLink (link, options, obj) {
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(31);
+var content = __webpack_require__(30);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // Prepare cssTransformation
 var transform;
@@ -847,7 +847,6 @@ if(false) {
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "signup", function() { return signup; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "signin", function() { return signin; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "mainPage", function() { return mainPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__baseview__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__blocks_autheficate_registrationAuth__ = __webpack_require__(21);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__blocks_autheficate_loginAuth__ = __webpack_require__(22);
@@ -865,6 +864,28 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 const userService = new __WEBPACK_IMPORTED_MODULE_4__servises_user_service__["a" /* default */]();
 
+const application = new __WEBPACK_IMPORTED_MODULE_0__baseview__["a" /* default */](document.getElementById('application'));
+
+const wrapper = new __WEBPACK_IMPORTED_MODULE_0__baseview__["a" /* default */]('div', ['wrapper']);
+const game = new __WEBPACK_IMPORTED_MODULE_0__baseview__["a" /* default */]('div', ['game']);
+
+const images = "logo";
+const imageWall = "wall";
+
+const for_wall = new __WEBPACK_IMPORTED_MODULE_0__baseview__["a" /* default */]('div', ['for_wall']);
+application.appendChildBlock('for_wall', for_wall);
+for_wall.appendChildBlock("wall", new __WEBPACK_IMPORTED_MODULE_0__baseview__["a" /* default */]('img', [imageWall]));
+
+application.appendChildBlock('application', wrapper);
+
+application.appendChildBlock("logo", new __WEBPACK_IMPORTED_MODULE_0__baseview__["a" /* default */]('img', [images]));
+/*application.appendChildBlock("wall",
+    new Block('img', [imageWall]));*/
+const logo = document.querySelector('img.logo');
+logo.setAttribute('src', '../images/logo2.png');
+
+const wall = document.querySelector('img.wall');
+wall.setAttribute('src', '../images/banner.png');
 function signin(login) {
     login.onSubmit(formdata => {
         const authValidation = Object(__WEBPACK_IMPORTED_MODULE_2__blocks_autheficate_loginAuth__["a" /* default */])(formdata[0], formdata[1]);
@@ -900,31 +921,9 @@ function signup(registration) {
     });
 }
 
-function mainPage() {
-    console.log('main-page-work');
-    const application = new __WEBPACK_IMPORTED_MODULE_0__baseview__["a" /* default */](document.getElementById('application'));
+//function mainPage() {
 
-    const wrapper = new __WEBPACK_IMPORTED_MODULE_0__baseview__["a" /* default */]('div', ['wrapper']);
-    const game = new __WEBPACK_IMPORTED_MODULE_0__baseview__["a" /* default */]('div', ['game']);
-
-    const images = "logo";
-    const imageWall = "wall";
-
-    const for_wall = new __WEBPACK_IMPORTED_MODULE_0__baseview__["a" /* default */]('div', ['for_wall']);
-    application.appendChildBlock('for_wall', for_wall);
-    for_wall.appendChildBlock("wall", new __WEBPACK_IMPORTED_MODULE_0__baseview__["a" /* default */]('img', [imageWall]));
-
-    application.appendChildBlock('application', wrapper);
-
-    application.appendChildBlock("logo", new __WEBPACK_IMPORTED_MODULE_0__baseview__["a" /* default */]('img', [images]));
-    /*application.appendChildBlock("wall",
-        new Block('img', [imageWall]));*/
-    const logo = document.querySelector('img.logo');
-    logo.setAttribute('src', '../images/logo2.png');
-
-    const wall = document.querySelector('img.wall');
-    wall.setAttribute('src', '../images/banner.png');
-}
+// }
 
 
 
@@ -1342,11 +1341,11 @@ class Pathfinding {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Shaders__ = __webpack_require__(41);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Program__ = __webpack_require__(42);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Shaders__ = __webpack_require__(40);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Program__ = __webpack_require__(41);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Utils__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__Sprite__ = __webpack_require__(43);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__global_js__ = __webpack_require__(44);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__Sprite__ = __webpack_require__(42);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__global_js__ = __webpack_require__(43);
 
 
 
@@ -1545,11 +1544,11 @@ module.exports = "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAIBAQE
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__modules_router__ = __webpack_require__(3);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__views_mainpage_mainpage__ = __webpack_require__(24);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__views_login_login__ = __webpack_require__(30);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__views_signup_registration__ = __webpack_require__(32);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__views_info_info__ = __webpack_require__(33);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__views_singleplay_web__ = __webpack_require__(36);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__views_multiplayer_registration_module_registration_module__ = __webpack_require__(54);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__views_login_login__ = __webpack_require__(29);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__views_signup_registration__ = __webpack_require__(31);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__views_info_info__ = __webpack_require__(32);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__views_singleplay_web__ = __webpack_require__(35);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__views_multiplayer_registration_module_registration_module__ = __webpack_require__(53);
 
 
 
@@ -1565,12 +1564,12 @@ function requireAll(r) {
     r.keys().forEach(r);
 }
 __webpack_require__(8);
-__webpack_require__(57);
+__webpack_require__(56);
 
+requireAll(__webpack_require__(57));
 requireAll(__webpack_require__(58));
 requireAll(__webpack_require__(59));
 requireAll(__webpack_require__(60));
-requireAll(__webpack_require__(61));
 
 const login = new __WEBPACK_IMPORTED_MODULE_2__views_login_login__["a" /* default */]();
 const mainMenu = new __WEBPACK_IMPORTED_MODULE_1__views_mainpage_mainpage__["a" /* default */]();
@@ -1740,13 +1739,12 @@ class UserService {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__main_page_scss__ = __webpack_require__(25);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__main_page_scss___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__main_page_scss__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__mainStyle__ = __webpack_require__(28);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__main__ = __webpack_require__(8);
 
 
 //import mk from '../../index.html'
 
 const imageWall = "wall";
-
+//import {mainPage} from '../main'
 const buttons = [{
     name: 'First',
     text: 'New Game',
@@ -1785,13 +1783,13 @@ class MainPage extends __WEBPACK_IMPORTED_MODULE_0__baseview__["a" /* default */
         });
     }
     creation() {
-        if (document.getElementsByClassName('wrapper') === null) {
-            const test = document.getElementById('application');
-            document.body.remove();
-            document.body.innerHTML = __webpack_require__(29);
-            console.log('work');
-        }
-        Object(__WEBPACK_IMPORTED_MODULE_3__main__["mainPage"])();
+        //   /* if (document.getElementsByClassName('wrapper') === null) {
+        //        const test = document.getElementById('application');
+        //        document.body.remove();
+        //        document.body.innerHTML = require('../../index.html');
+        //        console.log('work');
+        //    }*/
+        // mainPage();
         if (document.querySelector('img.wall') === null) {
             const application = document.getElementsByClassName('for_wall');
             this.appendChildBlock('wall', new __WEBPACK_IMPORTED_MODULE_0__baseview__["a" /* default */]('img', ['wall']));
@@ -2067,12 +2065,6 @@ function ChangeTheme() {
 
 /***/ }),
 /* 29 */
-/***/ (function(module, exports) {
-
-module.exports = "<!DOCTYPE html>\n<html lang=\"ru\">\n<head>\n <meta charset=\"UTF-8\">\n <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n <link rel=\"icon\" href=\"./images/favicon.ico\" type=\"image/x-icon\">\n <link rel=\"stylesheet\" href=\"./dist/bundle.css\">\n <link rel=\"manifest\" href=\"./manifest.json\">\n <style id=\"theme-styles\"></style>\n <title>Lands & Dungeons</title>\n</head>\n\n<body>\n<div id=\"application\"></div>\n\n<script src=\"./dist/bundle.js\"></script>\n\n</body>\n</html>\n\n";
-
-/***/ }),
-/* 30 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -2148,7 +2140,7 @@ class Login extends __WEBPACK_IMPORTED_MODULE_0__blocks_block_block__["a" /* def
 /* harmony default export */ __webpack_exports__["a"] = (Login);
 
 /***/ }),
-/* 31 */
+/* 30 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(5)(undefined);
@@ -2162,7 +2154,7 @@ exports.push([module.i, ".field {\n  font-family: fantasy;\n  outline: 0;\n  bac
 
 
 /***/ }),
-/* 32 */
+/* 31 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -2250,12 +2242,12 @@ class Registration extends __WEBPACK_IMPORTED_MODULE_0__baseview__["a" /* defaul
 /* harmony default export */ __webpack_exports__["a"] = (Registration);
 
 /***/ }),
-/* 33 */
+/* 32 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__baseview__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__info_scss__ = __webpack_require__(34);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__info_scss__ = __webpack_require__(33);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__info_scss___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__info_scss__);
 
 
@@ -2302,13 +2294,13 @@ class Info extends __WEBPACK_IMPORTED_MODULE_0__baseview__["a" /* default */] {
 /* harmony default export */ __webpack_exports__["a"] = (Info);
 
 /***/ }),
-/* 34 */
+/* 33 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(35);
+var content = __webpack_require__(34);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // Prepare cssTransformation
 var transform;
@@ -2333,7 +2325,7 @@ if(false) {
 }
 
 /***/ }),
-/* 35 */
+/* 34 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(5)(undefined);
@@ -2347,12 +2339,12 @@ exports.push([module.i, ".info {\n  top: 40%;\n  left: 37.5%;\n  position: absol
 
 
 /***/ }),
-/* 36 */
+/* 35 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__baseview__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__DemoGameModule__ = __webpack_require__(37);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__DemoGameModule__ = __webpack_require__(36);
 
 
 
@@ -2360,7 +2352,7 @@ class SinglePlay extends __WEBPACK_IMPORTED_MODULE_0__baseview__["a" /* default 
     constructor() {
         super();
 
-        this.template = __webpack_require__(53);
+        this.template = __webpack_require__(52);
     }
 
     creation() {
@@ -2376,15 +2368,15 @@ class SinglePlay extends __WEBPACK_IMPORTED_MODULE_0__baseview__["a" /* default 
 
 
 /***/ }),
-/* 37 */
+/* 36 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(global) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__InitiativeLine__ = __webpack_require__(38);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Unit__ = __webpack_require__(39);
+/* WEBPACK VAR INJECTION */(function(global) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__InitiativeLine__ = __webpack_require__(37);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Unit__ = __webpack_require__(38);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Pathfinding__ = __webpack_require__(14);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__Background__ = __webpack_require__(40);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__GameManager__ = __webpack_require__(46);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__Background__ = __webpack_require__(39);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__GameManager__ = __webpack_require__(45);
 
 
 
@@ -2742,7 +2734,7 @@ class DemoGameModule {
 /* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(1)))
 
 /***/ }),
-/* 38 */
+/* 37 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -2815,7 +2807,7 @@ class InitiativeLine {
 
 
 /***/ }),
-/* 39 */
+/* 38 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -2962,7 +2954,7 @@ class Unit {
 
 
 /***/ }),
-/* 40 */
+/* 39 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -3032,7 +3024,7 @@ class Background {
 /* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(1)))
 
 /***/ }),
-/* 41 */
+/* 40 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -3071,7 +3063,7 @@ void main() {
 
 
 /***/ }),
-/* 42 */
+/* 41 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -3112,7 +3104,7 @@ class Program {
 
 
 /***/ }),
-/* 43 */
+/* 42 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -3231,11 +3223,11 @@ class Uniform {
 
 
 /***/ }),
-/* 44 */
+/* 43 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(global) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__DungeonMapMaker__ = __webpack_require__(45);
+/* WEBPACK VAR INJECTION */(function(global) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__DungeonMapMaker__ = __webpack_require__(44);
 
 
 global.actionDeque = [];
@@ -3246,7 +3238,7 @@ global.ratio = 16 / 9;
 /* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(1)))
 
 /***/ }),
-/* 45 */
+/* 44 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -3339,18 +3331,18 @@ class DungeonMapMaker {
 
 
 /***/ }),
-/* 46 */
+/* 45 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(global) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__GraphicEngine__ = __webpack_require__(15);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__SpriteManager__ = __webpack_require__(47);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__State__ = __webpack_require__(48);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__SpriteManager__ = __webpack_require__(46);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__State__ = __webpack_require__(47);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__Loader__ = __webpack_require__(17);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__Utils__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__AnimationManager__ = __webpack_require__(49);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__UnitManager__ = __webpack_require__(50);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__Animation__ = __webpack_require__(52);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__AnimationManager__ = __webpack_require__(48);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__UnitManager__ = __webpack_require__(49);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__Animation__ = __webpack_require__(51);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__Action__ = __webpack_require__(18);
 
 
@@ -3471,7 +3463,7 @@ class GameManager {
 /* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(1)))
 
 /***/ }),
-/* 47 */
+/* 46 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -3523,7 +3515,7 @@ class SpriteManager {
 
 
 /***/ }),
-/* 48 */
+/* 47 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -3537,7 +3529,7 @@ class State {
 
 
 /***/ }),
-/* 49 */
+/* 48 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -3655,11 +3647,11 @@ class AnimationManager {
 
 
 /***/ }),
-/* 50 */
+/* 49 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(global) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Entity__ = __webpack_require__(51);
+/* WEBPACK VAR INJECTION */(function(global) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Entity__ = __webpack_require__(50);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Utils__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Action__ = __webpack_require__(18);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__Pathfinding__ = __webpack_require__(14);
@@ -4053,7 +4045,7 @@ class UnitManager {
 /* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(1)))
 
 /***/ }),
-/* 51 */
+/* 50 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -4068,7 +4060,7 @@ class Entity {
 
 
 /***/ }),
-/* 52 */
+/* 51 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -4148,18 +4140,18 @@ class Animation {
 
 
 /***/ }),
-/* 53 */
+/* 52 */
 /***/ (function(module, exports) {
 
 module.exports = "<!DOCTYPE html>\n<html lang=\"en\">\n\n<head>\n  <meta charset=\"UTF-8\">\n  <title>Document</title>\n  <link rel=\"stylesheet\" href=\"/views/singleplay/style.css\">\n</head>\n\n<body>\n  <div class=\"container\">\n    <canvas id=\"background\"></canvas>\n    <canvas id=\"canvas\"></canvas>\n    <div style=\"position: relative;\">\n      <span style=\"position:absolute; left:20.8vw; top:2vh;font-size:1.5vw;color: white\" id=\"time\"></span>\n    </div>\n  </div>\n  <img hidden id=\"win\" style=\"position:absolute;width: 100vw; height: 100vh;\" src=\"/views/singleplay/textures/win.png\">\n  <img hidden id=\"lose\" style=\"position:absolute;width: 100vw; height: 100vh;\" src=\"/views/singleplay/textures/lose.png\">\n  </img>\n</body>\n\n</html>\n";
 
 /***/ }),
-/* 54 */
+/* 53 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__baseview__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__module_scss__ = __webpack_require__(55);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__module_scss__ = __webpack_require__(54);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__module_scss___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__module_scss__);
 
 
@@ -4251,13 +4243,13 @@ class Choose extends __WEBPACK_IMPORTED_MODULE_0__baseview__["a" /* default */] 
 
 
 /***/ }),
-/* 55 */
+/* 54 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(56);
+var content = __webpack_require__(55);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // Prepare cssTransformation
 var transform;
@@ -4282,7 +4274,7 @@ if(false) {
 }
 
 /***/ }),
-/* 56 */
+/* 55 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(5)(undefined);
@@ -4296,13 +4288,13 @@ exports.push([module.i, ".person {\n  top: 30%;\n  left: 32%;\n  font-size: 120%
 
 
 /***/ }),
-/* 57 */
+/* 56 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
 
 /***/ }),
-/* 58 */
+/* 57 */
 /***/ (function(module, exports) {
 
 function webpackEmptyContext(req) {
@@ -4311,14 +4303,39 @@ function webpackEmptyContext(req) {
 webpackEmptyContext.keys = function() { return []; };
 webpackEmptyContext.resolve = webpackEmptyContext;
 module.exports = webpackEmptyContext;
-webpackEmptyContext.id = 58;
+webpackEmptyContext.id = 57;
+
+/***/ }),
+/* 58 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var map = {
+	"./forms/forms.scss": 7
+};
+function webpackContext(req) {
+	return __webpack_require__(webpackContextResolve(req));
+};
+function webpackContextResolve(req) {
+	var id = map[req];
+	if(!(id + 1)) // check for number or string
+		throw new Error("Cannot find module '" + req + "'.");
+	return id;
+};
+webpackContext.keys = function webpackContextKeys() {
+	return Object.keys(map);
+};
+webpackContext.resolve = webpackContextResolve;
+module.exports = webpackContext;
+webpackContext.id = 58;
 
 /***/ }),
 /* 59 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var map = {
-	"./forms/forms.scss": 7
+	"./http.js": 9,
+	"./mediator.js": 10,
+	"./router.js": 3
 };
 function webpackContext(req) {
 	return __webpack_require__(webpackContextResolve(req));
@@ -4341,9 +4358,12 @@ webpackContext.id = 59;
 /***/ (function(module, exports, __webpack_require__) {
 
 var map = {
-	"./http.js": 9,
-	"./mediator.js": 10,
-	"./router.js": 3
+	"./banner.png": 61,
+	"./logo2.png": 62,
+	"./mage.png": 63,
+	"./priest.png": 64,
+	"./thief.png": 65,
+	"./warrior.png": 66
 };
 function webpackContext(req) {
 	return __webpack_require__(webpackContextResolve(req));
@@ -4365,62 +4385,34 @@ webpackContext.id = 60;
 /* 61 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var map = {
-	"./banner.png": 62,
-	"./logo2.png": 63,
-	"./mage.png": 64,
-	"./priest.png": 65,
-	"./thief.png": 66,
-	"./warrior.png": 67
-};
-function webpackContext(req) {
-	return __webpack_require__(webpackContextResolve(req));
-};
-function webpackContextResolve(req) {
-	var id = map[req];
-	if(!(id + 1)) // check for number or string
-		throw new Error("Cannot find module '" + req + "'.");
-	return id;
-};
-webpackContext.keys = function webpackContextKeys() {
-	return Object.keys(map);
-};
-webpackContext.resolve = webpackContextResolve;
-module.exports = webpackContext;
-webpackContext.id = 61;
+module.exports = __webpack_require__.p + "./banner-8fbe7a02e185423efad976b0be95524b.png";
 
 /***/ }),
 /* 62 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "./banner-8fbe7a02e185423efad976b0be95524b.png";
+module.exports = __webpack_require__.p + "./logo2-3cf843d080ef7f43169fc926bd2e4895.png";
 
 /***/ }),
 /* 63 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "./logo2-3cf843d080ef7f43169fc926bd2e4895.png";
+module.exports = __webpack_require__.p + "./mage-c458dd5d04052ebc27883fbfecf7db54.png";
 
 /***/ }),
 /* 64 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "./mage-c458dd5d04052ebc27883fbfecf7db54.png";
+module.exports = __webpack_require__.p + "./priest-87d5d9da08d4f88271884f821fd9c79f.png";
 
 /***/ }),
 /* 65 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "./priest-87d5d9da08d4f88271884f821fd9c79f.png";
-
-/***/ }),
-/* 66 */
-/***/ (function(module, exports, __webpack_require__) {
-
 module.exports = __webpack_require__.p + "./thief-44dd92f7e16a9964c45341046cc9cacc.png";
 
 /***/ }),
-/* 67 */
+/* 66 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "./warrior-39d7246a94bd3c09959c9649a740eed9.png";

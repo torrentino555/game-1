@@ -9,6 +9,30 @@ import UserService from '../servises/user-service';
 import Mediator from '../modules/mediator'
 const userService = new UserService();
 
+const application = new Block(document.getElementById('application'));
+
+const wrapper = new Block('div', ['wrapper']);
+const game = new Block('div', ['game']);
+
+const images = "logo";
+const imageWall = "wall";
+
+const for_wall  = new Block('div', ['for_wall']);
+application.appendChildBlock('for_wall', for_wall);
+for_wall.appendChildBlock("wall",
+    new Block('img', [imageWall]));
+
+application.appendChildBlock('application', wrapper);
+
+application.appendChildBlock("logo",
+    new Block('img', [images]));
+/*application.appendChildBlock("wall",
+    new Block('img', [imageWall]));*/
+const logo = document.querySelector('img.logo');
+logo.setAttribute('src','../images/logo2.png');
+
+const wall = document.querySelector('img.wall');
+wall.setAttribute('src','../images/banner.png');
  function signin(login) {
     login.onSubmit((formdata) => {
         const authValidation = LoginValidate(formdata[0], formdata[1]);
@@ -52,34 +76,10 @@ const userService = new UserService();
      });
  }
 
- function mainPage() {
-     console.log('main-page-work')
-     const application = new Block(document.getElementById('application'));
+ //function mainPage() {
 
-     const wrapper = new Block('div', ['wrapper']);
-     const game = new Block('div', ['game']);
+// }
 
-     const images = "logo";
-     const imageWall = "wall";
-
-     const for_wall  = new Block('div', ['for_wall']);
-     application.appendChildBlock('for_wall', for_wall);
-     for_wall.appendChildBlock("wall",
-         new Block('img', [imageWall]));
-
-     application.appendChildBlock('application', wrapper);
-
-     application.appendChildBlock("logo",
-         new Block('img', [images]));
-     /*application.appendChildBlock("wall",
-         new Block('img', [imageWall]));*/
-     const logo = document.querySelector('img.logo');
-     logo.setAttribute('src','../images/logo2.png');
-
-     const wall = document.querySelector('img.wall');
-     wall.setAttribute('src','../images/banner.png');
- }
-
-export {signup,signin,mainPage};
+export {signup,signin};
 
 

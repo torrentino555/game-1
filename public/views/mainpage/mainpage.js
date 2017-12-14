@@ -3,7 +3,7 @@ import './main-page.scss';
 //import mk from '../../index.html'
 import ChangeTheme from './mainStyle';
 const imageWall = "wall";
-import {mainPage} from '../main'
+//import {mainPage} from '../main'
 export const buttons = [
     {
         name: 'First',
@@ -52,7 +52,7 @@ export class MainPage extends Block {
      //        document.body.innerHTML = require('../../index.html');
      //        console.log('work');
      //    }*/
-          mainPage();
+         // mainPage();
         if (document.querySelector('img.wall') === null){
             const application = document.getElementsByClassName('for_wall');
              this.appendChildBlock('wall',new Block ('img',['wall']))
