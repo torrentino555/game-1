@@ -1,8 +1,9 @@
 import Block from '../baseview';
 import './main-page.scss';
+//import mk from '../../index.html'
 import ChangeTheme from './mainStyle';
 const imageWall = "wall";
-
+import {mainPage} from '../main'
 export const buttons = [
     {
         name: 'First',
@@ -45,8 +46,15 @@ export class MainPage extends Block {
         });
     }
     creation() {
+        if (document.getElementsByClassName('wrapper') === null) {
+            const test = document.getElementById('application');
+            document.body.remove();
+            document.body.innerHTML = require('../../index.html');
+            console.log('work');
+        }
+        mainPage();
         if (document.querySelector('img.wall') === null){
-            const application = document.getElementById('for_wall');
+            const application = document.getElementsByClassName('for_wall');
              this.appendChildBlock('wall',new Block ('img',['wall']))
                application.appendChild(this._element);
                const wall = document.querySelector('img.wall');

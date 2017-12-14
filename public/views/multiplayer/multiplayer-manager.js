@@ -7,11 +7,11 @@ export default class MultiPlayerStrategy {
     constructor() {
         this.mediator = new Mediator();
         this.transport = new Transport();
-        this.mediator.subscribe("START_MP_GAME", this.startGame.bind(this));
-        this.mediator.subscribe("STOP_GAME", this.stopGame.bind(this));
-        this.mediator.subscribe("EXIT", this.exit.bind(this));
-        this.mediator.subscribe("PLAYERS_CONNECT", this.newUser.bind(this));
-        this.mediator.subscribe("PLAYER_DISCONNECT", this.deleteUser.bind(this));
+        this.mediator.subscribe("CharacterListRequestMessage", this.startGame.bind(this));
+        this.mediator.subscribe("ActionRequestMessage", this.stopGame.bind(this));
+        this.mediator.subscribe("LobbyRequestMessage", this.exit.bind(this));
+        this.mediator.subscribe("NextRoomRequestMessage", this.newUser.bind(this));
+        this.mediator.subscribe("StayInLineRequestMessage", this.deleteUser.bind(this));
 
         this.transport.send("START_MP_GAME");
 

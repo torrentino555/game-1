@@ -33,6 +33,7 @@ export default class Transport {
 
     send(type, payload) {
         if (!this.connected) {
+            console.log('websockets_work_');
             setTimeout(() => {
                 if (this.count > 20) {
                     return;
@@ -42,7 +43,8 @@ export default class Transport {
             }, 1000)
         }
         else {
-            this.ws.send(JSON.stringify({type: type, content: payload}));
+            console.log('websockets_dont_work_');
+            this.ws.send(JSON.stringify({class: type, content: payload}));
         }
     }
 

@@ -1,6 +1,6 @@
 import {signin ,signup }from  '../views/main'
 
-export default  class Router{
+export default  class Router {
 
     constructor() {
         if (Router.__instance) {
@@ -40,7 +40,7 @@ export default  class Router{
     }
 
     go(path) {
-        let view = this.routes.get(path);
+        const view = this.routes.get(path);
         if (!view) {
             document.body.innerHTML = '<h class="notfound"> We didnot do such page )';
             return;
