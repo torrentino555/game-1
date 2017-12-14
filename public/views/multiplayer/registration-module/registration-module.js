@@ -20,6 +20,7 @@ export default class Choose extends Block{
     constructor() {
         super('div', ['choose'], {});
         this.createChildren();
+        this.strategy = MultiPlayerStrategy;
         return this;
     }
 
@@ -74,7 +75,7 @@ footbarCreate() {
 }
 creation () {
     const image = document.querySelector('img.wall');
-    this.wbs = new MultiPlayerStrategy();
+    //this.wbs = new MultiPlayerStrategy();
     if ( document.querySelector('div.main-menu') !== null )
     {
         document.querySelector('div.main-menu').remove();
