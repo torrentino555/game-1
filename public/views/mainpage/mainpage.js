@@ -46,13 +46,13 @@ export class MainPage extends Block {
         });
     }
     creation() {
-        if (document.getElementsByClassName('wrapper') === null) {
-            const test = document.getElementById('application');
-            document.body.remove();
-            document.body.innerHTML = require('../../index.html');
-            console.log('work');
-        }
-        mainPage();
+     //   /* if (document.getElementsByClassName('wrapper') === null) {
+     //        const test = document.getElementById('application');
+     //        document.body.remove();
+     //        document.body.innerHTML = require('../../index.html');
+     //        console.log('work');
+     //    }*/
+          mainPage();
         if (document.querySelector('img.wall') === null){
             const application = document.getElementsByClassName('for_wall');
              this.appendChildBlock('wall',new Block ('img',['wall']))
