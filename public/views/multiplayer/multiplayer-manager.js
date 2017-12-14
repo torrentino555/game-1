@@ -5,6 +5,7 @@ import Transport from "../../transport/transport.js";
 
 export default class MultiPlayerStrategy {
     constructor() {
+        console.log('constructor_work')
         this.mediator = new Mediator();
         this.transport = new Transport();
         this.mediator.subscribe("CharacterListRequestMessage", this.startGame.bind(this));

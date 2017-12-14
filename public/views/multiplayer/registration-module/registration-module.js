@@ -1,6 +1,7 @@
 'use strict'
 import  Block from '../../baseview'
 import './module.scss'
+import MultiPlayerStrategy from '../multiplayer-manager'
 const enity = [
     {
     src:'../../../images/warrior.png'
@@ -73,6 +74,7 @@ footbarCreate() {
 }
 creation () {
     const image = document.querySelector('img.wall');
+    this.wbs = new MultiPlayerStrategy();
     if ( document.querySelector('div.main-menu') !== null )
     {
         document.querySelector('div.main-menu').remove();
