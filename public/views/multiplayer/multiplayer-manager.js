@@ -1,7 +1,7 @@
 "use strict";
 
-import Transport from "../../transport/transport";
 import Mediator from "../../modules/mediator";
+import Transport from "../../transport/transport.js";
 
 export default class MultiPlayerStrategy {
     constructor() {
