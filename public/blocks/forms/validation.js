@@ -25,7 +25,7 @@ static userError () {
         form.appendChild(div);
     }
 
-    else if (document.querySelector('form.registration') !== null && document.getElementsByTagName('p').length === 0){
+    else if (document.querySelector('form.registration') === null && document.getElementsByTagName('p').length === 0){
         form = document.querySelector('form.login');
         div.className = "message-error";
         div.innerHTML = "<p> Sorry,user is not found </p> ";
