@@ -3,6 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="13255a80-a1d3-4c02-abac-bd86a53300d5" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/views/main.js" afterPath="$PROJECT_DIR$/public/views/main.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -51,8 +52,8 @@
       <file leaf-file-name="main.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/public/views/main.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="281">
-              <caret line="57" column="62" lean-forward="false" selection-start-line="57" selection-start-column="30" selection-end-line="57" selection-end-column="62" />
+            <state relative-caret-position="282">
+              <caret line="40" column="0" lean-forward="false" selection-start-line="40" selection-start-column="0" selection-end-line="40" selection-end-column="0" />
               <folding>
                 <element signature="e#0#31#0" expanded="true" />
               </folding>
@@ -170,11 +171,11 @@
         <option value="$PROJECT_DIR$/public/views/info/info.js" />
         <option value="$PROJECT_DIR$/public/views/multiplayer/registration-module/module.scss" />
         <option value="$PROJECT_DIR$/public/views/multiplayer/registration-module/registration-module.js" />
-        <option value="$PROJECT_DIR$/public/views/main.js" />
         <option value="$PROJECT_DIR$/public/blocks/forms/forms.scss" />
         <option value="$PROJECT_DIR$/public/blocks/autheficate/loginAuth.js" />
         <option value="$PROJECT_DIR$/public/blocks/autheficate/registrationAuth.js" />
         <option value="$PROJECT_DIR$/public/blocks/forms/validation.js" />
+        <option value="$PROJECT_DIR$/public/views/main.js" />
       </list>
     </option>
   </component>
@@ -393,12 +394,12 @@
       <workItem from="1513261242437" duration="11140000" />
       <workItem from="1513308708169" duration="8081000" />
       <workItem from="1513351111586" duration="2245000" />
-      <workItem from="1513396297118" duration="36717000" />
+      <workItem from="1513396297118" duration="36917000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="109660000" />
+    <option name="totallyTimeSpent" value="109860000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1440" height="810" extended-state="0" />
@@ -802,8 +803,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/public/views/main.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="281">
-          <caret line="57" column="62" lean-forward="false" selection-start-line="57" selection-start-column="30" selection-end-line="57" selection-end-column="62" />
+        <state relative-caret-position="282">
+          <caret line="40" column="0" lean-forward="false" selection-start-line="40" selection-start-column="0" selection-end-line="40" selection-end-column="0" />
           <folding>
             <element signature="e#0#31#0" expanded="true" />
           </folding>
