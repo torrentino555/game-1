@@ -321,13 +321,13 @@ class Validate {
     static userError() {
         let form;
         const div = document.createElement('div');
-        if (document.querySelector('form.login-form') === null && document.getElementsByTagName('p').length === 0) {
-            form = document.querySelector('form.registration-form');
+        if (document.querySelector('form.login') === null && document.getElementsByTagName('p').length === 0) {
+            form = document.querySelector('form.registration');
             div.className = "message-error";
             div.innerHTML = "<p> Sorry,user is already exist </p> ";
             form.appendChild(div);
-        } else if (document.querySelector('form.login-form') !== null && document.getElementsByTagName('p').length === 0) {
-            form = document.querySelector('form.login-form');
+        } else if (document.querySelector('form.registration') !== null && document.getElementsByTagName('p').length === 0) {
+            form = document.querySelector('form.login');
             div.className = "message-error";
             div.innerHTML = "<p> Sorry,user is not found </p> ";
             form.appendChild(div);
@@ -1595,21 +1595,21 @@ router.register('/', mainMenu).register('/login', login).register('/signup', sig
 let RegistrationValidate = (login, email, password, password_confirm) => {
 
     if (!__WEBPACK_IMPORTED_MODULE_0__forms_validation__["a" /* default */].validateLogin(login)) {
-        __WEBPACK_IMPORTED_MODULE_0__forms_validation__["a" /* default */].formError('form.registration-form');
+        __WEBPACK_IMPORTED_MODULE_0__forms_validation__["a" /* default */].formError('form.registration');
         return false;
     }
     if (!__WEBPACK_IMPORTED_MODULE_0__forms_validation__["a" /* default */].validateEmail(email)) {
-        __WEBPACK_IMPORTED_MODULE_0__forms_validation__["a" /* default */].formError('form.registration-form');
+        __WEBPACK_IMPORTED_MODULE_0__forms_validation__["a" /* default */].formError('form.registration');
         return false;
     }
 
     if (!__WEBPACK_IMPORTED_MODULE_0__forms_validation__["a" /* default */].validatePassword(password)) {
-        __WEBPACK_IMPORTED_MODULE_0__forms_validation__["a" /* default */].formError('form.registration-form');
+        __WEBPACK_IMPORTED_MODULE_0__forms_validation__["a" /* default */].formError('form.registration');
         return false;
     }
 
     if (!__WEBPACK_IMPORTED_MODULE_0__forms_validation__["a" /* default */].validatePassword(password_confirm)) {
-        __WEBPACK_IMPORTED_MODULE_0__forms_validation__["a" /* default */].formError('form.registration-form');
+        __WEBPACK_IMPORTED_MODULE_0__forms_validation__["a" /* default */].formError('form.registration');
         return false;
     }
 };
@@ -1631,12 +1631,12 @@ let RegistrationValidate = (login, email, password, password_confirm) => {
 let LoginValidate = (login, password) => {
     console.log('valide works');
     if (!__WEBPACK_IMPORTED_MODULE_0__forms_validation__["a" /* default */].validateLogin(login)) {
-        __WEBPACK_IMPORTED_MODULE_0__forms_validation__["a" /* default */].formError('form.login-form');
+        __WEBPACK_IMPORTED_MODULE_0__forms_validation__["a" /* default */].formError('form.login');
         return false;
     }
 
     if (!__WEBPACK_IMPORTED_MODULE_0__forms_validation__["a" /* default */].validatePassword(password)) {
-        __WEBPACK_IMPORTED_MODULE_0__forms_validation__["a" /* default */].formError('form.login-form');
+        __WEBPACK_IMPORTED_MODULE_0__forms_validation__["a" /* default */].formError('form.login');
         return false;
     }
 };
@@ -2112,7 +2112,7 @@ exports = module.exports = __webpack_require__(5)(undefined);
 
 
 // module
-exports.push([module.i, ".menu form {\n  width: 350px; }\n\n.menu input {\n  font-family: fantasy;\n  outline: 0;\n  background: #291b1f;\n  width: 100%;\n  margin: 0 0 15px;\n  padding: 15px;\n  box-sizing: border-box;\n  border: 2px solid #c58818;\n  font-size: 14px;\n  color: white; }\n\n.menu input:hover {\n  border-radius: 10px;\n  border: 2px solid white; }\n", ""]);
+exports.push([module.i, ".menu form {\n  width: 350px; }\n\n.menu input {\n  font-family: fantasy;\n  outline: 0;\n  background: #291b1f;\n  width: 100%;\n  margin: 0 0 15px;\n  padding: 15px;\n  box-sizing: border-box;\n  border: 2px solid #c58818;\n  font-size: 14px;\n  color: white; }\n\n.menu input:hover {\n  border-radius: 10px;\n  border: 2px solid white; }\n\n.message-error {\n  margin-left: 10px;\n  color: red;\n  font-size: 25px;\n  font-family: fantasy; }\n", ""]);
 
 // exports
 
