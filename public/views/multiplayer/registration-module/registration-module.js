@@ -19,9 +19,9 @@ const wrape = document.querySelector('div.wrapper');
 export default class Choose extends Block{
     constructor() {
         super('div', ['choose'], {});
-        this.createChildren();
-        this.strategy = MultiPlayerStrategy;
-        return this;
+     //   this.createChildren();
+        //this.strategy = MultiPlayerStrategy;
+        //return this;
     }
 
         // const wrappe = document.querySelector('div.wrapper');
@@ -30,9 +30,9 @@ export default class Choose extends Block{
         // }
         // wrappe.appendChild(this._element);
 
-createChildren () {
+/*createChildren () {
         this.appendChildBlock('img',new Block('img', ['person']));
-}
+}*/
 choose () {
     this.appendChildBlock('choose',new Block ('a',['choose_left']))
     wrape.appendChild(this._element)
@@ -74,11 +74,12 @@ footbarCreate() {
     wrape.appendChild(this._element)
 }
 creation () {
+    this.appendChildBlock('img',new Block('img', ['person']));
     const image = document.querySelector('img.wall');
     //this.wbs = new MultiPlayerStrategy();
-    if ( document.querySelector('div.main-menu') !== null )
+    if ( document.querySelector('div.menu') !== null )
     {
-        document.querySelector('div.main-menu').remove();
+        document.querySelector('div.menu').remove();
     }
     else if (image!==null) {
         image.remove();

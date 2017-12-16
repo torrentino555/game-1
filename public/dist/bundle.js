@@ -228,7 +228,7 @@ module.exports = g;
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__views_main__ = __webpack_require__(8);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__views_main__ = __webpack_require__(9);
 
 
 class Router {
@@ -255,13 +255,13 @@ class Router {
 
         document.body.addEventListener('click', event => {
 
-            if (event.target.tagName.toLowerCase() === 'a') {
-
+            if (event.target.tagName.toLowerCase() === 'li') {
                 event.preventDefault();
                 const element = event.target;
                 const pathname = element.getAttribute('value');
 
                 if (pathname !== null) {
+                    console.log('secondwork');
                     this.go(pathname);
                 }
             }
@@ -845,6 +845,56 @@ if(false) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+
+class Mediator {
+    constructor() {
+        if (Mediator.__instance) {
+            return Mediator.__instance;
+        }
+
+        this.channels = new Map();
+
+        Mediator.__instance = this;
+    }
+
+    subscribe(name, func) {
+
+        if (!this.channels.get(name)) {
+            this.channels.set(name, []);
+        }
+        this.channels.get(name).push(func);
+        return this;
+    }
+
+    publish(name, payload = null) {
+        if (!this.channels.get(name)) {
+            console.log('dont-work');
+            return;
+        }
+        this.channels.get(name).forEach(func => {
+            console.log('work');
+            func(payload);
+        });
+    }
+
+    unsubscribe(name, f) {
+        if (!this.channels.get(name)) {
+            return;
+        }
+        this.channels.get(name).splice(this.channels.get(name).indexOf(f), 1);
+        return;
+    }
+
+}
+/* harmony export (immutable) */ __webpack_exports__["default"] = Mediator;
+
+
+/***/ }),
+/* 9 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "signup", function() { return signup; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "signin", function() { return signin; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__baseview__ = __webpack_require__(0);
@@ -852,7 +902,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__blocks_autheficate_loginAuth__ = __webpack_require__(22);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__modules_router__ = __webpack_require__(3);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__servises_user_service__ = __webpack_require__(23);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__modules_mediator__ = __webpack_require__(10);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__modules_mediator__ = __webpack_require__(8);
 
 
 
@@ -867,25 +917,16 @@ const userService = new __WEBPACK_IMPORTED_MODULE_4__servises_user_service__["a"
 const application = new __WEBPACK_IMPORTED_MODULE_0__baseview__["a" /* default */](document.getElementById('application'));
 
 const wrapper = new __WEBPACK_IMPORTED_MODULE_0__baseview__["a" /* default */]('div', ['wrapper']);
-const game = new __WEBPACK_IMPORTED_MODULE_0__baseview__["a" /* default */]('div', ['game']);
 
 const images = "logo";
-const imageWall = "wall";
-
-const for_wall = new __WEBPACK_IMPORTED_MODULE_0__baseview__["a" /* default */]('div', ['for_wall']);
-application.appendChildBlock('for_wall', for_wall);
-for_wall.appendChildBlock("wall", new __WEBPACK_IMPORTED_MODULE_0__baseview__["a" /* default */]('img', [imageWall]));
-
-application.appendChildBlock('application', wrapper);
-
 application.appendChildBlock("logo", new __WEBPACK_IMPORTED_MODULE_0__baseview__["a" /* default */]('img', [images]));
-/*application.appendChildBlock("wall",
-    new Block('img', [imageWall]));*/
+
 const logo = document.querySelector('img.logo');
 logo.setAttribute('src', '../images/logo2.png');
 
-const wall = document.querySelector('img.wall');
-wall.setAttribute('src', '../images/banner.png');
+application.appendChildBlock('application', wrapper);
+wrapper.appendChildBlock('menu', new __WEBPACK_IMPORTED_MODULE_0__baseview__["a" /* default */]('div', ['menu']));
+
 function signin(login) {
     login.onSubmit(formdata => {
         const authValidation = Object(__WEBPACK_IMPORTED_MODULE_2__blocks_autheficate_loginAuth__["a" /* default */])(formdata[0], formdata[1]);
@@ -921,14 +962,10 @@ function signup(registration) {
     });
 }
 
-//function mainPage() {
-
-// }
-
 
 
 /***/ }),
-/* 9 */
+/* 10 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1086,56 +1123,6 @@ class Http {
 Http.BaseUrl = null;
 
 /* harmony default export */ __webpack_exports__["default"] = (Http);
-
-/***/ }),
-/* 10 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-
-class Mediator {
-    constructor() {
-        if (Mediator.__instance) {
-            return Mediator.__instance;
-        }
-
-        this.channels = new Map();
-
-        Mediator.__instance = this;
-    }
-
-    subscribe(name, func) {
-
-        if (!this.channels.get(name)) {
-            this.channels.set(name, []);
-        }
-        this.channels.get(name).push(func);
-        return this;
-    }
-
-    publish(name, payload = null) {
-        if (!this.channels.get(name)) {
-            console.log('dont-work');
-            return;
-        }
-        this.channels.get(name).forEach(func => {
-            console.log('work');
-            func(payload);
-        });
-    }
-
-    unsubscribe(name, f) {
-        if (!this.channels.get(name)) {
-            return;
-        }
-        this.channels.get(name).splice(this.channels.get(name).indexOf(f), 1);
-        return;
-    }
-
-}
-/* harmony export (immutable) */ __webpack_exports__["default"] = Mediator;
-
 
 /***/ }),
 /* 11 */
@@ -1563,13 +1550,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 function requireAll(r) {
     r.keys().forEach(r);
 }
-__webpack_require__(8);
-__webpack_require__(56);
+__webpack_require__(9);
+__webpack_require__(58);
 
-requireAll(__webpack_require__(57));
-requireAll(__webpack_require__(58));
-requireAll(__webpack_require__(59));
 requireAll(__webpack_require__(60));
+requireAll(__webpack_require__(62));
+requireAll(__webpack_require__(63));
+requireAll(__webpack_require__(64));
 
 const login = new __WEBPACK_IMPORTED_MODULE_2__views_login_login__["a" /* default */]();
 const mainMenu = new __WEBPACK_IMPORTED_MODULE_1__views_mainpage_mainpage__["a" /* default */]();
@@ -1661,7 +1648,7 @@ let LoginValidate = (login, password) => {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__modules_http__ = __webpack_require__(9);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__modules_http__ = __webpack_require__(10);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__blocks_forms_validation__ = __webpack_require__(4);
 
 
@@ -1744,6 +1731,7 @@ class UserService {
 //import mk from '../../index.html'
 
 const imageWall = "wall";
+const wrape = document.querySelector('div.menu');
 //import {mainPage} from '../main'
 const buttons = [{
     name: 'First',
@@ -1753,7 +1741,7 @@ const buttons = [{
 }, {
     name: 'Second',
     text: 'Singleplayer',
-    value: '/singleplayer'
+    value: '/singleplay'
 
 }, {
     name: 'Third',
@@ -1772,50 +1760,25 @@ const blockClass = 'button';
 
 class MainPage extends __WEBPACK_IMPORTED_MODULE_0__baseview__["a" /* default */] {
     constructor() {
-        super('div', ['main-menu'], {});
-        this.createChildren();
-        return this;
+        super('ul', ['name'], {});
     }
 
-    createChildren() {
-        buttons.forEach(button => {
-            this.appendChildBlock(button.name, new __WEBPACK_IMPORTED_MODULE_0__baseview__["a" /* default */]('a', [blockClass + button.name]).setText(button.text));
-        });
-    }
     creation() {
-        //   /* if (document.getElementsByClassName('wrapper') === null) {
-        //        const test = document.getElementById('application');
-        //        document.body.remove();
-        //        document.body.innerHTML = require('../../index.html');
-        //        console.log('work');
-        //    }*/
-        // mainPage();
-        if (document.querySelector('img.wall') === null) {
-            const application = document.getElementsByClassName('for_wall');
-            this.appendChildBlock('wall', new __WEBPACK_IMPORTED_MODULE_0__baseview__["a" /* default */]('img', ['wall']));
-            application.appendChild(this._element);
-            const wall = document.querySelector('img.wall');
-            wall.setAttribute('src', '../images/banner.png');
-        }
-        const wrape = document.querySelector('div.wrapper');
-        if (wrape.childNodes[0] !== undefined) {
-            wrape.removeChild(wrape.childNodes[0]);
+
+        const wrape = document.querySelector('div.menu');
+        if (document.querySelector('div.menu').childNodes[0] !== undefined) {
+            document.querySelector('div.menu').removeChild(document.querySelector('div.menu').childNodes[0]);
+            console.log('remove');
         }
         wrape.appendChild(this._element);
 
-        const linkFirst = document.querySelector('a.buttonFirst');
-        linkFirst.setAttribute('value', '/login');
-
-        const linkSecond = document.querySelector('a.buttonSecond');
-        linkSecond.setAttribute('value', '/singleplay');
-
-        const linkThird = document.querySelector('a.buttonThird');
-        linkThird.setAttribute('value', '/signup');
-        const linkFour = document.querySelector('a.buttonFour');
-        linkFour.setAttribute('value', '/info');
-
-        const logo = document.querySelector('img.logo');
-        logo.setAttribute('src', '../images/logo2.png');
+        buttons.forEach(button => {
+            let newButtons = new __WEBPACK_IMPORTED_MODULE_0__baseview__["a" /* default */]('a', [blockClass + button.name]);
+            this.appendChildBlock('a', newButtons);
+            let but = document.querySelector('a.' + blockClass + button.name);
+            but.innerHTML = `<li>${button.text}</li>`;
+            but.querySelector('li').setAttribute('value', button.value);
+        });
     }
 }
 /* unused harmony export MainPage */
@@ -1862,7 +1825,7 @@ exports = module.exports = __webpack_require__(5)(undefined);
 
 
 // module
-exports.push([module.i, "@viewport {\n  width: 640px;\n  height: 440px;\n  zoom: 2;\n  user-zoom: fixed; }\n\n.buttonFirst {\n  display: inline-block;\n  /*   width: 150px;\n     height: 60px;*/\n  width: 7em;\n  height: 2em;\n  line-height: 60px;\n  text-align: center;\n  text-decoration: none;\n  text-shadow: 0 1px rgba(154, 33, 33, 0.2), 0 -1px rgba(82, 11, 11, 0.8);\n  border-radius: 17px;\n  background: #731509 radial-gradient(150% 100% at 50% 5px, rgba(255, 255, 255, 0.2), transparent);\n  box-shadow: inset rgba(0, 0, 0, 0.6) 0 -2px 5px, inset rgba(252, 255, 255, 0.7) 0 2px 5px, rgba(0, 0, 0, 0.8) 0 2px 5px -1px;\n  color: #c58818;\n  /* user-select: none; */\n  position: absolute;\n  border: 2px solid;\n  top: 46%;\n  left: 44%;\n  font-size: 164%; }\n\n.buttonFirst:hover {\n  color: white;\n  cursor: pointer; }\n\n.buttonFirst:active {\n  padding-bottom: 1px;\n  box-shadow: inset black 0 1px 3px, inset rgba(0, 0, 0, 0.6) 0 -2px 5px, inset rgba(252, 255, 255, 0.7) 0 2px 5px, 0 1px rgba(255, 255, 255, 0.08);\n  color: #80cfd6; }\n\n.buttonSecond {\n  display: inline-block;\n  /*   width: 150px;\n     height: 60px;*/\n  width: 7em;\n  height: 2em;\n  line-height: 60px;\n  text-align: center;\n  text-decoration: none;\n  text-shadow: 0 1px rgba(154, 33, 33, 0.2), 0 -1px rgba(82, 11, 11, 0.8);\n  border-radius: 17px;\n  background: #731509 radial-gradient(150% 100% at 50% 5px, rgba(255, 255, 255, 0.2), transparent);\n  box-shadow: inset rgba(0, 0, 0, 0.6) 0 -2px 5px, inset rgba(252, 255, 255, 0.7) 0 2px 5px, rgba(0, 0, 0, 0.8) 0 2px 5px -1px;\n  color: #c58818;\n  /* user-select: none; */\n  position: absolute;\n  border: 2px solid;\n  top: 58%;\n  left: 44%;\n  font-size: 164%; }\n\n.buttonSecond:hover {\n  color: white;\n  cursor: pointer; }\n\n.buttonSecond:active {\n  padding-bottom: 1px;\n  box-shadow: inset black 0 1px 3px, inset rgba(0, 0, 0, 0.6) 0 -2px 5px, inset rgba(252, 255, 255, 0.7) 0 2px 5px, 0 1px rgba(255, 255, 255, 0.08);\n  color: #80cfd6; }\n\n.buttonThird {\n  display: inline-block;\n  /*   width: 150px;\n     height: 60px;*/\n  width: 7em;\n  height: 2em;\n  line-height: 60px;\n  text-align: center;\n  text-decoration: none;\n  text-shadow: 0 1px rgba(154, 33, 33, 0.2), 0 -1px rgba(82, 11, 11, 0.8);\n  border-radius: 17px;\n  background: #731509 radial-gradient(150% 100% at 50% 5px, rgba(255, 255, 255, 0.2), transparent);\n  box-shadow: inset rgba(0, 0, 0, 0.6) 0 -2px 5px, inset rgba(252, 255, 255, 0.7) 0 2px 5px, rgba(0, 0, 0, 0.8) 0 2px 5px -1px;\n  color: #c58818;\n  position: absolute;\n  border: 2px solid;\n  top: 71%;\n  left: 44%;\n  font-size: 164%; }\n\n.buttonThird:hover {\n  color: white;\n  cursor: pointer; }\n\n.buttonThird:active {\n  padding-bottom: 1px;\n  box-shadow: inset black 0 1px 3px, inset rgba(0, 0, 0, 0.6) 0 -2px 5px, inset rgba(252, 255, 255, 0.7) 0 2px 5px, 0 1px rgba(255, 255, 255, 0.08);\n  color: #80cfd6; }\n\n.buttonFour {\n  display: inline-block;\n  /*   width: 150px;\n     height: 60px;*/\n  width: 7em;\n  height: 2em;\n  line-height: 60px;\n  text-align: center;\n  text-decoration: none;\n  text-shadow: 0 1px rgba(154, 33, 33, 0.2), 0 -1px rgba(82, 11, 11, 0.8);\n  border-radius: 17px;\n  background: #731509 radial-gradient(150% 100% at 50% 5px, rgba(255, 255, 255, 0.2), transparent);\n  box-shadow: inset rgba(0, 0, 0, 0.6) 0 -2px 5px, inset rgba(252, 255, 255, 0.7) 0 2px 5px, rgba(0, 0, 0, 0.8) 0 2px 5px -1px;\n  color: #c58818;\n  /* user-select: none; */\n  position: absolute;\n  border: 2px solid;\n  top: 83%;\n  left: 44%;\n  font-size: 164%; }\n\n.buttonFour:hover {\n  color: white;\n  cursor: pointer; }\n\n.buttonFour:active {\n  padding-bottom: 1px;\n  box-shadow: inset black 0 1px 3px, inset rgba(0, 0, 0, 0.6) 0 -2px 5px, inset rgba(252, 255, 255, 0.7) 0 2px 5px, 0 1px rgba(255, 255, 255, 0.08);\n  color: #80cfd6; }\n\n@media screen and (min-width: 960px) and (max-width: 1280px) and (orientation: landscape) {\n  .buttonFirst {\n    top: 56%;\n    left: 41%;\n    width: 21vw;\n    height: 9vh; }\n  .buttonSecond {\n    top: 74%;\n    left: 41%;\n    width: 21vw;\n    height: 9vh; }\n  .buttonThird {\n    top: 94%;\n    left: 41%;\n    width: 21vw;\n    height: 9vh; }\n  .buttonFour {\n    top: 112%;\n    left: 41%;\n    width: 21vw;\n    height: 9vh; } }\n\n@media (min-width: 481px) and (max-width: 767px) and (orientation: landscape) {\n  .buttonFirst {\n    width: 19vw;\n    height: 11vh;\n    line-height: 30px;\n    top: 85%;\n    left: 42%;\n    font-size: 115%; }\n  .buttonSecond {\n    width: 19vw;\n    height: 11vh;\n    line-height: 30px;\n    top: 115%;\n    left: 42%;\n    font-size: 115%; }\n  .buttonThird {\n    width: 19vw;\n    height: 11vh;\n    line-height: 30px;\n    top: 145%;\n    left: 42%;\n    font-size: 115%; }\n  .buttonFour {\n    width: 19vw;\n    height: 11vh;\n    line-height: 30px;\n    top: 175%;\n    left: 42%;\n    font-size: 115%; } }\n", ""]);
+exports.push([module.i, "@viewport {\n  width: 640px;\n  height: 440px;\n  zoom: 2;\n  user-zoom: fixed; }\n\n.menu ul, form {\n  margin-right: auto;\n  margin-left: auto;\n  padding-top: 100px;\n  padding-left: 0;\n  width: 200px;\n  list-style-type: none; }\n\n.menu form {\n  width: 350px; }\n\n.menu li {\n  font-size: 1.5em;\n  border-radius: 17px;\n  background: #731509 radial-gradient(150% 100% at 50% 5px, rgba(255, 255, 255, 0.2), transparent);\n  box-shadow: inset rgba(0, 0, 0, 0.6) 0 -2px 5px, inset rgba(252, 255, 255, 0.7) 0 2px 5px, rgba(0, 0, 0, 0.8) 0 2px 5px -1px;\n  color: #c58818;\n  border: 2px solid;\n  padding: 20px;\n  text-align: center;\n  margin-bottom: 15px;\n  cursor: pointer; }\n\n.menu li:hover {\n  color: white; }\n", ""]);
 
 // exports
 
@@ -2099,26 +2062,27 @@ const fieldPrototypes = [{
 
 class Login extends __WEBPACK_IMPORTED_MODULE_0__blocks_block_block__["a" /* default */] {
     constructor() {
-        super('form', ['login-form']);
+        super('form', ['login']);
         fieldPrototypes.forEach(fieldPrototype => {
             this.appendChildBlock(fieldPrototype.attributes.name, new __WEBPACK_IMPORTED_MODULE_1__blocks_forms_input__["a" /* default */](fieldPrototype.type, ['field'], fieldPrototype.attributes));
         });
-        const buttonBack = "buttonBack";
-        this.appendChildBlock("buttonBack", new __WEBPACK_IMPORTED_MODULE_0__blocks_block_block__["a" /* default */]('a', [buttonBack]));
+        // const buttonBack = "buttonBack";
+        // this.appendChildBlock("buttonBack",
+        //     new Block('a', [buttonBack]));
     }
 
     creation() {
 
-        const wrappe = document.querySelector('div.wrapper');
+        const wrappe = document.querySelector('div.menu');
         if (wrappe.childNodes[0] !== undefined) {
             wrappe.removeChild(wrappe.childNodes[0]);
         }
         wrappe.appendChild(this._element);
 
-        const navigator = document.querySelector('a.buttonBack');
-        navigator.addEventListener('click', () => {
-            new __WEBPACK_IMPORTED_MODULE_3__modules_router__["default"]().go('/');
-        });
+        // const navigator = document.querySelector('a.buttonBack');
+        // navigator.addEventListener('click', () => {
+        //     new Router().go('/')
+        // });
     }
 
     onSubmit(callback) {
@@ -2148,7 +2112,7 @@ exports = module.exports = __webpack_require__(5)(undefined);
 
 
 // module
-exports.push([module.i, ".field {\n  font-family: fantasy;\n  outline: 0;\n  background: #291b1f;\n  width: 100%;\n  margin: 0 0 15px;\n  padding: 15px;\n  box-sizing: border-box;\n  border: 2px solid #c58818;\n  font-size: 14px;\n  color: white; }\n\n.field:hover {\n  border-radius: 10px;\n  border: 2px solid white; }\n\n.message-error {\n  margin-left: 10px;\n  color: red;\n  font-size: 25px;\n  font-family: fantasy; }\n\n.login-form {\n  font-family: fantasy;\n  outline: 0;\n  /*background: #f2f2f2;*/\n  width: 100%;\n  max-width: 360px;\n  margin: 0 auto 100px;\n  padding: 15px;\n  box-sizing: border-box;\n  border: 2px red;\n  font-size: 14px;\n  position: absolute;\n  top: 44%;\n  left: 37%; }\n\n.registration-form {\n  font-family: fantasy;\n  outline: 0;\n  /*background: #f2f2f2;*/\n  width: 100%;\n  max-width: 360px;\n  margin: 0 auto 100px;\n  padding: 15px;\n  box-sizing: border-box;\n  border: 2px red;\n  font-size: 14px;\n  position: absolute;\n  top: 41.5%;\n  left: 37.5%; }\n\n@media screen and (min-width: 960px) and (max-width: 1280px) and (orientation: landscape) {\n  .login-form {\n    top: 48%;\n    left: 31.5%; }\n  .registration-form {\n    top: 46%;\n    left: 31.5%; } }\n\n@media (min-width: 481px) and (max-width: 767px) and (orientation: landscape) {\n  .field {\n    width: 51%;\n    height: 40px;\n    margin: 0 0 47px;\n    line-height: 1px; }\n  .login-form {\n    top: 66%;\n    left: 37.5%; }\n  .registration-form {\n    top: 66%; } }\n", ""]);
+exports.push([module.i, ".menu form {\n  width: 350px; }\n\n.menu input {\n  font-family: fantasy;\n  outline: 0;\n  background: #291b1f;\n  width: 100%;\n  margin: 0 0 15px;\n  padding: 15px;\n  box-sizing: border-box;\n  border: 2px solid #c58818;\n  font-size: 14px;\n  color: white; }\n\n.menu input:hover {\n  border-radius: 10px;\n  border: 2px solid white; }\n", ""]);
 
 // exports
 
@@ -2203,27 +2167,21 @@ const fieldPrototypes = [{
 
 class Registration extends __WEBPACK_IMPORTED_MODULE_0__baseview__["a" /* default */] {
     constructor() {
-        super('form', ['registration-form']);
+        super('form', ['registration']);
 
         fieldPrototypes.forEach(fieldPrototype => {
             this.appendChildBlock(fieldPrototype.attributes.name, new __WEBPACK_IMPORTED_MODULE_1__blocks_forms_input__["a" /* default */](fieldPrototype.type, ['field'], fieldPrototype.attributes));
         });
-        const buttonBack = "buttonBack";
-        this.appendChildBlock("buttonBack", new __WEBPACK_IMPORTED_MODULE_0__baseview__["a" /* default */]('a', [buttonBack]));
     }
 
     creation() {
 
-        const wrappe = document.querySelector('div.wrapper');
+        const wrappe = document.querySelector('div.menu');
+        wrappe.appendChild(this._element);
+
         if (wrappe.childNodes[0] !== undefined) {
             wrappe.removeChild(wrappe.childNodes[0]);
         }
-        wrappe.appendChild(this._element);
-
-        const navigator = document.querySelector('a.buttonBack');
-        navigator.addEventListener('click', () => {
-            new __WEBPACK_IMPORTED_MODULE_3__modules_router__["default"]().go('/');
-        });
     }
 
     onSubmit(callback) {
@@ -2269,25 +2227,22 @@ const authors = [{
 class Info extends __WEBPACK_IMPORTED_MODULE_0__baseview__["a" /* default */] {
     constructor() {
         super('ul', ['info'], {});
-        this.createChildren();
-        return this;
-    }
-
-    createChildren() {
-        this.appendChildBlock('auth', new __WEBPACK_IMPORTED_MODULE_0__baseview__["a" /* default */]('h1', ['authors_header']).setText('Creators'));
-        authors.forEach(i => {
-            let value = new __WEBPACK_IMPORTED_MODULE_0__baseview__["a" /* default */]('li', ['authors']);
-            this.appendChildBlock(i.name, value.setText(i.name));
-            value.setAttribute("href", i.link);
-        });
     }
 
     creation() {
-        const wrappe = document.querySelector('div.wrapper');
-        if (wrappe.childNodes[0] !== undefined) {
-            wrappe.removeChild(wrappe.childNodes[0]);
+        const wrape = document.querySelector('div.menu');
+
+        if (document.querySelector('div.menu').childNodes[0] !== undefined) {
+            document.querySelector('div.menu').removeChild(document.querySelector('div.menu').childNodes[0]);
         }
-        wrappe.appendChild(this._element);
+        wrape.appendChild(this._element);
+
+        authors.forEach(i => {
+            this.appendChildBlock('li', new __WEBPACK_IMPORTED_MODULE_0__baseview__["a" /* default */]('li', [i.name]));
+            let but = document.querySelector('li.' + i.name);
+            but.innerHTML = `<a>${i.name}</a>`;
+            but.querySelector('a').setAttribute('href', i.link);
+        });
     }
 
 }
@@ -2333,7 +2288,7 @@ exports = module.exports = __webpack_require__(5)(undefined);
 
 
 // module
-exports.push([module.i, ".info {\n  top: 40%;\n  left: 37.5%;\n  position: absolute; }\n\n.authors_header {\n  font-size: 160%;\n  margin: -11px 0px 7px;\n  width: 100%;\n  padding: 8px;\n  color: white; }\n\n.authors {\n  font-size: 160%;\n  margin: 0 20px 15px;\n  width: 100%;\n  padding: 15px;\n  color: #e9a818; }\n\n@media screen and (min-width: 960px) and (max-width: 1280px) and (orientation: landscape) {\n  .info {\n    top: 46%; } }\n\n@media (min-width: 481px) and (max-width: 767px) and (orientation: landscape) {\n  .info {\n    top: 80%;\n    font-size: 78%; } }\n", ""]);
+exports.push([module.i, ".menu .info a {\n  text-decoration: none;\n  color: white; }\n\n.menu .info li:hover {\n  border-radius: 8px; }\n\n.menu .info li {\n  margin-bottom: 20px;\n  padding: 10px;\n  border-radius: 0; }\n", ""]);
 
 // exports
 
@@ -4153,6 +4108,8 @@ module.exports = "<!DOCTYPE html>\n<html lang=\"en\">\n\n<head>\n  <meta charset
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__baseview__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__module_scss__ = __webpack_require__(54);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__module_scss___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__module_scss__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__multiplayer_manager__ = __webpack_require__(56);
+
 
 
 
@@ -4171,8 +4128,9 @@ const wrape = document.querySelector('div.wrapper');
 class Choose extends __WEBPACK_IMPORTED_MODULE_0__baseview__["a" /* default */] {
     constructor() {
         super('div', ['choose'], {});
-        this.createChildren();
-        return this;
+        //   this.createChildren();
+        //this.strategy = MultiPlayerStrategy;
+        //return this;
     }
 
     // const wrappe = document.querySelector('div.wrapper');
@@ -4181,9 +4139,9 @@ class Choose extends __WEBPACK_IMPORTED_MODULE_0__baseview__["a" /* default */] 
     // }
     // wrappe.appendChild(this._element);
 
-    createChildren() {
-        this.appendChildBlock('img', new __WEBPACK_IMPORTED_MODULE_0__baseview__["a" /* default */]('img', ['person']));
-    }
+    /*createChildren () {
+            this.appendChildBlock('img',new Block('img', ['person']));
+    }*/
     choose() {
         this.appendChildBlock('choose', new __WEBPACK_IMPORTED_MODULE_0__baseview__["a" /* default */]('a', ['choose_left']));
         wrape.appendChild(this._element);
@@ -4224,9 +4182,11 @@ class Choose extends __WEBPACK_IMPORTED_MODULE_0__baseview__["a" /* default */] 
         wrape.appendChild(this._element);
     }
     creation() {
+        this.appendChildBlock('img', new __WEBPACK_IMPORTED_MODULE_0__baseview__["a" /* default */]('img', ['person']));
         const image = document.querySelector('img.wall');
-        if (document.querySelector('div.main-menu') !== null) {
-            document.querySelector('div.main-menu').remove();
+        //this.wbs = new MultiPlayerStrategy();
+        if (document.querySelector('div.menu') !== null) {
+            document.querySelector('div.menu').remove();
         } else if (image !== null) {
             image.remove();
         }
@@ -4282,88 +4242,165 @@ exports = module.exports = __webpack_require__(5)(undefined);
 
 
 // module
-exports.push([module.i, ".person {\n  top: 30%;\n  left: 32%;\n  font-size: 120%;\n  position: absolute; }\n\n.enter {\n  display: inline-block;\n  width: 12vw;\n  height: 6vh;\n  line-height: 50px;\n  text-align: center;\n  text-decoration: none;\n  text-shadow: 0 1px rgba(154, 33, 33, 0.2), 0 -1px rgba(82, 11, 11, 0.8);\n  border-radius: 17px;\n  background: #731509 radial-gradient(150% 100% at 50% 5px, rgba(255, 255, 255, 0.2), transparent);\n  box-shadow: inset rgba(0, 0, 0, 0.6) 0 -2px 5px, inset rgba(252, 255, 255, 0.7) 0 2px 5px, rgba(0, 0, 0, 0.8) 0 2px 5px -1px;\n  color: #c58818;\n  /* user-select: none; */\n  position: absolute;\n  border: 2px solid;\n  top: 90%;\n  left: 44%;\n  font-size: 150%; }\n\n.enter:hover {\n  color: white;\n  cursor: pointer; }\n\n.enter:active {\n  padding-bottom: 1px;\n  box-shadow: inset black 0 1px 3px, inset rgba(0, 0, 0, 0.6) 0 -2px 5px, inset rgba(252, 255, 255, 0.7) 0 2px 5px, 0 1px rgba(255, 255, 255, 0.08);\n  color: #80cfd6; }\n\n.back {\n  display: inline-block;\n  width: 10vw;\n  height: 6vh;\n  line-height: 50px;\n  text-align: center;\n  text-decoration: none;\n  text-shadow: 0 1px rgba(154, 33, 33, 0.2), 0 -1px rgba(82, 11, 11, 0.8);\n  border-radius: 17px;\n  background: #731509 radial-gradient(150% 100% at 50% 5px, rgba(255, 255, 255, 0.2), transparent);\n  box-shadow: inset rgba(0, 0, 0, 0.6) 0 -2px 5px, inset rgba(252, 255, 255, 0.7) 0 2px 5px, rgba(0, 0, 0, 0.8) 0 2px 5px -1px;\n  color: #c58818;\n  /* user-select: none; */\n  position: absolute;\n  border: 2px solid;\n  top: 90%;\n  right: 6%;\n  font-size: 150%; }\n\n.back:hover {\n  color: white;\n  cursor: pointer; }\n\n.back:active {\n  padding-bottom: 1px;\n  box-shadow: inset black 0 1px 3px, inset rgba(0, 0, 0, 0.6) 0 -2px 5px, inset rgba(252, 255, 255, 0.7) 0 2px 5px, 0 1px rgba(255, 255, 255, 0.08);\n  color: #80cfd6; }\n\n.choose_left {\n  display: inline-block;\n  outline: none;\n  border: 3px black;\n  border-radius: 100px;\n  transition: 0.2s;\n  background-size: cover;\n  font-family: fantasy;\n  position: absolute;\n  padding: 20px;\n  background-image: url(" + __webpack_require__(19) + ");\n  top: 77%;\n  left: 42%;\n  font-size: 150%;\n  cursor: pointer; }\n\n.choose_left:hover {\n  background: green; }\n\n.choose_right {\n  display: inline-block;\n  outline: none;\n  border: 3px black;\n  border-radius: 100px;\n  transition: 0.2s;\n  background-size: cover;\n  font-family: fantasy;\n  position: absolute;\n  padding: 20px;\n  background-image: url(" + __webpack_require__(19) + ");\n  top: 77%;\n  left: 53%;\n  font-size: 150%;\n  cursor: pointer;\n  transform: rotate(180deg); }\n\n.choose_right:hover {\n  background: green; }\n\n.left_bar {\n  width: 20vw;\n  height: 50vh;\n  background: #382c2f;\n  margin: -215px 0 0 -125px;\n  position: absolute;\n  top: 60%;\n  left: 15%;\n  padding: 10px;\n  border: solid 3px #5b2d0c;\n  color: white;\n  font-family: fantasy;\n  font-size: 150%;\n  background-size: cover; }\n\n.new_character {\n  display: inline-block;\n  width: 12vw;\n  height: 6vh;\n  line-height: 50px;\n  text-align: center;\n  text-decoration: none;\n  text-shadow: 0 1px rgba(154, 33, 33, 0.2), 0 -1px rgba(82, 11, 11, 0.8);\n  border-radius: 17px;\n  background: #731509 radial-gradient(150% 100% at 50% 5px, rgba(255, 255, 255, 0.2), transparent);\n  box-shadow: inset rgba(0, 0, 0, 0.6) 0 -2px 5px, inset rgba(252, 255, 255, 0.7) 0 2px 5px, rgba(0, 0, 0, 0.8) 0 2px 5px -1px;\n  color: #c58818;\n  /* user-select: none; */\n  position: absolute;\n  border: 2px solid;\n  top: 90%;\n  left: 10%;\n  font-size: 150%; }\n\n.new_character:hover {\n  color: white;\n  cursor: pointer; }\n\n.new_character:active {\n  padding-bottom: 1px;\n  box-shadow: inset black 0 1px 3px, inset rgba(0, 0, 0, 0.6) 0 -2px 5px, inset rgba(252, 255, 255, 0.7) 0 2px 5px, 0 1px rgba(255, 255, 255, 0.08);\n  color: #80cfd6; }\n\n.delete {\n  display: inline-block;\n  width: 11vw;\n  height: 5vh;\n  line-height: 50px;\n  text-align: center;\n  text-decoration: none;\n  text-shadow: 0 1px rgba(154, 33, 33, 0.2), 0 -1px rgba(82, 11, 11, 0.8);\n  border-radius: 17px;\n  background: #731509 radial-gradient(150% 100% at 50% 5px, rgba(255, 255, 255, 0.2), transparent);\n  box-shadow: inset rgba(0, 0, 0, 0.6) 0 -2px 5px, inset rgba(252, 255, 255, 0.7) 0 2px 5px, rgba(0, 0, 0, 0.8) 0 2px 5px -1px;\n  color: #c58818;\n  /* user-select: none; */\n  position: absolute;\n  border: 2px solid;\n  top: 75%;\n  left: 10%;\n  font-size: 120%; }\n\n.delete:hover {\n  color: white;\n  cursor: pointer; }\n\n.delete:active {\n  padding-bottom: 1px;\n  box-shadow: inset black 0 1px 3px, inset rgba(0, 0, 0, 0.6) 0 -2px 5px, inset rgba(252, 255, 255, 0.7) 0 2px 5px, 0 1px rgba(255, 255, 255, 0.08);\n  color: #80cfd6; }\n\n@media screen and (min-width: 960px) and (max-width: 1280px) and (orientation: landscape) {\n  .delete {\n    width: 12vw;\n    height: 7vh;\n    top: 91%;\n    left: 8%; }\n  .person {\n    top: 20%;\n    left: 25%; }\n  .enter {\n    top: 115%;\n    left: 43%;\n    font-size: 138%; }\n  .choose_right {\n    top: 99%; }\n  .choose_left {\n    top: 99%; }\n  .back {\n    width: 11vw;\n    height: 7vh;\n    top: 114%;\n    right: 6%; }\n  .left_bar {\n    top: 84%; }\n  .new_character {\n    top: 112%;\n    left: 6%; } }\n\n@media (min-width: 481px) and (max-width: 767px) and (orientation: landscape) {\n  .person {\n    width: 33vw; }\n  .choose_left {\n    padding: 16px;\n    top: 88%; }\n  .choose_right {\n    padding: 16px;\n    top: 88%; }\n  .enter {\n    top: 119%;\n    left: 40%;\n    font-size: 129%;\n    line-height: 44px;\n    width: 19vw;\n    height: 11vh; }\n  .back {\n    top: 119%;\n    font-size: 129%;\n    line-height: 44px;\n    width: 19vw;\n    height: 11vh; }\n  .new_character {\n    top: 119%;\n    font-size: 106%;\n    line-height: 44px;\n    width: 19vw;\n    height: 11vh; }\n  .left_bar {\n    font-size: 95%;\n    width: 20vw;\n    height: 50vh;\n    top: 110%;\n    left: 26%; }\n  .delete {\n    width: 12vw;\n    height: 7vh;\n    line-height: 30px;\n    top: 89%;\n    left: 10%;\n    font-size: 90%; } }\n", ""]);
+exports.push([module.i, ".person {\n  top: 30%;\n  left: 32%;\n  font-size: 120%;\n  position: absolute; }\n\n.enter {\n  display: inline-block;\n  width: 12vw;\n  height: 6vh;\n  line-height: 50px;\n  text-align: center;\n  text-decoration: none;\n  text-shadow: 0 1px rgba(154, 33, 33, 0.2), 0 -1px rgba(82, 11, 11, 0.8);\n  border-radius: 17px;\n  background: #731509 radial-gradient(150% 100% at 50% 5px, rgba(255, 255, 255, 0.2), transparent);\n  box-shadow: inset rgba(0, 0, 0, 0.6) 0 -2px 5px, inset rgba(252, 255, 255, 0.7) 0 2px 5px, rgba(0, 0, 0, 0.8) 0 2px 5px -1px;\n  color: #c58818;\n  /* user-select: none; */\n  position: absolute;\n  border: 2px solid;\n  top: 90%;\n  left: 44%;\n  font-size: 150%; }\n\n.enter:hover {\n  color: white;\n  cursor: pointer; }\n\n.enter:active {\n  padding-bottom: 1px;\n  box-shadow: inset black 0 1px 3px, inset rgba(0, 0, 0, 0.6) 0 -2px 5px, inset rgba(252, 255, 255, 0.7) 0 2px 5px, 0 1px rgba(255, 255, 255, 0.08);\n  color: #80cfd6; }\n\n.back {\n  display: inline-block;\n  width: 10vw;\n  height: 6vh;\n  line-height: 50px;\n  text-align: center;\n  text-decoration: none;\n  text-shadow: 0 1px rgba(154, 33, 33, 0.2), 0 -1px rgba(82, 11, 11, 0.8);\n  border-radius: 17px;\n  background: #731509 radial-gradient(150% 100% at 50% 5px, rgba(255, 255, 255, 0.2), transparent);\n  box-shadow: inset rgba(0, 0, 0, 0.6) 0 -2px 5px, inset rgba(252, 255, 255, 0.7) 0 2px 5px, rgba(0, 0, 0, 0.8) 0 2px 5px -1px;\n  color: #c58818;\n  /* user-select: none; */\n  position: absolute;\n  border: 2px solid;\n  top: 90%;\n  right: 6%;\n  font-size: 150%; }\n\n.back:hover {\n  color: white;\n  cursor: pointer; }\n\n.back:active {\n  padding-bottom: 1px;\n  box-shadow: inset black 0 1px 3px, inset rgba(0, 0, 0, 0.6) 0 -2px 5px, inset rgba(252, 255, 255, 0.7) 0 2px 5px, 0 1px rgba(255, 255, 255, 0.08);\n  color: #80cfd6; }\n\n.choose_left {\n  display: inline-block;\n  outline: none;\n  border: 3px black;\n  border-radius: 100px;\n  transition: 0.2s;\n  background-size: cover;\n  font-family: fantasy;\n  position: absolute;\n  padding: 20px;\n  background-image: url(" + __webpack_require__(19) + ");\n  top: 77%;\n  left: 42%;\n  font-size: 150%;\n  cursor: pointer; }\n\n.choose_left:hover {\n  background: green; }\n\n.choose_right {\n  display: inline-block;\n  outline: none;\n  border: 3px black;\n  border-radius: 100px;\n  transition: 0.2s;\n  background-size: cover;\n  font-family: fantasy;\n  position: absolute;\n  padding: 20px;\n  background-image: url(" + __webpack_require__(19) + ");\n  top: 77%;\n  left: 53%;\n  font-size: 150%;\n  cursor: pointer;\n  transform: rotate(180deg); }\n\n.choose_right:hover {\n  background: green; }\n\n.left_bar {\n  width: 20vw;\n  height: 50vh;\n  background: #382c2f;\n  margin: -215px 0 0 -125px;\n  position: absolute;\n  top: 60%;\n  left: 15%;\n  padding: 10px;\n  border: solid 3px #5b2d0c;\n  color: white;\n  font-family: fantasy;\n  font-size: 150%;\n  background-size: cover; }\n\n.new_character {\n  font-size: 1.5em;\n  border-radius: 17px;\n  background: #731509 radial-gradient(150% 100% at 50% 5px, rgba(255, 255, 255, 0.2), transparent);\n  box-shadow: inset rgba(0, 0, 0, 0.6) 0 -2px 5px, inset rgba(252, 255, 255, 0.7) 0 2px 5px, rgba(0, 0, 0, 0.8) 0 2px 5px -1px;\n  color: #c58818;\n  border: 2px solid;\n  padding: 20px;\n  text-align: center;\n  margin-bottom: 15px;\n  cursor: pointer;\n  line-height: 50px;\n  position: absolute;\n  top: 90%;\n  left: 10%; }\n\n.new_character:hover {\n  color: white;\n  cursor: pointer; }\n\n.new_character:active {\n  padding-bottom: 1px;\n  box-shadow: inset black 0 1px 3px, inset rgba(0, 0, 0, 0.6) 0 -2px 5px, inset rgba(252, 255, 255, 0.7) 0 2px 5px, 0 1px rgba(255, 255, 255, 0.08);\n  color: #80cfd6; }\n\n.delete {\n  display: inline-block;\n  width: 11vw;\n  height: 5vh;\n  line-height: 50px;\n  text-align: center;\n  text-decoration: none;\n  text-shadow: 0 1px rgba(154, 33, 33, 0.2), 0 -1px rgba(82, 11, 11, 0.8);\n  border-radius: 17px;\n  background: #731509 radial-gradient(150% 100% at 50% 5px, rgba(255, 255, 255, 0.2), transparent);\n  box-shadow: inset rgba(0, 0, 0, 0.6) 0 -2px 5px, inset rgba(252, 255, 255, 0.7) 0 2px 5px, rgba(0, 0, 0, 0.8) 0 2px 5px -1px;\n  color: #c58818;\n  /* user-select: none; */\n  position: absolute;\n  border: 2px solid;\n  top: 75%;\n  left: 10%;\n  font-size: 120%; }\n\n.delete:hover {\n  color: white;\n  cursor: pointer; }\n\n.delete:active {\n  padding-bottom: 1px;\n  box-shadow: inset black 0 1px 3px, inset rgba(0, 0, 0, 0.6) 0 -2px 5px, inset rgba(252, 255, 255, 0.7) 0 2px 5px, 0 1px rgba(255, 255, 255, 0.08);\n  color: #80cfd6; }\n\n@media screen and (min-width: 960px) and (max-width: 1280px) and (orientation: landscape) {\n  .delete {\n    width: 12vw;\n    height: 7vh;\n    top: 91%;\n    left: 8%; }\n  .person {\n    top: 20%;\n    left: 25%; }\n  .enter {\n    top: 115%;\n    left: 43%;\n    font-size: 138%; }\n  .choose_right {\n    top: 99%; }\n  .choose_left {\n    top: 99%; }\n  .back {\n    width: 11vw;\n    height: 7vh;\n    top: 114%;\n    right: 6%; }\n  .left_bar {\n    top: 84%; }\n  .new_character {\n    top: 112%;\n    left: 6%; } }\n\n@media (min-width: 481px) and (max-width: 767px) and (orientation: landscape) {\n  .person {\n    width: 33vw; }\n  .choose_left {\n    padding: 16px;\n    top: 88%; }\n  .choose_right {\n    padding: 16px;\n    top: 88%; }\n  .enter {\n    top: 119%;\n    left: 40%;\n    font-size: 129%;\n    line-height: 44px;\n    width: 19vw;\n    height: 11vh; }\n  .back {\n    top: 119%;\n    font-size: 129%;\n    line-height: 44px;\n    width: 19vw;\n    height: 11vh; }\n  .new_character {\n    top: 119%;\n    font-size: 106%;\n    line-height: 44px;\n    width: 19vw;\n    height: 11vh; }\n  .left_bar {\n    font-size: 95%;\n    width: 20vw;\n    height: 50vh;\n    top: 110%;\n    left: 26%; }\n  .delete {\n    width: 12vw;\n    height: 7vh;\n    line-height: 30px;\n    top: 89%;\n    left: 10%;\n    font-size: 90%; } }\n", ""]);
 
 // exports
 
 
 /***/ }),
 /* 56 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__modules_mediator__ = __webpack_require__(8);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__transport_transport_js__ = __webpack_require__(57);
+
+
+
+
+
+class MultiPlayerStrategy {
+    constructor() {
+        console.log('constructor_work');
+        this.mediator = new __WEBPACK_IMPORTED_MODULE_0__modules_mediator__["default"]();
+        this.transport = new __WEBPACK_IMPORTED_MODULE_1__transport_transport_js__["a" /* default */]();
+        this.mediator.subscribe("CharacterListRequestMessage", this.startGame.bind(this));
+        this.mediator.subscribe("ActionRequestMessage", this.stopGame.bind(this));
+        this.mediator.subscribe("LobbyRequestMessage", this.exit.bind(this));
+        this.mediator.subscribe("NextRoomRequestMessage", this.newUser.bind(this));
+        this.mediator.subscribe("StayInLineRequestMessage", this.deleteUser.bind(this));
+
+        this.transport.send("START_MP_GAME");
+
+        this.mediator.publish("LOADING");
+    }
+
+    startGame(content) {
+        this.mediator.publish("VIEW_LOADED");
+
+        if (content.type !== "mp") {
+            return;
+        }
+
+        content.players.forEach(player => {
+            this.mediator.publish("ADD_PLAYER", player);
+        });
+    }
+
+    stopGame(content) {
+        this.timeout = setTimeout(() => {
+            this.transport.send("STOP_MP_GAME");
+            this.mediator.publish("LOADING");
+        }, 5000);
+    }
+
+    exit() {
+        clearTimeout(this.timeout);
+        this.transport.send("EXIT", {});
+        this.unsubscribe();
+    }
+
+    newUser(content) {
+        content.players.forEach(player => {
+            player.new = true;
+            this.mediator.publish("ADD_PLAYER", player);
+        });
+    }
+
+    deleteUser(content) {
+        this.mediator.publish("DELETE_PLAYER", content.player);
+    }
+
+    unsubscribe() {
+        this.mediator.unsubscribe("START_MP_GAME", this.startGame.bind(this));
+        this.mediator.unsubscribe("STOP_GAME", this.stopGame.bind(this));
+        this.mediator.unsubscribe("EXIT", this.exit.bind(this));
+        this.mediator.unsubscribe("PLAYERS_CONNECT", this.newUser.bind(this));
+        this.mediator.unsubscribe("PLAYER_DISCONNECT", this.deleteUser.bind(this));
+        this.mediator.publish("DELETE_GAME");
+    }
+}
+/* unused harmony export default */
+
+
+/***/ }),
+/* 57 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+
+
+class Transport {
+    constructor() {
+        if (Transport.__instance) {
+            return Transport.__instance;
+        }
+        Transport.__instance = this;
+        this.connected = false;
+        this.count = 0;
+
+        this.mediator = new Mediator();
+        this.url = "wss:https://kvvartet2017.herokuapp.com/multiplayer/";
+        this.ws = new WebSocket(this.url);
+    }
+    open() {
+        this.ws.onopen = function (event) {
+            this.connected = true;
+            this.ws.onmessage = this.handleMessage.bind(this);
+            this.interval = setInterval((() => {
+                this.send("UPDATE");
+            }).bind(this), 5000);
+
+            this.ws.onclose = function () {
+                this.connected = false;
+                clearInterval(this.interval);
+                this.handleClosing();
+            }.bind(this);
+        };
+    }
+
+    send(type, payload) {
+        if (!this.connected) {
+            console.log('websockets_work_');
+            setTimeout(() => {
+                if (this.count > 20) {
+                    return;
+                }
+                this.count++;
+                this.send(type, payload);
+            }, 1000);
+        } else {
+            console.log('websockets_dont_work_');
+            this.ws.send(JSON.stringify({ class: type, content: payload }));
+        }
+    }
+
+    close() {
+        this.ws.close();
+    }
+
+}
+/* harmony export (immutable) */ __webpack_exports__["a"] = Transport;
+
+
+/***/ }),
+/* 58 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
 
 /***/ }),
-/* 57 */
-/***/ (function(module, exports) {
-
-function webpackEmptyContext(req) {
-	throw new Error("Cannot find module '" + req + "'.");
-}
-webpackEmptyContext.keys = function() { return []; };
-webpackEmptyContext.resolve = webpackEmptyContext;
-module.exports = webpackEmptyContext;
-webpackEmptyContext.id = 57;
-
-/***/ }),
-/* 58 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var map = {
-	"./forms/forms.scss": 7
-};
-function webpackContext(req) {
-	return __webpack_require__(webpackContextResolve(req));
-};
-function webpackContextResolve(req) {
-	var id = map[req];
-	if(!(id + 1)) // check for number or string
-		throw new Error("Cannot find module '" + req + "'.");
-	return id;
-};
-webpackContext.keys = function webpackContextKeys() {
-	return Object.keys(map);
-};
-webpackContext.resolve = webpackContextResolve;
-module.exports = webpackContext;
-webpackContext.id = 58;
-
-/***/ }),
 /* 59 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var map = {
-	"./http.js": 9,
-	"./mediator.js": 10,
-	"./router.js": 3
-};
-function webpackContext(req) {
-	return __webpack_require__(webpackContextResolve(req));
-};
-function webpackContextResolve(req) {
-	var id = map[req];
-	if(!(id + 1)) // check for number or string
-		throw new Error("Cannot find module '" + req + "'.");
-	return id;
-};
-webpackContext.keys = function webpackContextKeys() {
-	return Object.keys(map);
-};
-webpackContext.resolve = webpackContextResolve;
-module.exports = webpackContext;
-webpackContext.id = 59;
+module.exports = __webpack_require__.p + "./banner-8fbe7a02e185423efad976b0be95524b.png";
 
 /***/ }),
 /* 60 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var map = {
-	"./banner.png": 61,
-	"./logo2.png": 62,
-	"./mage.png": 63,
-	"./priest.png": 64,
-	"./thief.png": 65,
-	"./warrior.png": 66
+	"./forms/backup.css": 61
 };
 function webpackContext(req) {
 	return __webpack_require__(webpackContextResolve(req));
@@ -4383,36 +4420,112 @@ webpackContext.id = 60;
 
 /***/ }),
 /* 61 */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, exports) {
 
-module.exports = __webpack_require__.p + "./banner-8fbe7a02e185423efad976b0be95524b.png";
+// removed by extract-text-webpack-plugin
 
 /***/ }),
 /* 62 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "./logo2-3cf843d080ef7f43169fc926bd2e4895.png";
+var map = {
+	"./forms/forms.scss": 7
+};
+function webpackContext(req) {
+	return __webpack_require__(webpackContextResolve(req));
+};
+function webpackContextResolve(req) {
+	var id = map[req];
+	if(!(id + 1)) // check for number or string
+		throw new Error("Cannot find module '" + req + "'.");
+	return id;
+};
+webpackContext.keys = function webpackContextKeys() {
+	return Object.keys(map);
+};
+webpackContext.resolve = webpackContextResolve;
+module.exports = webpackContext;
+webpackContext.id = 62;
 
 /***/ }),
 /* 63 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "./mage-c458dd5d04052ebc27883fbfecf7db54.png";
+var map = {
+	"./http.js": 10,
+	"./mediator.js": 8,
+	"./router.js": 3
+};
+function webpackContext(req) {
+	return __webpack_require__(webpackContextResolve(req));
+};
+function webpackContextResolve(req) {
+	var id = map[req];
+	if(!(id + 1)) // check for number or string
+		throw new Error("Cannot find module '" + req + "'.");
+	return id;
+};
+webpackContext.keys = function webpackContextKeys() {
+	return Object.keys(map);
+};
+webpackContext.resolve = webpackContextResolve;
+module.exports = webpackContext;
+webpackContext.id = 63;
 
 /***/ }),
 /* 64 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "./priest-87d5d9da08d4f88271884f821fd9c79f.png";
+var map = {
+	"./banner.png": 59,
+	"./logo2.png": 65,
+	"./mage.png": 66,
+	"./priest.png": 67,
+	"./thief.png": 68,
+	"./warrior.png": 69
+};
+function webpackContext(req) {
+	return __webpack_require__(webpackContextResolve(req));
+};
+function webpackContextResolve(req) {
+	var id = map[req];
+	if(!(id + 1)) // check for number or string
+		throw new Error("Cannot find module '" + req + "'.");
+	return id;
+};
+webpackContext.keys = function webpackContextKeys() {
+	return Object.keys(map);
+};
+webpackContext.resolve = webpackContextResolve;
+module.exports = webpackContext;
+webpackContext.id = 64;
 
 /***/ }),
 /* 65 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "./thief-44dd92f7e16a9964c45341046cc9cacc.png";
+module.exports = __webpack_require__.p + "./logo2-3cf843d080ef7f43169fc926bd2e4895.png";
 
 /***/ }),
 /* 66 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__.p + "./mage-c458dd5d04052ebc27883fbfecf7db54.png";
+
+/***/ }),
+/* 67 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__.p + "./priest-87d5d9da08d4f88271884f821fd9c79f.png";
+
+/***/ }),
+/* 68 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__.p + "./thief-44dd92f7e16a9964c45341046cc9cacc.png";
+
+/***/ }),
+/* 69 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "./warrior-39d7246a94bd3c09959c9649a740eed9.png";
