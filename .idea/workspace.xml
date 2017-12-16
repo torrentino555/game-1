@@ -48,11 +48,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="main.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="main.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/public/views/main.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="209">
-              <caret line="29" column="39" lean-forward="true" selection-start-line="29" selection-start-column="39" selection-end-line="29" selection-end-column="39" />
+            <state relative-caret-position="281">
+              <caret line="57" column="62" lean-forward="false" selection-start-line="57" selection-start-column="30" selection-end-line="57" selection-end-column="62" />
               <folding>
                 <element signature="e#0#31#0" expanded="true" />
               </folding>
@@ -80,11 +80,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="validation.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="validation.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/public/blocks/forms/validation.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="358">
-              <caret line="34" column="0" lean-forward="true" selection-start-line="34" selection-start-column="0" selection-end-line="34" selection-end-column="0" />
+            <state relative-caret-position="373">
+              <caret line="35" column="1" lean-forward="true" selection-start-line="35" selection-start-column="1" selection-end-line="35" selection-end-column="1" />
               <folding />
             </state>
           </provider>
@@ -171,10 +171,10 @@
         <option value="$PROJECT_DIR$/public/views/multiplayer/registration-module/module.scss" />
         <option value="$PROJECT_DIR$/public/views/multiplayer/registration-module/registration-module.js" />
         <option value="$PROJECT_DIR$/public/views/main.js" />
-        <option value="$PROJECT_DIR$/public/blocks/forms/validation.js" />
         <option value="$PROJECT_DIR$/public/blocks/forms/forms.scss" />
         <option value="$PROJECT_DIR$/public/blocks/autheficate/loginAuth.js" />
         <option value="$PROJECT_DIR$/public/blocks/autheficate/registrationAuth.js" />
+        <option value="$PROJECT_DIR$/public/blocks/forms/validation.js" />
       </list>
     </option>
   </component>
@@ -393,12 +393,12 @@
       <workItem from="1513261242437" duration="11140000" />
       <workItem from="1513308708169" duration="8081000" />
       <workItem from="1513351111586" duration="2245000" />
-      <workItem from="1513396297118" duration="36301000" />
+      <workItem from="1513396297118" duration="36717000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="109244000" />
+    <option name="totallyTimeSpent" value="109660000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1440" height="810" extended-state="0" />
@@ -724,16 +724,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/views/main.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="209">
-          <caret line="29" column="39" lean-forward="true" selection-start-line="29" selection-start-column="39" selection-end-line="29" selection-end-column="39" />
-          <folding>
-            <element signature="e#0#31#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/public/blocks/forms/backup.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="270">
@@ -804,9 +794,19 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/public/blocks/forms/validation.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="358">
-          <caret line="34" column="0" lean-forward="true" selection-start-line="34" selection-start-column="0" selection-end-line="34" selection-end-column="0" />
+        <state relative-caret-position="373">
+          <caret line="35" column="1" lean-forward="true" selection-start-line="35" selection-start-column="1" selection-end-line="35" selection-end-column="1" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/views/main.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="281">
+          <caret line="57" column="62" lean-forward="false" selection-start-line="57" selection-start-column="30" selection-end-line="57" selection-end-column="62" />
+          <folding>
+            <element signature="e#0#31#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
