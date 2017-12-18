@@ -1783,14 +1783,17 @@ class MainPage extends __WEBPACK_IMPORTED_MODULE_0__baseview__["a" /* default */
         if (document.querySelector('div.menu') === null) {
             let banner = document.createElement("div");
             document.querySelector('div.wrapper').appendChild(banner);
-            banner.setAttribute('class', 'main');
+            banner.setAttribute('class', 'menu');
+            let ul = document.createElement('ul');
+            wrape.appendChild(ul);
+            ul.setAttribute('class', 'name');
         } else {
             if (document.querySelector('div.menu').childNodes[0] !== undefined) {
                 document.querySelector('div.menu').removeChild(document.querySelector('div.menu').childNodes[0]);
                 console.log('remove');
             }
+            wrape.appendChild(this._element);
         }
-        wrape.appendChild(this._element);
 
         buttons.forEach(button => {
             let newButtons = new __WEBPACK_IMPORTED_MODULE_0__baseview__["a" /* default */]('a', [blockClass + button.name]);
