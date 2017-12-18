@@ -52,9 +52,8 @@ wrapper.appendChildBlock('menu',new Block('div',['menu']))
          }
          userService.signup(formdata[0], formdata[1], formdata[2])
              .then(() => new Router().go('/game'))
-         let logout = document.querySelector('a.back')
-
               .then(() => {
+                  let logout = document.querySelector('a.back')
                   logout.addEventListener('click', function () {
                       console.log('back_work')
                      document.querySelector('div.choose').remove();
