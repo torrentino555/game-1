@@ -1,6 +1,7 @@
 'use strict'
 import  Block from '../../baseview'
 import './module.scss'
+import Transport from'../../../transport/transport'
 const enity = [
     {
         src:'../../../images/warrior.png'
@@ -146,12 +147,10 @@ export default class Choose extends Block{
         wrape.appendChild(this._element)
     }
     creation () {
-       // const image = document.querySelector('img.main');
         if ( document.querySelector('div.menu') !== null)
         {
             document.querySelector('div.menu').remove();
         }
-        //image.remove();
 
         wrape.appendChild(this._element);
         this.footbarCreate();
