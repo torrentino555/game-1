@@ -45,9 +45,9 @@ export class MainPage extends Block {
             let banner = document.createElement("div");
             document.querySelector('div.wrapper').appendChild(banner)
             banner.setAttribute('class','menu');
-            let ul = document.createElement('ul');
-            wrape.appendChild(ul);
-           ul.setAttribute('class','name')
+            let ull = document.createElement("ul");
+            document.querySelector('div.wrapper').appendChild(ull);
+           ull.setAttribute('class','name')
         }
         else {
             if (document.querySelector('div.menu').childNodes[0] !== undefined) {
