@@ -146,12 +146,12 @@ export default class Choose extends Block{
         wrape.appendChild(this._element)
     }
     creation () {
-        const image = document.querySelector('img.wall');
-        if ( document.querySelector('div.main-menu') !== null)
+       // const image = document.querySelector('img.main');
+        if ( document.querySelector('div.menu') !== null)
         {
-            document.querySelector('div.main-menu').remove();
+            document.querySelector('div.menu').remove();
         }
-        image.remove();
+        //image.remove();
 
         wrape.appendChild(this._element);
         this.footbarCreate();
