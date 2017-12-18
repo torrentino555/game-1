@@ -42,7 +42,9 @@ export class MainPage extends Block {
 
         const wrape = document.querySelector('div.menu');
         if (document.querySelector('div.menu') === null) {
-            document.querySelector('div.wrapper').appendChildBlock('menu',new Block('div',['menu']))
+            let banner = document.document.createElement("div");
+            document.querySelector('div.wrapper').appendChild(banner)
+            banner.setAttribute('class','main');
         }
         else {
             if (document.querySelector('div.menu').childNodes[0] !== undefined) {
