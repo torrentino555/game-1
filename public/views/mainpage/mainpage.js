@@ -41,9 +41,14 @@ export class MainPage extends Block {
     creation() {
 
         const wrape = document.querySelector('div.menu');
-        if (document.querySelector('div.menu').childNodes[0] !== undefined) {
-            document.querySelector('div.menu').removeChild(document.querySelector('div.menu').childNodes[0]);
-            console.log('remove')
+        if (document.querySelector('div.menu') === null) {
+            document.querySelector('div.wrapper').appendChildBlock('menu',new Block('div',['menu']))
+        }
+        else {
+            if (document.querySelector('div.menu').childNodes[0] !== undefined) {
+                document.querySelector('div.menu').removeChild(document.querySelector('div.menu').childNodes[0]);
+                console.log('remove')
+            }
         }
         wrape.appendChild(this._element);
 
