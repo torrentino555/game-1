@@ -951,8 +951,8 @@ function signup(registration) {
         if (authValidation === false) {
             return;
         }
-        userService.signup(formdata[0], formdata[1], formdata[2]).then(() => new __WEBPACK_IMPORTED_MODULE_3__modules_router__["default"]().go('/game'));
-        let logout = document.querySelector('a.back').then(() => {
+        userService.signup(formdata[0], formdata[1], formdata[2]).then(() => new __WEBPACK_IMPORTED_MODULE_3__modules_router__["default"]().go('/game')).then(() => {
+            let logout = document.querySelector('a.back');
             logout.addEventListener('click', function () {
                 console.log('back_work');
                 document.querySelector('div.choose').remove();
@@ -1780,11 +1780,17 @@ class MainPage extends __WEBPACK_IMPORTED_MODULE_0__baseview__["a" /* default */
     creation() {
 
         const wrape = document.querySelector('div.menu');
-        if (document.querySelector('div.menu').childNodes[0] !== undefined) {
-            document.querySelector('div.menu').removeChild(document.querySelector('div.menu').childNodes[0]);
-            console.log('remove');
+        if (document.querySelector('div.menu') === null) {
+            let banner = document.createElement("div");
+            document.querySelector('div.wrapper').appendChild(banner);
+            banner.setAttribute('class', 'main');
+        } else {
+            if (document.querySelector('div.menu').childNodes[0] !== undefined) {
+                document.querySelector('div.menu').removeChild(document.querySelector('div.menu').childNodes[0]);
+                console.log('remove');
+            }
         }
-        // wrape.appendChild(this._element);
+        wrape.appendChild(this._element);
 
         buttons.forEach(button => {
             let newButtons = new __WEBPACK_IMPORTED_MODULE_0__baseview__["a" /* default */]('a', [blockClass + button.name]);
@@ -2080,9 +2086,6 @@ class Login extends __WEBPACK_IMPORTED_MODULE_0__blocks_block_block__["a" /* def
         fieldPrototypes.forEach(fieldPrototype => {
             this.appendChildBlock(fieldPrototype.attributes.name, new __WEBPACK_IMPORTED_MODULE_1__blocks_forms_input__["a" /* default */](fieldPrototype.type, ['field'], fieldPrototype.attributes));
         });
-        // const buttonBack = "buttonBack";
-        // this.appendChildBlock("buttonBack",
-        //     new Block('a', [buttonBack]));
     }
 
     creation() {
@@ -2092,11 +2095,6 @@ class Login extends __WEBPACK_IMPORTED_MODULE_0__blocks_block_block__["a" /* def
             wrappe.removeChild(wrappe.childNodes[0]);
         }
         wrappe.appendChild(this._element);
-
-        // const navigator = document.querySelector('a.buttonBack');
-        // navigator.addEventListener('click', () => {
-        //     new Router().go('/')
-        // });
     }
 
     onSubmit(callback) {
@@ -2191,11 +2189,10 @@ class Registration extends __WEBPACK_IMPORTED_MODULE_0__baseview__["a" /* defaul
     creation() {
 
         const wrappe = document.querySelector('div.menu');
-        wrappe.appendChild(this._element);
-
         if (wrappe.childNodes[0] !== undefined) {
             wrappe.removeChild(wrappe.childNodes[0]);
         }
+        wrappe.appendChild(this._element);
     }
 
     onSubmit(callback) {

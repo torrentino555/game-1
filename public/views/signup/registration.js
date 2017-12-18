@@ -55,11 +55,10 @@ class Registration extends Block {
     creation() {
 
         const wrappe = document.querySelector('div.menu');
-        wrappe.appendChild(this._element);
-
         if (wrappe.childNodes[0] !== undefined) {
             wrappe.removeChild(wrappe.childNodes[0])
         }
+        wrappe.appendChild(this._element);
 
     }
 

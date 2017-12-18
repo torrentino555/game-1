@@ -33,9 +33,6 @@ class Login extends Block {
             this.appendChildBlock(fieldPrototype.attributes.name,
                 new Input(fieldPrototype.type, ['field'], fieldPrototype.attributes));
         });
-        // const buttonBack = "buttonBack";
-        // this.appendChildBlock("buttonBack",
-        //     new Block('a', [buttonBack]));
     }
 
     creation() {
@@ -45,11 +42,6 @@ class Login extends Block {
             wrappe.removeChild(wrappe.childNodes[0])
         }
         wrappe.appendChild(this._element);
-
-        // const navigator = document.querySelector('a.buttonBack');
-        // navigator.addEventListener('click', () => {
-        //     new Router().go('/')
-        // });
     }
 
     onSubmit(callback) {
