@@ -50,7 +50,6 @@ export class MainPage extends Block {
             //  let ull = document.createElement("ul");
            //  document.querySelector('div.menu').appendChild(ull);
            // ull.setAttribute('class','name')
-            this.appendChildBlock('ull',new Block ('ul',['name']))
             document.querySelector('div.menu').appendChild(this._element)
         }
         else {

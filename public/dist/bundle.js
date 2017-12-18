@@ -1784,9 +1784,13 @@ class MainPage extends __WEBPACK_IMPORTED_MODULE_0__baseview__["a" /* default */
             let banner = document.createElement("div");
             document.querySelector('div.wrapper').appendChild(banner);
             banner.setAttribute('class', 'menu');
-            let ul = document.createElement('ul');
-            wrape.appendChild(ul);
-            ul.setAttribute('class', 'name');
+            //  let test = new MainPage();
+            //wrape.appendChild(test);
+            //  let ull = document.createElement("ul");
+            //  document.querySelector('div.menu').appendChild(ull);
+            // ull.setAttribute('class','name')
+            this.appendChildBlock('ull', new __WEBPACK_IMPORTED_MODULE_0__baseview__["a" /* default */]('ul', ['name']));
+            document.querySelector('div.menu').appendChild(this._element);
         } else {
             if (document.querySelector('div.menu').childNodes[0] !== undefined) {
                 document.querySelector('div.menu').removeChild(document.querySelector('div.menu').childNodes[0]);
