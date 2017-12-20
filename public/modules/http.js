@@ -22,6 +22,7 @@ class Http {
 
     static Delete(address,body) {
         const url = (Http.BaseUrl || baseUrl) + address;
+
         if (typeof window.fetch !== 'undefined') {
             console.log("function DELETE work");
             console.log(this._FetchDelete(body, url))

@@ -47,6 +47,7 @@ class UserService {
      * @return {Promise}
      */
     logout(username,password) {
+        console.log('logout work')
         return Http.Delete('/signout', {username,password});
     }
 
