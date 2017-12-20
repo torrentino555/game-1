@@ -72,6 +72,7 @@ export class MainPage extends Block {
                 document.querySelector('div.menu').removeChild(document.querySelector('div.menu').childNodes[0]);
                 console.log('remove')
             }
+
             wrape.appendChild(this._element);
         }
 

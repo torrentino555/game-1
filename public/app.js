@@ -6,6 +6,7 @@ import MainPage from './views/mainpage/mainpage';
 import Login from './views/login/login';
 import Registration from './views/signup/registration';
 import Info from './views/info/info';
+import Scoreboard from './views/scoreboard/scoreboard';
 
 import SinglePlay from "./views/singleplay/web";
 import Choose from "./views/multiplayer/registration-module/charlist";
@@ -25,6 +26,7 @@ const signup = new Registration();
 const info = new Info();
 const single = new SinglePlay();
 const choose = new Choose();
+const scoreboard = new Scoreboard();
 
 
 // navigator.serviceWorker.register("/service_worker.js", { scope: "/" })
@@ -42,5 +44,6 @@ router.register('/', mainMenu)
     .register('/info', info)
     .register('/singleplay',single )
     .register('/game',choose)
+    .register('/scoreboard',scoreboard)
     .navigate();
 
