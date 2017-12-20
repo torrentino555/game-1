@@ -2,40 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="13255a80-a1d3-4c02-abac-bd86a53300d5" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/views/singleplay/icons/arrow.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/views/singleplay/icons/menu.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/views/singleplay/icons/menu.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/views/singleplay/icons/next_level.png" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/dist/back_start-ffd3dd23cd242bf9015a8b2c63080fab.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/dist/back_with_logo-1020f775c6297aeeafd0b41bf115da5a.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/dist/banner-8fbe7a02e185423efad976b0be95524b.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/dist/bundle.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/dist/bundle.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/dist/logo-5768162d03c24ecd8ff7f856242a3ff5.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/dist/logo2-3cf843d080ef7f43169fc926bd2e4895.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/dist/mage-c458dd5d04052ebc27883fbfecf7db54.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/dist/priest-87d5d9da08d4f88271884f821fd9c79f.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/dist/thief-44dd92f7e16a9964c45341046cc9cacc.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/dist/warrior-39d7246a94bd3c09959c9649a740eed9.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/views/info/backup.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/views/mainpage/backup.css" afterPath="" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/public/views/base.css" afterPath="$PROJECT_DIR$/css/base.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/views/singleplay/textures/lose.png" afterPath="$PROJECT_DIR$/public/views/singleplay/textures/lose.png" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/package-lock.json" afterPath="$PROJECT_DIR$/package-lock.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/package.json" afterPath="$PROJECT_DIR$/package.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/app.js" afterPath="$PROJECT_DIR$/public/app.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/index.html" afterPath="$PROJECT_DIR$/public/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/modules/router.js" afterPath="$PROJECT_DIR$/public/modules/router.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/server.js" afterPath="$PROJECT_DIR$/public/server.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/service_worker.js" afterPath="$PROJECT_DIR$/public/service_worker.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/views/mainpage/mainpage.js" afterPath="$PROJECT_DIR$/public/views/mainpage/mainpage.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/views/singleplay/Background.js" afterPath="$PROJECT_DIR$/public/views/singleplay/Background.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/views/singleplay/DemoGameModule.js" afterPath="$PROJECT_DIR$/public/views/singleplay/DemoGameModule.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/views/singleplay/GameManager.js" afterPath="$PROJECT_DIR$/public/views/singleplay/GameManager.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/views/singleplay/UnitManager.js" afterPath="$PROJECT_DIR$/public/views/singleplay/UnitManager.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/views/singleplay/web.html" afterPath="$PROJECT_DIR$/public/views/singleplay/web.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/views/singleplay/web.js" afterPath="$PROJECT_DIR$/public/views/singleplay/web.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -92,7 +59,7 @@
       <file leaf-file-name="custom-module.scss" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/public/views/custom-module/custom-module.scss">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="471">
+            <state relative-caret-position="480">
               <caret line="32" column="0" lean-forward="true" selection-start-line="32" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
               <folding />
             </state>
@@ -404,16 +371,15 @@
       <workItem from="1513507373837" duration="7802000" />
       <workItem from="1513570268047" duration="29272000" />
       <workItem from="1513708856977" duration="7276000" />
-      <workItem from="1513752214036" duration="2748000" />
+      <workItem from="1513752214036" duration="3130000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="157041000" />
+    <option name="totallyTimeSpent" value="157423000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
-    <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24242425" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -422,7 +388,7 @@
       <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.26844016" sideWeight="0.49746192" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.26844016" sideWeight="0.49746192" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -809,7 +775,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/public/views/custom-module/custom-module.scss">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="471">
+        <state relative-caret-position="480">
           <caret line="32" column="0" lean-forward="true" selection-start-line="32" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
           <folding />
         </state>
