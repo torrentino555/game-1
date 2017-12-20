@@ -1,5 +1,5 @@
 import {signin ,signup }from  '../views/main'
-
+import Custom from '../views/custom-module/custom-module'
 export default  class Router {
 
     constructor() {
@@ -48,7 +48,8 @@ export default  class Router {
 
         if ((window.innerHeight > window.innerWidth) && ((typeof window.orientation !== "undefined") || (navigator.userAgent.indexOf('IEMobile') !== -1)))
         {
-            alert('It is game only for laptop view');
+            const view  = new Custom();
+            view.creation();
             return ;
         }
 

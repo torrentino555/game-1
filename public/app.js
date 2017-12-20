@@ -11,7 +11,7 @@ import SinglePlay from "./views/singleplay/web";
 import Choose from "./views/multiplayer/registration-module/charlist";
 function requireAll(r) { r.keys().forEach(r); }
 require('./views/main.js');
-require('./views/base.css');
+require('../css/base.css');
 
 
 requireAll(require.context('./blocks/', true, /\.(css)$/));
@@ -27,13 +27,13 @@ const single = new SinglePlay();
 const choose = new Choose();
 
 
-navigator.serviceWorker.register("/service_worker.js", { scope: "/" })
-    .then((registration) => {
-        console.log('ServiceWorker registration', registration);
-    })
-    .catch((error) => {
-        throw new Error(`ServiceWorker error: ${error}`);
-    });
+// navigator.serviceWorker.register("/service_worker.js", { scope: "/" })
+//     .then((registration) => {
+//         console.log('ServiceWorker registration', registration);
+//     })
+//     .catch((error) => {
+//         throw new Error(`ServiceWorker error: ${error}`);
+//     });
 
 const router = new  Router();
 router.register('/', mainMenu)

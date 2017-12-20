@@ -1181,8 +1181,8 @@ class DemoGameModule {
 
     gamePreRender() {
         let numberSchene = 0;
-        let back = new __WEBPACK_IMPORTED_MODULE_3__Background__["a" /* default */](numberSchene);
-        back.render();
+        this.back = new __WEBPACK_IMPORTED_MODULE_3__Background__["a" /* default */](numberSchene);
+        this.back.render();
         this.gameManager.startGameRendering(this.gameStart.bind(this));
     }
 
@@ -1207,7 +1207,7 @@ class DemoGameModule {
     }
 
     gameLoop() {
-        if (!this.isPartyDead() && !this.isEnemiesDead()) {
+        if (!this.isPartyDead() && !this.isEnemiesDead() && window.location.pathname === '/singleplay') {
             this.timer -= this.interval;
             let sec = Math.ceil(this.timer / 1000);
             if (sec < 10) {
@@ -1363,7 +1363,8 @@ class DemoGameModule {
         setTimeout(function () {
             this.stopGameLoop();
             document.getElementsByClassName('container')[0].setAttribute('class', 'blur container');
-            document.getElementById('lose').removeAttribute('hidden');
+            document.getElementById('lose').removeAttribute('style');
+            this.gameManager.stop();
         }.bind(this), 1500);
         //createoverlaylose
     }
@@ -1372,7 +1373,8 @@ class DemoGameModule {
         setTimeout(function () {
             this.stopGameLoop();
             document.getElementsByClassName('container')[0].setAttribute('class', 'blur container');
-            document.getElementById('win').removeAttribute('hidden');
+            document.getElementById('win').removeAttribute('style');
+            this.gameManager.stop();
         }.bind(this), 1500);
         //createoverlaywin
     }
@@ -1466,7 +1468,7 @@ class DemoGameModule {
     }
 
     startGameLoop() {
-        this.intervalId = setInterval(() => this.gameLoop(), this.interval);
+        global.intervalId = this.intervalId = setInterval(() => this.gameLoop(), this.interval);
     }
 
     stopGameLoop() {
@@ -1860,7 +1862,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 
-//import Game from './views/multiplayer/game';
+
 
 
 function requireAll(r) {
@@ -1878,23 +1880,19 @@ const login = new __WEBPACK_IMPORTED_MODULE_2__views_login_login__["a" /* defaul
 const mainMenu = new __WEBPACK_IMPORTED_MODULE_1__views_mainpage_mainpage__["a" /* default */]();
 const signup = new __WEBPACK_IMPORTED_MODULE_3__views_signup_registration__["a" /* default */]();
 const info = new __WEBPACK_IMPORTED_MODULE_4__views_info_info__["a" /* default */]();
-//const game = new Game();
 const single = new __WEBPACK_IMPORTED_MODULE_5__views_singleplay_web__["a" /* default */]();
 const choose = new __WEBPACK_IMPORTED_MODULE_6__views_multiplayer_registration_module_charlist__["a" /* default */]();
 
-/*
-navigator.serviceWorker.register("/service_worker.js", { scope: "/" })
-    .then((registration) => {
-        console.log('ServiceWorker registration', registration);
-    })
-    .catch((error) => {
-        throw new Error(`ServiceWorker error: ${error}`);
-    });
-*/
+// navigator.serviceWorker.register("/service_worker.js", { scope: "/" })
+//     .then((registration) => {
+//         console.log('ServiceWorker registration', registration);
+//     })
+//     .catch((error) => {
+//         throw new Error(`ServiceWorker error: ${error}`);
+//     });
+
 const router = new __WEBPACK_IMPORTED_MODULE_0__modules_router__["default"]();
-router.register('/', mainMenu).register('/login', login).register('/signup', signup).register('/info', info)
-// .register('/multiplayer', game)
-.register('/singleplay', single).register('/game', choose).navigate();
+router.register('/', mainMenu).register('/login', login).register('/signup', signup).register('/info', info).register('/singleplay', single).register('/game', choose).navigate();
 
 /***/ }),
 /* 21 */
@@ -2084,11 +2082,29 @@ class MainPage extends __WEBPACK_IMPORTED_MODULE_0__baseview__["a" /* default */
     creation() {
         if (document.querySelector('div.wrapper') === null) {
             let game = new __WEBPACK_IMPORTED_MODULE_3__singleplay_DemoGameModule__["a" /* default */]();
-            game.gameManager.engine.loop = false;
-            document.getElementById('application').remove();
-            let wr = document.createElement('div');
-            document.getElementById('application').appendChild(wr);
-            wr.setAttribute('class', 'wrapper');
+            game.stopGameLoop();
+            document.body.innerHTML = `<div id="application"></div>`;
+            const application = new __WEBPACK_IMPORTED_MODULE_0__baseview__["a" /* default */](document.getElementById('application'));
+
+            const wrapper = new __WEBPACK_IMPORTED_MODULE_0__baseview__["a" /* default */]('div', ['wrapper']);
+
+            const images = "logo";
+            application.appendChildBlock("logo", new __WEBPACK_IMPORTED_MODULE_0__baseview__["a" /* default */]('img', [images]));
+
+            const logo = document.querySelector('img.logo');
+            logo.setAttribute('src', '../images/logo2.png');
+
+            application.appendChildBlock('application', wrapper);
+            wrapper.appendChildBlock('menu', new __WEBPACK_IMPORTED_MODULE_0__baseview__["a" /* default */]('div', ['menu']));
+
+            // let game = new DemoGameModule();
+            // game.stopGameLoop();
+            //
+            // document.getElementById('application').remove();
+            // document.body.innerHTML = `<div id="application"></div>`
+            // let wr = document.createElement('div');
+            // document.getElementById('application').appendChild(wr);
+            // wr.setAttribute('class','wrapper');
         }
         const wrape = document.querySelector('div.menu');
         if (document.querySelector('div.menu') === null) {
@@ -2688,8 +2704,7 @@ class Background {
             this.engine.addColorSprite([global.mapShiftX, i], __WEBPACK_IMPORTED_MODULE_1__Utils__["a" /* default */].madeRectangle(0, 0, 1.2, -0.0018), [1, 1, 1, 1]);
         }
         this.engine.addSprite([-0.6, 0.995], this.textures[5], __WEBPACK_IMPORTED_MODULE_1__Utils__["a" /* default */].madeRectangle(0, 0, 0.1875, -0.13), true);
-        this.engine.addSprite([0.68, 0.97], this.textures[6], __WEBPACK_IMPORTED_MODULE_1__Utils__["a" /* default */].madeRectangle(0, 0, 0.07, -0.07 * global.ratio));
-        this.engine.addSprite([0.78, 0.97], this.textures[7], __WEBPACK_IMPORTED_MODULE_1__Utils__["a" /* default */].madeRectangle(0, 0, 0.07, -0.07 * global.ratio));
+        // this.engine.addSprite([0.78, 0.97], this.textures[7], Utils.madeRectangle(0, 0, 0.07, -0.07*global.ratio));
         this.engine.addSprite([0.88, 0.97], this.textures[8], __WEBPACK_IMPORTED_MODULE_1__Utils__["a" /* default */].madeRectangle(0, 0, 0.07, -0.07 * global.ratio));
     }
 
@@ -3081,7 +3096,9 @@ class GameManager {
     }
 
     initEvents() {
-        document.addEventListener('mousemove', function (event) {
+        // if (window.location.pathname === '/singleplay') {
+        this.mouseMoveListener = document.addEventListener('mousemove', function (event) {
+            // if (window.location.pathname === '/singleplay') {
             let x = event.clientX / window.innerWidth;
             let y = event.clientY / window.innerHeight;
             let xMin = (1 + global.mapShiftX) / 2;
@@ -3092,36 +3109,38 @@ class GameManager {
                 this.spriteManager.deleteSprite(tile);
             }.bind(this));
             this.tiles = [];
-            if (x >= xMin && x < xMax && y >= yMin && y < yMax && document.getElementById('win').hidden && document.getElementById('lose').hidden && !this.state.state) {
-                let i = Math.floor((x - xMin) / 0.6 / (1 / 16));
-                let j = Math.floor((y - yMin) / 0.8 / (1 / 12));
-                if (i !== this.lastI && j !== this.lastJ && i < 16 && j < 12 && this.unitManager.massiveSkill) {
-                    let halfArea = Math.floor(this.unitManager.activeSkill.area / 2) + 1;
-                    let tiles = [];
-                    for (let ii = i - halfArea; ii <= i + halfArea; ii++) {
-                        for (let jj = j - halfArea; jj <= j + halfArea; jj++) {
-                            if (ii >= 0 && ii < 16 && jj >= 0 && jj < 12) {
-                                tiles.push(global.tiledMap[ii][jj]);
+            if (window.location.pathname === '/singleplay') {
+                if (x >= xMin && x < xMax && y >= yMin && y < yMax && document.getElementById('win').style.display === 'none' && !this.state.state) {
+                    let i = Math.floor((x - xMin) / 0.6 / (1 / 16));
+                    let j = Math.floor((y - yMin) / 0.8 / (1 / 12));
+                    if (i !== this.lastI && j !== this.lastJ && i < 16 && j < 12 && this.unitManager.massiveSkill) {
+                        let halfArea = Math.floor(this.unitManager.activeSkill.area / 2) + 1;
+                        let tiles = [];
+                        for (let ii = i - halfArea; ii <= i + halfArea; ii++) {
+                            for (let jj = j - halfArea; jj <= j + halfArea; jj++) {
+                                if (ii >= 0 && ii < 16 && jj >= 0 && jj < 12) {
+                                    tiles.push(global.tiledMap[ii][jj]);
+                                }
                             }
                         }
+                        this.unitManager.drawActiveTiles(tiles);
+                    } else if (i < 16 && j < 12 && global.tiledMap[i][j].active) {
+                        this.spriteManager.getSprite(this.activeElem).setTrans(__WEBPACK_IMPORTED_MODULE_3__Utils__["a" /* default */].translationOnMap(j, i));
+                    } else {
+                        this.spriteManager.getSprite(this.activeElem).setTrans([-2, -2]);
                     }
-                    this.unitManager.drawActiveTiles(tiles);
-                } else if (i < 16 && j < 12 && global.tiledMap[i][j].active) {
-                    this.spriteManager.getSprite(this.activeElem).setTrans(__WEBPACK_IMPORTED_MODULE_3__Utils__["a" /* default */].translationOnMap(j, i));
-                } else {
-                    this.spriteManager.getSprite(this.activeElem).setTrans([-2, -2]);
                 }
             }
         }.bind(this));
-        document.addEventListener('click', event => {
+        this.clickListener = document.addEventListener('click', event => {
             let x = event.clientX / this.engine.gl.canvas.clientWidth;
             let y = event.clientY / this.engine.gl.canvas.clientHeight;
             if (x >= 0.95 && y >= 0.95) {
                 console.log(event.clientX + ' ' + event.clientY);
-                if (!this.fullScreen) {
+                if (!this.fullScreen && window.location.pathname === '/singleplay') {
                     document.documentElement.mozRequestFullScreen();
                     this.fullScreen = true;
-                } else {
+                } else if (window.location.pathname === '/singleplay') {
                     document.mozCancelFullScreen();
                     this.fullScreen = false;
                 }
@@ -3134,6 +3153,17 @@ class GameManager {
                 global.actionDeque.push(action);
             }
         });
+    }
+
+    stop() {
+        this.engine.loop = false;
+        document.removeEventListener('mousemove', this.mouseMoveListener);
+        document.removeEventListener('click', this.clickListener);
+        document.onresize = () => {};
+        document.onmousedown = () => {};
+        if (intervalId) {
+            clearInterval(intervalId);
+        }
     }
 
     initGui() {
@@ -3159,8 +3189,9 @@ class GameManager {
         chat.style.top = '18vh';
         chat.style.overflow = 'auto';
         chat.style.height = '80vh';
+        chat.style.width = '23vw';
         global.chat = chat;
-        document.body.appendChild(chat);
+        document.getElementsByClassName('container')[0].appendChild(chat);
     }
     static log(text, color) {
         if (color === undefined) {
@@ -3539,25 +3570,27 @@ class UnitManager {
             let xMax = xMin + 0.6;
             let yMin = (1 - global.mapShiftY) / 2;
             let yMax = yMin + 0.8;
-            console.log('STATE: ' + this.state.state);
-            if (event.which === 1 && x >= xMin && x < xMax && y >= yMin && y < yMax && document.getElementById('win').hidden && document.getElementById('lose').hidden && !this.state.state) {
-                let i = Math.floor((x - xMin) / 0.6 / (1 / 16));
-                let j = Math.floor((y - yMin) / 0.8 / (1 / 12));
-                if (global.tiledMap[i][j].active || this.massiveSkill) {
-                    let action = new __WEBPACK_IMPORTED_MODULE_2__Action__["a" /* default */]();
-                    action.sender = global.tiledMap[unit.xpos][unit.ypos];
-                    action.target = global.tiledMap[i][j];
-                    action.ability = this.activeSkill.name === 'Move' ? null : this.activeSkill;
-                    global.actionDeque.push(action);
-                    if (this.massiveSkill) {
-                        this.deleteLastActiveTiles();
+            console.log('onmousedown STATE: ' + this.state.state);
+            if (window.location.pathname === '/singleplay') {
+                if (event.which === 1 && x >= xMin && x < xMax && y >= yMin && y < yMax && document.getElementById('win').style.display === 'none' && !this.state.state) {
+                    let i = Math.floor((x - xMin) / 0.6 / (1 / 16));
+                    let j = Math.floor((y - yMin) / 0.8 / (1 / 12));
+                    if (global.tiledMap[i][j].active || this.massiveSkill) {
+                        let action = new __WEBPACK_IMPORTED_MODULE_2__Action__["a" /* default */]();
+                        action.sender = global.tiledMap[unit.xpos][unit.ypos];
+                        action.target = global.tiledMap[i][j];
+                        action.ability = this.activeSkill.name === 'Move' ? null : this.activeSkill;
+                        global.actionDeque.push(action);
+                        if (this.massiveSkill) {
+                            this.deleteLastActiveTiles();
+                        }
                     }
+                } else if (event.which === 1 && x >= 0.33 && x <= 0.675 && y >= 0 && y <= 0.07) {
+                    let i = Math.floor((x - 0.33) / (0.35 / 10));
+                    this.setCurrentSkill(i);
                 }
-            } else if (event.which === 1 && x >= 0.33 && x <= 0.675 && y >= 0 && y <= 0.07) {
-                let i = Math.floor((x - 0.33) / (0.35 / 10));
-                this.setCurrentSkill(i);
+                return false;
             }
-            return false;
         }.bind(this);
     }
 
@@ -4046,9 +4079,8 @@ class SinglePlay extends __WEBPACK_IMPORTED_MODULE_0__baseview__["a" /* default 
 
     creation() {
         document.getElementById('application').innerHTML = this.template;
-        // document.querySelector('div.wrapper').innerHTML = this.template;
-        let game = new __WEBPACK_IMPORTED_MODULE_1__DemoGameModule__["a" /* default */]();
 
+        let game = new __WEBPACK_IMPORTED_MODULE_1__DemoGameModule__["a" /* default */]();
         game.gamePreRender();
     }
 
@@ -4060,7 +4092,7 @@ class SinglePlay extends __WEBPACK_IMPORTED_MODULE_0__baseview__["a" /* default 
 /* 51 */
 /***/ (function(module, exports) {
 
-module.exports = "<!DOCTYPE html>\n<html lang=\"en\">\n\n<head>\n  <meta charset=\"UTF-8\">\n  <title>Document</title>\n  <link rel=\"stylesheet\" href=\"/views/singleplay/style.css\">\n</head>\n\n<body>\n  <div class=\"container\">\n    <canvas id=\"background\"></canvas>\n    <canvas id=\"canvas\"></canvas>\n    <div style=\"position: relative;\">\n      <span style=\"position:absolute; left:20.8vw; top:2vh;font-size:1.5vw;color: white\" id=\"time\"></span>\n    </div>\n  </div>\n  <img hidden id=\"win\" style=\"position:absolute;width: 100vw; height: 100vh;\" src=\"/views/singleplay/textures/win.png\">\n  <img hidden id=\"lose\" style=\"position:absolute;width: 100vw; height: 100vh;\" src=\"/views/singleplay/textures/lose.png\">\n  </img>\n</body>\n\n</html>\n";
+module.exports = "<!DOCTYPE html>\n<html lang=\"en\">\n\n<head>\n  <meta charset=\"UTF-8\">\n  <title>Document</title>\n  <link rel=\"stylesheet\" href=\"/views/singleplay/style.css\">\n</head>\n\n<body>\n  <div class=\"container\">\n    <canvas id=\"background\"></canvas>\n    <canvas id=\"canvas\"></canvas>\n    <div style=\"position: relative;\">\n      <span style=\"position:absolute; left:20.8vw; top:2vh;font-size:1.5vw;color: white\" id=\"time\"></span>\n    </div>\n  </div>\n  <div id=\"win\" class=\"game-menu\" style=\"display: none\">\n    <img style=\"width: 100%; height: auto\" src=\"/views/singleplay/textures/win.png\" alt=\"win\">\n    <div class=\"menu-icons\">\n      <img style=\"width: 4vw;\" src=\"/views/singleplay/icons/menu.png\" alt=\"\">\n      <img style=\"width: 4vw; float: right;\" src=\"/views/singleplay/icons/next_level.png\" alt=\"\">\n    </div>\n  </div>\n  <div id=\"lose\" class=\"game-menu\" style=\"display: none\">\n    <img style=\"width: 100%; height: auto\" src=\"/views/singleplay/textures/lose.png\" alt=\"win\">\n    <div class=\"menu-icons\">\n      <img style=\"width: 4vw;\" src=\"/views/singleplay/icons/menu.png\" alt=\"\">\n      <img style=\"width: 4vw; float: right;\" src=\"/views/singleplay/icons/next_level.png\" alt=\"\">\n    </div>\n  </div>\n</body>\n\n</html>\n";
 
 /***/ }),
 /* 52 */
