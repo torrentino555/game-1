@@ -57,7 +57,7 @@ wrapper.appendChildBlock('menu',new Block('div',['menu']))
                   logout.addEventListener('click', function () {
                       console.log('back_work')
                      document.querySelector('div.choose').remove();
-                      userService.logout(formdata[0],formdata[1]);
+                      userService.logout(formdata[0],formdata[2]);
                      new Router().go('/')
                  })
              })
