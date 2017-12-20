@@ -1,10 +1,7 @@
 import Block from '../baseview';
 import './main-page.scss';
-//import mk from '../../index.html'
-import ChangeTheme from './mainStyle';
 const imageWall = "wall";
 const wrape = document.querySelector('div.menu');
-//import {mainPage} from '../main'
 import DemoGameModule from '../singleplay/DemoGameModule'
 export const buttons = [
     {
@@ -28,6 +25,11 @@ export const buttons = [
         name: 'Four',
         text: 'Information',
         value:'/info'
+
+    }, {
+        name: 'Five',
+        text: 'Scoreboard',
+        value:'/scoreboard'
 
     }
 ];
@@ -57,15 +59,6 @@ export class MainPage extends Block {
 
             application.appendChildBlock('application', wrapper);
             wrapper.appendChildBlock('menu',new Block('div',['menu']))
-
-            // let game = new DemoGameModule();
-            // game.stopGameLoop();
-            //
-            // document.getElementById('application').remove();
-            // document.body.innerHTML = `<div id="application"></div>`
-            // let wr = document.createElement('div');
-            // document.getElementById('application').appendChild(wr);
-            // wr.setAttribute('class','wrapper');
         }
         const wrape = document.querySelector('div.menu');
         if (document.querySelector('div.menu') === null) {

@@ -1,6 +1,7 @@
 'use strict'
-
-export default class Custom extends Block {
+import Block from '../baseview'
+import './custom-module.scss'
+ class Custom extends Block {
     constructor() {
         super('div', ['win'], {});
     }
@@ -9,14 +10,17 @@ export default class Custom extends Block {
         const wrape = document.querySelector('div.wrapper');
 
         wrape.appendChild(this._element);
-        const overlay  = new Block('div','overlay');
-        const visible  = new Block('div','visible');
+        const overlay  = new Block('div',['overlay']);
+        const visible  = new Block('div',['visible']);
         this.appendChildBlock('div',overlay);
         this.appendChildBlock('div',visible);
-        document.querySelector('visible').innerHTML = `<h3>Sorry, it is game only for laptop view !</h3>`;
-        visible.appendChildBlock('p',new Block('p','link'));
-        const button = document.getElementsByTagName('p');
-        button.innerHTML = `<a class = "">Close</a>`
+        document.querySelector('div.visible').innerHTML = `<h3>Sorry, it is game only for laptop view !</h3>`;
+        visible.appendChildBlock('p',new Block('p',['link']));
+        const button = document.querySelector('p');
+        button.innerHTML = `<a>Close</a>`
+        document.querySelector('a').addEventListener('click',() => {
+            document.querySelector('div.win').remove();
+        })
          // visible.appendChildBlock()
         // authors.forEach((i) => {
         //     this.appendChildBlock('li',new Block('li', [i.name]));
@@ -27,5 +31,5 @@ export default class Custom extends Block {
     }
 
 }
-export default Info;
+export default Custom;
 

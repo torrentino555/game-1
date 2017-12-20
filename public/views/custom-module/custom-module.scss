@@ -1,4 +1,4 @@
-.win button {
+.win a {
   float: right;
   line-height: 20px;
   margin: 1.2em;
@@ -32,4 +32,21 @@
 
 p {
   margin-bottom: 1.3333em;
+}
+
+
+.visible {
+  background: #fff;
+  position: fixed;
+  left: 62%;
+  top: 50%;
+  margin-top: -200px;
+  overflow: hidden;
+  z-index: 2000;
+  padding: 6px;
+  /* margin-left: -250px; */
+  border-radius: 20px;
+  min-width: 23%;
+  /* max-width: 19%; */
+  height: 17%;
 }

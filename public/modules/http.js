@@ -20,19 +20,14 @@ class Http {
         return this._GetXMLHttpRequest(url);
     }
 
-    static Delete(address) {
-        return fetch(address, {
-            method: 'DELETE',
-            mode: 'cors',
-            credentials: 'include'
-        })
-            .then((response) => {
-                if (response.status >= 400) {
-                    throw response;
-                }
-                return response.json();
-              //  return response
-            });
+    static Delete(address,body) {
+        const url = (Http.BaseUrl || baseUrl) + address;
+        if (typeof window.fetch !== 'undefined') {
+            console.log("function DELETE work");
+            console.log(this._FetchDelete(body, url))
+            return this._FetchDelete(body, url);
+        }
+        return false;
     }
     /**
      * Выполняет POST-запрос с использованием fetch (по возможности) или XMLHttpRequest
@@ -153,6 +148,31 @@ class Http {
                 }
                 else if (response.status >= 400){
                     Validate.userError();
+                    let json = response.json();
+                    return json.then(response => {throw response;});
+                }
+            });
+    }
+
+    static _FetchDelete(body, url) {
+        console.log( JSON.stringify(body));
+        return fetch(url, {
+            method: 'DELETE',
+            mode: 'cors',
+            credentials: 'include',
+            body: JSON.stringify(body),
+            headers: {
+                'Content-Type': 'application/json; charset=utf-8',
+                'Accept' : 'application/json'
+            }
+        })
+            .then(function (response) {
+                console.log("fetch post work\n");
+                console.log(response.status);
+                if ( response.status === 200 ) {
+                    return;
+                }
+                else if (response.status >= 400){
                     let json = response.json();
                     return json.then(response => {throw response;});
                 }

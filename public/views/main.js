@@ -36,7 +36,7 @@ wrapper.appendChildBlock('menu',new Block('div',['menu']))
                 let logout = document.querySelector('a.back');
                 logout.addEventListener('click', function () {
                     document.querySelector('div.choose').remove();
-                    userService.logout();
+                    userService.logout(formdata[0],formdata[1]);
                     new Router().go('/');
                 })
             })

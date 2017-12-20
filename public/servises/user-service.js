@@ -46,8 +46,8 @@ class UserService {
      * Выход пользователя
      * @return {Promise}
      */
-    logout() {
-        return Http.Delete('/signout', {});
+    logout(username,password) {
+        return Http.Delete('/signout', {username,password});
     }
 
 
