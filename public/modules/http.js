@@ -167,7 +167,7 @@ class Http {
             }
         })
             .then(function (response) {
-                console.log("fetch post work\n");
+                console.log("fetch Delete work\n");
                 console.log(response.status);
                 if ( response.status === 200 ) {
                     return;
