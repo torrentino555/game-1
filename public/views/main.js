@@ -32,13 +32,13 @@ wrapper.appendChildBlock('menu',new Block('div',['menu']))
         }
 
         userService.login(formdata[0], formdata[1])
-            .then(() => new Router().go('/game'))
+           // .then(() => new Router().go('/game'))
             .then(() => {
                 let logout = document.querySelector('a.back');
                 logout.addEventListener('click', function () {
-                    userService.logout(formdata[0],formdata[1]);
                     document.querySelector('div.choose').remove();
                     new Router().go('/')
+                    userService.logout(formdata[0],formdata[1]);
                 })
             })
             .then (() => new Mediator().publish('VIEW_LOAD'))
@@ -52,7 +52,7 @@ wrapper.appendChildBlock('menu',new Block('div',['menu']))
              return;
          }
          userService.signup(formdata[0], formdata[1], formdata[2])
-             .then(() => new Router().go('/game'))
+            // .then(() => new Router().go('/game'))
               .then(() => {
                   let logout = document.querySelector('a.back')
                   logout.addEventListener('click', function () {
