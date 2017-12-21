@@ -5,7 +5,6 @@ import './scoreboard.scss';
 //const score= new UserService();
 
 
-console.log(u);
 const rowValues = [`Username`,`Frags`,`Sources`]
 
  const buttons = [`first`,`second`,`third`,`four`];
@@ -16,6 +15,22 @@ class Scoreboard extends Block {
 
 
     creation() {
+        const wrape = document.querySelector('div.wrapper');
+        //document.querySelector('div.menu').style.visibility = hidden;
+
+        if (document.querySelector('div.menu') !== undefined) {
+            document.querySelector('div.menu').remove();
+        }
+        wrape.appendChild(this._element);
+        this.appendChildBlock('table', new Block('table', ['table']));
+
+        const table = new Block(document.querySelector('table.table'));
+
+        for (let i = 0; i < 4; ++i) {
+            table.appendChildBlock('data', new Block('tr', ['data']))
+        }
+        const array = document.getElementsByTagName('tr');
+        let value = array[0];
         const url = ('https://kvvartet2017.herokuapp.com' || `${window.location.protocol}//${window.location.host}`) + '/scoreboard';
         if (typeof window.fetch !== 'undefined') {
 
@@ -37,22 +52,7 @@ class Scoreboard extends Block {
                         dt = data
                         console.log(dt.userID);
 
-                        const wrape = document.querySelector('div.wrapper');
-                        //document.querySelector('div.menu').style.visibility = hidden;
 
-                        if (document.querySelector('div.menu') !== undefined) {
-                            document.querySelector('div.menu').remove();
-                        }
-                        wrape.appendChild(this._element);
-                        this.appendChildBlock('table', new Block('table', ['table']));
-
-                        const table = new Block(document.querySelector('table.table'));
-
-                        for (let i = 0; i < 4; ++i) {
-                            table.appendChildBlock('data', new Block('tr', ['data']))
-                        }
-                        const array = document.getElementsByTagName('tr');
-                        let value = array[0];
                         for (let i = 0; i < 3; ++i) {
                             value.appendChild(document.createElement('th'));
                             document.querySelector('tr.data').childNodes[i].innerHTML = `${rowValues[i]}`;
