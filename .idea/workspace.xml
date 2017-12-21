@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="13255a80-a1d3-4c02-abac-bd86a53300d5" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/views/main.js" afterPath="$PROJECT_DIR$/public/views/main.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -84,8 +83,8 @@
       <file leaf-file-name="http.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/public/modules/http.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="312">
-              <caret line="154" column="29" lean-forward="false" selection-start-line="154" selection-start-column="29" selection-end-line="154" selection-end-column="29" />
+            <state relative-caret-position="387">
+              <caret line="159" column="14" lean-forward="false" selection-start-line="159" selection-start-column="14" selection-end-line="159" selection-end-column="14" />
               <folding />
             </state>
           </provider>
@@ -196,8 +195,8 @@
         <option value="$PROJECT_DIR$/public/modules/router.js" />
         <option value="$PROJECT_DIR$/public/views/scoreboard/scoreboard.js" />
         <option value="$PROJECT_DIR$/public/views/scoreboard/scoreboard.scss" />
-        <option value="$PROJECT_DIR$/public/modules/http.js" />
         <option value="$PROJECT_DIR$/public/views/main.js" />
+        <option value="$PROJECT_DIR$/public/modules/http.js" />
       </list>
     </option>
   </component>
@@ -417,12 +416,12 @@
       <workItem from="1513507373837" duration="7802000" />
       <workItem from="1513570268047" duration="29272000" />
       <workItem from="1513708856977" duration="7276000" />
-      <workItem from="1513752214036" duration="35490000" />
+      <workItem from="1513752214036" duration="35641000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="189783000" />
+    <option name="totallyTimeSpent" value="189934000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
@@ -839,8 +838,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/public/modules/http.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="312">
-          <caret line="154" column="29" lean-forward="false" selection-start-line="154" selection-start-column="29" selection-end-line="154" selection-end-column="29" />
+        <state relative-caret-position="387">
+          <caret line="159" column="14" lean-forward="false" selection-start-line="159" selection-start-column="14" selection-end-line="159" selection-end-column="14" />
           <folding />
         </state>
       </provider>

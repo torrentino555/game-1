@@ -157,6 +157,8 @@ class Http {
                     // let json = response.json();
                     // return json.then(response => {throw response;});
                 }
+            }).catch(function(e) {
+                console.log(e);
             });
     }
 
