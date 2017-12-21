@@ -150,10 +150,6 @@ class Http {
                 console.log(response.status);
                 if ( response.status === 200 ) {
                 new Router().go('/game');
-                    let logout = document.querySelector('a.back');
-                        logout.addEventListener('click', function () {
-                            document.querySelector('div.choose').remove();
-                            new Router().go('/')})
                 }
                 else if (response.status >= 400){
                     Validate.userError();
