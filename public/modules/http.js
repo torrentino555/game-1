@@ -119,7 +119,7 @@ class Http {
                 if (response.status >= 400) {
                     return json.then(response => {throw response;});
                 }
-            response.json().then(function(data) {
+            json.then(function(data) {
                     console.log(data);
                 });
                 return json;
