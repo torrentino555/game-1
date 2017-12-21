@@ -73,7 +73,9 @@ wrapper.appendChildBlock('menu',new Block('div',['menu']))
                      new Router().go('/')
                  })
              })
-            .then (() => new Mediator().publish('VIEW_LOAD'))
+            .then (() => new Mediator().publish('VIEW_LOAD')).catch(function(e) {
+             console.log(e);
+         })
      });
  }
 
