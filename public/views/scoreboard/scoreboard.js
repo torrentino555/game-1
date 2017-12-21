@@ -1,12 +1,12 @@
 import Block from '../baseview';
 import './scoreboard.scss';
 import UserService from '../../servises/user-service'
-
+import u from '../../modules/http'
 const score= new UserService();
 const players = [{
 
 }];
-
+console.log(u);
 const rowValues = [`Username`,`Frags`,`Sources`]
 
  const buttons = [`first`,`second`,`third`,`four`];

@@ -669,7 +669,7 @@ module.exports = g;
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__views_main__ = __webpack_require__(9);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__views_main__ = __webpack_require__(10);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__views_custom_module_custom_module__ = __webpack_require__(24);
 
 
@@ -847,210 +847,11 @@ if(false) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-
-class Mediator {
-    constructor() {
-        if (Mediator.__instance) {
-            return Mediator.__instance;
-        }
-
-        this.channels = new Map();
-
-        Mediator.__instance = this;
-    }
-
-    subscribe(name, func) {
-
-        if (!this.channels.get(name)) {
-            this.channels.set(name, []);
-        }
-        this.channels.get(name).push(func);
-        return this;
-    }
-
-    publish(name, payload = null) {
-        if (!this.channels.get(name)) {
-            console.log('dont-work');
-            return;
-        }
-        this.channels.get(name).forEach(func => {
-            console.log('work');
-            func(payload);
-        });
-    }
-
-    unsubscribe(name, f) {
-        if (!this.channels.get(name)) {
-            return;
-        }
-        this.channels.get(name).splice(this.channels.get(name).indexOf(f), 1);
-        return;
-    }
-
-}
-/* harmony export (immutable) */ __webpack_exports__["default"] = Mediator;
-
-
-/***/ }),
-/* 9 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "signup", function() { return signup; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "signin", function() { return signin; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__baseview__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__blocks_autheficate_registrationAuth__ = __webpack_require__(22);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__blocks_autheficate_loginAuth__ = __webpack_require__(23);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__modules_router__ = __webpack_require__(5);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__servises_user_service__ = __webpack_require__(10);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__modules_mediator__ = __webpack_require__(8);
-
-
-
-
-
-
-
-
-
-const userService = new __WEBPACK_IMPORTED_MODULE_4__servises_user_service__["a" /* default */]();
-
-const application = new __WEBPACK_IMPORTED_MODULE_0__baseview__["a" /* default */](document.getElementById('application'));
-
-const wrapper = new __WEBPACK_IMPORTED_MODULE_0__baseview__["a" /* default */]('div', ['wrapper']);
-
-const images = "logo";
-application.appendChildBlock("logo", new __WEBPACK_IMPORTED_MODULE_0__baseview__["a" /* default */]('img', [images]));
-
-const logo = document.querySelector('img.logo');
-logo.setAttribute('src', '../images/logo2.png');
-
-application.appendChildBlock('application', wrapper);
-wrapper.appendChildBlock('menu', new __WEBPACK_IMPORTED_MODULE_0__baseview__["a" /* default */]('div', ['menu']));
-
-function signin(login) {
-    login.onSubmit(formdata => {
-        const authValidation = Object(__WEBPACK_IMPORTED_MODULE_2__blocks_autheficate_loginAuth__["a" /* default */])(formdata[0], formdata[1]);
-        console.log(formdata[0], formdata[1]);
-        if (authValidation === false) {
-            return;
-        }
-        userService.login(formdata[0], formdata[1]).then(() => new __WEBPACK_IMPORTED_MODULE_3__modules_router__["default"]().go('/game')).then(() => {
-            let logout = document.querySelector('a.back');
-            logout.addEventListener('click', function () {
-                document.querySelector('div.choose').remove();
-                userService.logout(formdata[0], formdata[1]);
-                new __WEBPACK_IMPORTED_MODULE_3__modules_router__["default"]().go('/');
-            });
-        }).then(() => new __WEBPACK_IMPORTED_MODULE_5__modules_mediator__["default"]().publish('VIEW_LOAD'));
-    });
-}
-
-function signup(registration) {
-    registration.onSubmit(formdata => {
-        const authValidation = Object(__WEBPACK_IMPORTED_MODULE_1__blocks_autheficate_registrationAuth__["a" /* default */])(formdata[0], formdata[1], formdata[2], formdata[3]);
-        if (authValidation === false) {
-            return;
-        }
-        userService.signup(formdata[0], formdata[1], formdata[2]).then(() => new __WEBPACK_IMPORTED_MODULE_3__modules_router__["default"]().go('/game')).then(() => {
-            let logout = document.querySelector('a.back');
-            logout.addEventListener('click', function () {
-                console.log('back_work');
-                document.querySelector('div.choose').remove();
-                userService.logout(formdata[0], formdata[2]);
-                new __WEBPACK_IMPORTED_MODULE_3__modules_router__["default"]().go('/');
-            });
-        }).then(() => new __WEBPACK_IMPORTED_MODULE_5__modules_mediator__["default"]().publish('VIEW_LOAD'));
-    });
-}
-
-
-
-/***/ }),
-/* 10 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__modules_http__ = __webpack_require__(11);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__blocks_forms_validation__ = __webpack_require__(6);
-
-
-
-/**
- * Сервис для работы с пользователями
- * @class UserService
- */
-class UserService {
-  constructor() {
-    /**
-     * Закомментить для обращения к серверу node.js
-     */
-    __WEBPACK_IMPORTED_MODULE_0__modules_http__["default"].BaseUrl = 'https://kvvartet2017.herokuapp.com';
-  }
-
-  /**
-   * Регистрирует нового пользователя
-   * @param {string} email
-   * @param {string} password
-   * @param {string} username
-   * @return {Promise}
-   */
-  signup(username, email, password) {
-    return __WEBPACK_IMPORTED_MODULE_0__modules_http__["default"].Post('/signup', { username, email, password });
-  }
-
-  /**
-   * Авторизация пользователя
-   * @param {string} username
-   * @param {string} password
-   * @return {Promise}
-   */
-  login(username, password) {
-    return __WEBPACK_IMPORTED_MODULE_0__modules_http__["default"].Post('/signin', { username, password });
-  }
-
-  /**
-   * Проверяет, авторизован ли пользователь
-   * @return {boolean}
-   */
-  isLoggedIn() {
-    return __WEBPACK_IMPORTED_MODULE_0__modules_http__["default"].Post('/currentUser');
-  }
-
-  /**
-   * Выход пользователя
-   * @return {Promise}
-   */
-  logout(username, password) {
-    console.log('logout work');
-    return __WEBPACK_IMPORTED_MODULE_0__modules_http__["default"].Delete('/signout', { username, password });
-  }
-
-  /**
-   * Загружает scoreboard
-   * @return {Promise}
-   */
-
-  scores() {
-    return __WEBPACK_IMPORTED_MODULE_0__modules_http__["default"].Get('/scoreboard');
-  }
-
-}
-
-/* harmony default export */ __webpack_exports__["a"] = (UserService);
-
-/***/ }),
-/* 11 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__blocks_forms_validation__ = __webpack_require__(6);
 
+u = [{}];
 
 const baseUrl = `${window.location.protocol}//${window.location.host}`;
-//const users =[{}];
 /**
  * Класс, предоставляющий методы для выполнения HTTP-запросов
  * @class Http
@@ -1169,6 +970,7 @@ class Http {
                 });
             }
             json.then(function (data) {
+                u = data;
                 console.log(data[1].userID);
             });
             return json;
@@ -1236,7 +1038,206 @@ class Http {
 
 Http.BaseUrl = null;
 
-/* harmony default export */ __webpack_exports__["default"] = (Http);
+/* harmony default export */ __webpack_exports__["default"] = ({ Http, u });
+
+/***/ }),
+/* 9 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+
+class Mediator {
+    constructor() {
+        if (Mediator.__instance) {
+            return Mediator.__instance;
+        }
+
+        this.channels = new Map();
+
+        Mediator.__instance = this;
+    }
+
+    subscribe(name, func) {
+
+        if (!this.channels.get(name)) {
+            this.channels.set(name, []);
+        }
+        this.channels.get(name).push(func);
+        return this;
+    }
+
+    publish(name, payload = null) {
+        if (!this.channels.get(name)) {
+            console.log('dont-work');
+            return;
+        }
+        this.channels.get(name).forEach(func => {
+            console.log('work');
+            func(payload);
+        });
+    }
+
+    unsubscribe(name, f) {
+        if (!this.channels.get(name)) {
+            return;
+        }
+        this.channels.get(name).splice(this.channels.get(name).indexOf(f), 1);
+        return;
+    }
+
+}
+/* harmony export (immutable) */ __webpack_exports__["default"] = Mediator;
+
+
+/***/ }),
+/* 10 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "signup", function() { return signup; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "signin", function() { return signin; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__baseview__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__blocks_autheficate_registrationAuth__ = __webpack_require__(22);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__blocks_autheficate_loginAuth__ = __webpack_require__(23);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__modules_router__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__servises_user_service__ = __webpack_require__(11);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__modules_mediator__ = __webpack_require__(9);
+
+
+
+
+
+
+
+
+
+const userService = new __WEBPACK_IMPORTED_MODULE_4__servises_user_service__["a" /* default */]();
+
+const application = new __WEBPACK_IMPORTED_MODULE_0__baseview__["a" /* default */](document.getElementById('application'));
+
+const wrapper = new __WEBPACK_IMPORTED_MODULE_0__baseview__["a" /* default */]('div', ['wrapper']);
+
+const images = "logo";
+application.appendChildBlock("logo", new __WEBPACK_IMPORTED_MODULE_0__baseview__["a" /* default */]('img', [images]));
+
+const logo = document.querySelector('img.logo');
+logo.setAttribute('src', '../images/logo2.png');
+
+application.appendChildBlock('application', wrapper);
+wrapper.appendChildBlock('menu', new __WEBPACK_IMPORTED_MODULE_0__baseview__["a" /* default */]('div', ['menu']));
+
+function signin(login) {
+    login.onSubmit(formdata => {
+        const authValidation = Object(__WEBPACK_IMPORTED_MODULE_2__blocks_autheficate_loginAuth__["a" /* default */])(formdata[0], formdata[1]);
+        console.log(formdata[0], formdata[1]);
+        if (authValidation === false) {
+            return;
+        }
+        userService.login(formdata[0], formdata[1]).then(() => new __WEBPACK_IMPORTED_MODULE_3__modules_router__["default"]().go('/game')).then(() => {
+            let logout = document.querySelector('a.back');
+            logout.addEventListener('click', function () {
+                document.querySelector('div.choose').remove();
+                userService.logout(formdata[0], formdata[1]);
+                new __WEBPACK_IMPORTED_MODULE_3__modules_router__["default"]().go('/');
+            });
+        }).then(() => new __WEBPACK_IMPORTED_MODULE_5__modules_mediator__["default"]().publish('VIEW_LOAD'));
+    });
+}
+
+function signup(registration) {
+    registration.onSubmit(formdata => {
+        const authValidation = Object(__WEBPACK_IMPORTED_MODULE_1__blocks_autheficate_registrationAuth__["a" /* default */])(formdata[0], formdata[1], formdata[2], formdata[3]);
+        if (authValidation === false) {
+            return;
+        }
+        userService.signup(formdata[0], formdata[1], formdata[2]).then(() => new __WEBPACK_IMPORTED_MODULE_3__modules_router__["default"]().go('/game')).then(() => {
+            let logout = document.querySelector('a.back');
+            logout.addEventListener('click', function () {
+                console.log('back_work');
+                document.querySelector('div.choose').remove();
+                userService.logout(formdata[0], formdata[2]);
+                new __WEBPACK_IMPORTED_MODULE_3__modules_router__["default"]().go('/');
+            });
+        }).then(() => new __WEBPACK_IMPORTED_MODULE_5__modules_mediator__["default"]().publish('VIEW_LOAD'));
+    });
+}
+
+
+
+/***/ }),
+/* 11 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__modules_http__ = __webpack_require__(8);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__blocks_forms_validation__ = __webpack_require__(6);
+
+
+
+/**
+ * Сервис для работы с пользователями
+ * @class UserService
+ */
+class UserService {
+  constructor() {
+    /**
+     * Закомментить для обращения к серверу node.js
+     */
+    __WEBPACK_IMPORTED_MODULE_0__modules_http__["default"].BaseUrl = 'https://kvvartet2017.herokuapp.com';
+  }
+
+  /**
+   * Регистрирует нового пользователя
+   * @param {string} email
+   * @param {string} password
+   * @param {string} username
+   * @return {Promise}
+   */
+  signup(username, email, password) {
+    return __WEBPACK_IMPORTED_MODULE_0__modules_http__["default"].Post('/signup', { username, email, password });
+  }
+
+  /**
+   * Авторизация пользователя
+   * @param {string} username
+   * @param {string} password
+   * @return {Promise}
+   */
+  login(username, password) {
+    return __WEBPACK_IMPORTED_MODULE_0__modules_http__["default"].Post('/signin', { username, password });
+  }
+
+  /**
+   * Проверяет, авторизован ли пользователь
+   * @return {boolean}
+   */
+  isLoggedIn() {
+    return __WEBPACK_IMPORTED_MODULE_0__modules_http__["default"].Post('/currentUser');
+  }
+
+  /**
+   * Выход пользователя
+   * @return {Promise}
+   */
+  logout(username, password) {
+    console.log('logout work');
+    return __WEBPACK_IMPORTED_MODULE_0__modules_http__["default"].Delete('/signout', { username, password });
+  }
+
+  /**
+   * Загружает scoreboard
+   * @return {Promise}
+   */
+
+  scores() {
+    return __WEBPACK_IMPORTED_MODULE_0__modules_http__["default"].Get('/scoreboard');
+  }
+
+}
+
+/* harmony default export */ __webpack_exports__["a"] = (UserService);
 
 /***/ }),
 /* 12 */
@@ -1970,7 +1971,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 function requireAll(r) {
     r.keys().forEach(r);
 }
-__webpack_require__(9);
+__webpack_require__(10);
 __webpack_require__(61);
 
 requireAll(__webpack_require__(66));
@@ -4080,14 +4081,15 @@ exports.push([module.i, ".menu .info a {\n  text-decoration: none;\n  color: whi
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__baseview__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__scoreboard_scss__ = __webpack_require__(53);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__scoreboard_scss___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__scoreboard_scss__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__servises_user_service__ = __webpack_require__(10);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__servises_user_service__ = __webpack_require__(11);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__modules_http__ = __webpack_require__(8);
 
 
 
 
 const score = new __WEBPACK_IMPORTED_MODULE_2__servises_user_service__["a" /* default */]();
 const players = [{}];
-
+console.log(__WEBPACK_IMPORTED_MODULE_3__modules_http__["default"]);
 const rowValues = [`Username`, `Frags`, `Sources`];
 
 const buttons = [`first`, `second`, `third`, `four`];
@@ -4452,7 +4454,7 @@ exports.push([module.i, ".person {\n  top: 30%;\n  left: 32%;\n  font-size: 120%
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__modules_mediator__ = __webpack_require__(8);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__modules_mediator__ = __webpack_require__(9);
 
 
 
@@ -4606,8 +4608,8 @@ webpackContext.id = 68;
 /***/ (function(module, exports, __webpack_require__) {
 
 var map = {
-	"./http.js": 11,
-	"./mediator.js": 8,
+	"./http.js": 8,
+	"./mediator.js": 9,
 	"./router.js": 5
 };
 function webpackContext(req) {
