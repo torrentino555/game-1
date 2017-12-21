@@ -1088,7 +1088,6 @@ class Http {
             credentials: 'include'
         }).then(function (response) {
             let json = response.json();
-            console.log(json);
             if (response.status >= 400) {
 
                 return json.then(response => {
@@ -4089,8 +4088,8 @@ exports.push([module.i, ".menu .info a {\n  text-decoration: none;\n  color: whi
 
 
 const rowValues = [`Username`, `Frags`, `Gold`];
-const buttons = [`first`, `second`, `third`, `four`];
-const data = [{ username: 'gamer', gold: 0, frags: 0 }, { username: 'lammer', gold: 110, frags: 8989 }, { username: 'lammer96', gold: 1680, frags: 1560 }];
+//  const buttons = [`first`,`second`,`third`,`four`];
+// const data  = [{username:'gamer',gold:0,frags:0},{username:'lammer',gold:110,frags:8989},{username:'lammer96',gold:1680,frags:1560}]
 
 class Scoreboard extends __WEBPACK_IMPORTED_MODULE_0__baseview__["a" /* default */] {
     constructor() {
@@ -4099,7 +4098,6 @@ class Scoreboard extends __WEBPACK_IMPORTED_MODULE_0__baseview__["a" /* default 
 
     creation() {
         const wrape = document.querySelector('div.wrapper');
-        //document.querySelector('div.menu').style.visibility = hidden;
 
         if (document.querySelector('div.menu') !== undefined) {
             document.querySelector('div.menu').remove();
@@ -4109,71 +4107,50 @@ class Scoreboard extends __WEBPACK_IMPORTED_MODULE_0__baseview__["a" /* default 
 
         const table = new __WEBPACK_IMPORTED_MODULE_0__baseview__["a" /* default */](document.querySelector('table.table'));
 
-        //
-        // const url = ('https://kvvartet2017.herokuapp.com' || `${window.location.protocol}//${window.location.host}`) + '/scoreboard';
-        // if (typeof window.fetch !== 'undefined') {
-        //
-        //     fetch(url, {
-        //         method: 'GET',
-        //         mode: 'cors',
-        //         credentials: 'include'
-        //     })
-        //         .then(function (response) {
-        //             let json = response.json();
-        //             console.log(json);
-        //             if (response.status >= 400) {
-        //
-        //                 return json.then(response => {
-        //                     throw response;
-        //                 });
-        //             }
-        //             json.then(function (data) {
-        //                 console.log(data.userID);
-        //
-        //                 for (let i = 0; i < data.length; ++i) {
-        //                     table.appendChildBlock('data', new Block('tr', ['data']))
-        //                 }
-        //                 const array = document.getElementsByTagName('tr');
-        //                 let value = array[0];
-        //                 for (let i = 0; i < data.length; ++i) {
-        //                     value.appendChild(document.createElement('th'));
-        //                     document.querySelector('tr.data').childNodes[i].innerHTML = `${rowValues[i]}`;
-        //                 }
-        //
-        //                 for (let i = 0; i < data.length; ++i) {
-        //                     for (let j = 0; j < 3; ++j) {
-        //                         array[i].appendChild(document.createElement('td'));
-        //                         array[i].childNodes[j].innerHTML = `${data[j].username}`;
-        //                     }
-        //                 }
-        //             });
-        //         });
-        //
-        //
-        // }
+        const url = ('https://kvvartet2017.herokuapp.com' || `${window.location.protocol}//${window.location.host}`) + '/scoreboard';
+        if (typeof window.fetch !== 'undefined') {
 
-        for (let i = 0; i < data.length + 1; ++i) {
-            table.appendChildBlock('data', new __WEBPACK_IMPORTED_MODULE_0__baseview__["a" /* default */]('tr', ['data']));
-        }
-        const array = document.getElementsByTagName('tr');
-        let value = array[0];
-        for (let i = 0; i < 3; ++i) {
-            value.appendChild(document.createElement('th'));
-            document.querySelector('tr.data').childNodes[i].innerHTML = `${rowValues[i]}`;
-        }
+            fetch(url, {
+                method: 'GET',
+                mode: 'cors',
+                credentials: 'include'
+            }).then(function (response) {
 
-        for (let i = 1; i < data.length + 1; ++i) {
-            for (let j = 0; j < 3; ++j) {
-                array[i].appendChild(document.createElement('td'));
-                if (j === 1) {
-                    array[i].childNodes[j].innerHTML = `${data[i - 1].gold}`;
-                    continue;
-                } else if (j === 2) {
-                    array[i].childNodes[j].innerHTML = `${data[i - 1].frags}`;
-                    continue;
+                let json = response.json();
+                console.log(json);
+                if (response.status >= 400) {
+
+                    return json.then(response => {
+                        throw response;
+                    });
                 }
-                array[i].childNodes[j].innerHTML = `${data[i - 1].username}`;
-            }
+                json.then(function (data) {
+                    console.log(data);
+                    for (let i = 0; i < data.length + 1; ++i) {
+                        table.appendChildBlock('data', new __WEBPACK_IMPORTED_MODULE_0__baseview__["a" /* default */]('tr', ['data']));
+                    }
+                    const array = document.getElementsByTagName('tr');
+                    let value = array[0];
+                    for (let i = 0; i < 3; ++i) {
+                        value.appendChild(document.createElement('th'));
+                        document.querySelector('tr.data').childNodes[i].innerHTML = `${rowValues[i]}`;
+                    }
+
+                    for (let i = 1; i < data.length + 1; ++i) {
+                        for (let j = 0; j < 3; ++j) {
+                            array[i].appendChild(document.createElement('td'));
+                            if (j === 1) {
+                                array[i].childNodes[j].innerHTML = `${data[i - 1].gold}`;
+                                continue;
+                            } else if (j === 2) {
+                                array[i].childNodes[j].innerHTML = `${data[i - 1].frags}`;
+                                continue;
+                            }
+                            array[i].childNodes[j].innerHTML = `${data[i - 1].username}`;
+                        }
+                    }
+                });
+            });
         }
     }
 
@@ -4220,7 +4197,7 @@ exports = module.exports = __webpack_require__(1)(undefined);
 
 
 // module
-exports.push([module.i, "table {\n  font-size: 2.1em;\n  width: 50%;\n  color: black;\n  padding: 10px;\n  border-spacing: 66px;\n  margin-left: 360px; }\n\ntable th {\n  color: #c58818; }\n", ""]);
+exports.push([module.i, ".score {\n  color: #FAE7B5; }\n\ntable {\n  font-size: 2.1em;\n  width: 50%;\n  color: black;\n  padding: 10px;\n  border-spacing: 66px;\n  margin-left: 360px; }\n\ntable th {\n  color: #c58818; }\n", ""]);
 
 // exports
 

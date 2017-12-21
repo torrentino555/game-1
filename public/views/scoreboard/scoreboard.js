@@ -45,6 +45,7 @@ class Scoreboard extends Block {
                         });
                     }
                     json.then(function (data) {
+                        console.log(data);
                         for (let i = 0; i < data.length +1; ++i) {
                             table.appendChildBlock('data', new Block('tr', ['data']))
                         }

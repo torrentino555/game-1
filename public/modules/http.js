@@ -115,7 +115,6 @@ class Http {
         })
             .then(function (response) {
                 let json = response.json();
-                console.log(json);
                 if (response.status >= 400) {
 
                     return json.then(response => {throw response;});
@@ -154,8 +153,9 @@ class Http {
                 }
                 else if (response.status >= 400){
                     Validate.userError();
-                    let json = response.json();
-                    return json.then(response => {throw response;});
+                    window.stop();
+                    // let json = response.json();
+                    // return json.then(response => {throw response;});
                 }
             });
     }
