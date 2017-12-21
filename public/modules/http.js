@@ -147,15 +147,6 @@ class Http {
                 console.log("fetch post work\n");
                 console.log(response.status);
                 if ( response.status === 200 ) {
-                    new Promise(new Router().go('/game'))
-                        .then(() => {
-                            let logout = document.querySelector('a.back');
-                            logout.addEventListener('click', function () {
-                                document.querySelector('div.choose').remove();
-                                new Router().go('/')
-                                ///userService.logout(formdata[0],formdata[1]);
-                            })
-                        })
                     return;
                 }
                 else if (response.status >= 400){
