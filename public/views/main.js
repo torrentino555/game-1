@@ -32,7 +32,6 @@ wrapper.appendChildBlock('menu',new Block('div',['menu']))
         }
 
         userService.login(formdata[0], formdata[1])
-            .then(() => new Router().go('/game'))
             .then(() => {
                 let logout = document.querySelector('a.back');
                 logout.addEventListener('click', function () {
@@ -52,7 +51,6 @@ wrapper.appendChildBlock('menu',new Block('div',['menu']))
              return;
          }
          userService.signup(formdata[0], formdata[1], formdata[2])
-             .then(() => new Router().go('/game'))
               .then(() => {
                   let logout = document.querySelector('a.back')
                   logout.addEventListener('click', function () {
