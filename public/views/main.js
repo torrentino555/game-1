@@ -59,13 +59,17 @@ wrapper.appendChildBlock('menu',new Block('div',['menu']))
              return;
          }
          userService.signup(formdata[0], formdata[1], formdata[2])
-             .then(() => new Router().go('/game'))
+             .then((response) =>  {if ( response.status === 200 ) {
+                 new Router().go('/game')
+             }
+             else if (response.status >= 400){
+                 throw 'Backend bugs';
+             }})
               .then(() => {
                   let logout = document.querySelector('a.back')
                   logout.addEventListener('click', function () {
                       console.log('back_work')
                      document.querySelector('div.choose').remove();
-                      userService.logout(formdata[0],formdata[2]);
                      new Router().go('/')
                  })
              })
