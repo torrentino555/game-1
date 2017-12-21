@@ -38,7 +38,6 @@ wrapper.appendChildBlock('menu',new Block('div',['menu']))
                 logout.addEventListener('click', function () {
                     document.querySelector('div.choose').remove();
                     userService.logout(formdata[0],formdata[1]);
-                    new Router().go('/');
                 })
             })
             .then (() => new Mediator().publish('VIEW_LOAD'))
@@ -58,7 +57,6 @@ wrapper.appendChildBlock('menu',new Block('div',['menu']))
                   logout.addEventListener('click', function () {
                       console.log('back_work')
                      document.querySelector('div.choose').remove();
-                     new Router().go('/')
                  })
              })
             .then (() => new Mediator().publish('VIEW_LOAD'))
