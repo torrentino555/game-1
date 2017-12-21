@@ -36,8 +36,8 @@ wrapper.appendChildBlock('menu',new Block('div',['menu']))
             .then(() => {
                 let logout = document.querySelector('a.back');
                 logout.addEventListener('click', function () {
-                    document.querySelector('div.choose').remove();
                     userService.logout(formdata[0],formdata[1]);
+                    document.querySelector('div.choose').remove();
                 })
             })
             .then (() => new Mediator().publish('VIEW_LOAD'))
