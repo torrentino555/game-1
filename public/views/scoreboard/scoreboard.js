@@ -26,11 +26,7 @@ class Scoreboard extends Block {
 
         const table = new Block(document.querySelector('table.table'));
 
-        for (let i = 0; i < 4; ++i) {
-            table.appendChildBlock('data', new Block('tr', ['data']))
-        }
-        const array = document.getElementsByTagName('tr');
-        let value = array[0];
+
         const url = ('https://kvvartet2017.herokuapp.com' || `${window.location.protocol}//${window.location.host}`) + '/scoreboard';
         if (typeof window.fetch !== 'undefined') {
 
@@ -51,13 +47,17 @@ class Scoreboard extends Block {
                     json.then(function (data) {
                         console.log(data.userID);
 
-
-                        for (let i = 0; i < 3; ++i) {
+                        for (let i = 0; i < data.length; ++i) {
+                            table.appendChildBlock('data', new Block('tr', ['data']))
+                        }
+                        const array = document.getElementsByTagName('tr');
+                        let value = array[0];
+                        for (let i = 0; i < data.length; ++i) {
                             value.appendChild(document.createElement('th'));
                             document.querySelector('tr.data').childNodes[i].innerHTML = `${rowValues[i]}`;
                         }
 
-                        for (let i = 0; i < 4; ++i) {
+                        for (let i = 0; i < data.length; ++i) {
                             for (let j = 0; j < 3; ++j) {
                                 array[i].appendChild(document.createElement('td'));
                                 array[i].childNodes[j].innerHTML = `${data[j].username}`;
