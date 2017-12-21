@@ -1,7 +1,7 @@
 import Validate from '../blocks/forms/validation';
 
 const baseUrl = `${window.location.protocol}//${window.location.host}`;
-const dt = [{}]
+import Router from "../modules/router";
 /**
  * Класс, предоставляющий методы для выполнения HTTP-запросов
  * @class Http
@@ -149,7 +149,11 @@ class Http {
                 console.log("fetch post work\n");
                 console.log(response.status);
                 if ( response.status === 200 ) {
-                    return;
+                new Router().go('/game');
+                    let logout = document.querySelector('a.back');
+                        logout.addEventListener('click', function () {
+                            document.querySelector('div.choose').remove();
+                            new Router().go('/')})
                 }
                 else if (response.status >= 400){
                     Validate.userError();
