@@ -1,7 +1,6 @@
 import Validate from '../blocks/forms/validation';
 
 const baseUrl = `${window.location.protocol}//${window.location.host}`;
-import Router from "../modules/router";
 /**
  * Класс, предоставляющий методы для выполнения HTTP-запросов
  * @class Http
@@ -149,20 +148,12 @@ class Http {
                 console.log("fetch post work\n");
                 console.log(response.status);
                 if ( response.status === 200 ) {
-                new Router().go('/game');
+                    return;
                 }
                 else if (response.status >= 400){
                     Validate.userError();
-                    // var p2 = new Promise(function(resolve, reject) {
-                    //     resolve(1);
-                    // });
-                    return Promise.reject(new Error("провал")).then(function(success) {
-                        // не вызывается
-                    }, function(error) {
-                        console.log(error); // "провал" + Stacktrace
-                    });
-                    // let json = response.json();
-                    // return .then(response => {throw response;});
+                    let json = response.json();
+                    return json.then(response => {throw response;});
                 }
             })
     }
