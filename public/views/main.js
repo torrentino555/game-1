@@ -30,6 +30,7 @@ wrapper.appendChildBlock('menu',new Block('div',['menu']))
         if (authValidation === false) {
             return;
         }
+
         userService.login(formdata[0], formdata[1])
             .then(() => new Router().go('/game'))
             .then(() => {
