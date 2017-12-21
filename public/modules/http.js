@@ -1,7 +1,7 @@
 import Validate from '../blocks/forms/validation';
- u = [{}];
 
 const baseUrl = `${window.location.protocol}//${window.location.host}`;
+let dt = [{}]
 /**
  * Класс, предоставляющий методы для выполнения HTTP-запросов
  * @class Http
@@ -44,8 +44,9 @@ class Http {
         }
         return false;
     }
-
-
+static rewrite (set) {
+        set=dt;
+}
     /**
      * Выполняет GET-запрос по указанному адресу с использованием XMLHttpRequest
      * @param {string} url - адрес запроса
@@ -107,6 +108,7 @@ class Http {
      * @param {string} url - адрес запроса
      * @return {Promise}
      */
+
     static _FetchGet(url) {
         return fetch(url, {
             method: 'GET',
@@ -117,11 +119,12 @@ class Http {
                 let json = response.json();
                 console.log(json);
                 if (response.status >= 400) {
+
                     return json.then(response => {throw response;});
                 }
             json.then(function(data) {
-                 u = data ;
-                    console.log(data[1].userID);
+                   dt = data
+                    console.log(dt.userID);
                 });
                 return json;
             });
@@ -188,4 +191,4 @@ class Http {
 
 Http.BaseUrl = null;
 
-export default {Http,u};
+export default Http;
