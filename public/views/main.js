@@ -32,7 +32,12 @@ wrapper.appendChildBlock('menu',new Block('div',['menu']))
         }
 
        userService.login(formdata[0], formdata[1])
-            .then(() => new Router().go('/game'))
+            .then((response) =>  {if ( response.status === 200 ) {
+                new Router().go('/game')
+            }
+            else if (response.status >= 400){
+                 throw 'Backend bugs';
+            }})
             .then(() => {
                 let logout = document.querySelector('a.back');
                 logout.addEventListener('click', function () {
@@ -41,7 +46,9 @@ wrapper.appendChildBlock('menu',new Block('div',['menu']))
                     new Router().go('/');
                 })
             })
-            .then (() => new Mediator().publish('VIEW_LOAD'))
+            .then (() => new Mediator().publish('VIEW_LOAD')).catch(function(e) {
+           console.log(e); // Никогда не вызовется
+       })
     });
 }
 
