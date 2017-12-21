@@ -115,7 +115,7 @@ class Http {
         })
             .then(function (response) {
                 let json = response.json();
-                console.log(JSON.parse(json));
+                console.log(json);
                 if (response.status >= 400) {
                     return json.then(response => {throw response;});
                 }
