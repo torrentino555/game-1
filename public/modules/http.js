@@ -153,10 +153,16 @@ class Http {
                 }
                 else if (response.status >= 400){
                     Validate.userError();
-
-                   // return false;
-                    let json = response.json();
-                    return json.then(response => {throw response;});
+                    // var p2 = new Promise(function(resolve, reject) {
+                    //     resolve(1);
+                    // });
+                    return Promise.reject(new Error("провал")).then(function(success) {
+                        // не вызывается
+                    }, function(error) {
+                        console.log(error); // "провал" + Stacktrace
+                    });
+                    // let json = response.json();
+                    // return .then(response => {throw response;});
                 }
             })
     }
