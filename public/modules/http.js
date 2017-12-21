@@ -148,6 +148,14 @@ class Http {
                 console.log(response.status);
                 if ( response.status === 200 ) {
                     new Router().go('/game')
+                        .then(() => {
+                            let logout = document.querySelector('a.back');
+                            logout.addEventListener('click', function () {
+                                document.querySelector('div.choose').remove();
+                                new Router().go('/')
+                                userService.logout(formdata[0],formdata[1]);
+                            })
+                        })
                     return;
                 }
                 else if (response.status >= 400){
