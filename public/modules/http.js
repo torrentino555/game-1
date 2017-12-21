@@ -1,7 +1,7 @@
 import Validate from '../blocks/forms/validation';
 
 const baseUrl = `${window.location.protocol}//${window.location.host}`;
-
+//const users =[{}];
 /**
  * Класс, предоставляющий методы для выполнения HTTP-запросов
  * @class Http
@@ -120,7 +120,7 @@ class Http {
                     return json.then(response => {throw response;});
                 }
             json.then(function(data) {
-                    console.log(data);
+                    console.log(data[1].userID);
                 });
                 return json;
             });

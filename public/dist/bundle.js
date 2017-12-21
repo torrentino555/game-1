@@ -1050,7 +1050,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 const baseUrl = `${window.location.protocol}//${window.location.host}`;
-
+//const users =[{}];
 /**
  * Класс, предоставляющий методы для выполнения HTTP-запросов
  * @class Http
@@ -1168,6 +1168,9 @@ class Http {
                     throw response;
                 });
             }
+            json.then(function (data) {
+                console.log(data[1].userID);
+            });
             return json;
         });
     }
@@ -4191,7 +4194,7 @@ exports = module.exports = __webpack_require__(1)(undefined);
 
 
 // module
-exports.push([module.i, "table {\n  font-size: 2.1em;\n  width: 50%;\n  color: #c58818;\n  padding: 10px;\n  border-spacing: 66px;\n  margin-left: 360px; }\n", ""]);
+exports.push([module.i, "table {\n  font-size: 2.1em;\n  width: 50%;\n  color: black;\n  padding: 10px;\n  border-spacing: 66px;\n  margin-left: 360px; }\n\ntable th {\n  color: #c58818; }\n", ""]);
 
 // exports
 
