@@ -53,15 +53,14 @@ class UserService {
 
 
     /**
-     * Загружает данные о текущем пользователе
+     * Загружает scoreboard
      * @return {Promise}
      */
-    /*getData() {
-        return Http.Post('/session')
-            .then(userdata => {
-                return userdata;
-            });
-    }*/
+
+
+    scores() {
+        return Http.Get('/scoreboard');
+    }
 
 }
 

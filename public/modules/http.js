@@ -17,7 +17,7 @@ class Http {
         if (typeof window.fetch !== 'undefined') {
             return this._FetchGet(url);
         }
-        return this._GetXMLHttpRequest(url);
+     //   return this._GetXMLHttpRequest(url);
     }
 
     static Delete(address,body) {
@@ -115,6 +115,7 @@ class Http {
         })
             .then(function (response) {
                 let json = response.json();
+                console.log(json);
                 if (response.status >= 400) {
                     return json.then(response => {throw response;});
                 }

@@ -75,7 +75,9 @@ export class MainPage extends Block {
 
             wrape.appendChild(this._element);
         }
-
+        if (document.querySelector('div.score') !==null) {
+            document.querySelector('div.score').remove();
+        }
         buttons.forEach((button) => {
             let newButtons  =  new Block('a', [blockClass + button.name]);
             this.appendChildBlock('a',newButtons);
