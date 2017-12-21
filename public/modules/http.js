@@ -153,7 +153,7 @@ class Http {
                             logout.addEventListener('click', function () {
                                 document.querySelector('div.choose').remove();
                                 new Router().go('/')
-                                userService.logout(formdata[0],formdata[1]);
+                                ///userService.logout(formdata[0],formdata[1]);
                             })
                         })
                     return;
