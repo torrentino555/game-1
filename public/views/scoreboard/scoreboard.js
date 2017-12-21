@@ -48,9 +48,8 @@ class Scoreboard extends Block {
                             throw response;
                         });
                     }
-                    json.then(function (dt) {
-                        dt = data
-                        console.log(dt.userID);
+                    json.then(function (data) {
+                        console.log(data.userID);
 
 
                         for (let i = 0; i < 3; ++i) {
@@ -61,7 +60,7 @@ class Scoreboard extends Block {
                         for (let i = 0; i < 4; ++i) {
                             for (let j = 0; j < 3; ++j) {
                                 array[i].appendChild(document.createElement('td'));
-                                array[i].childNodes[j].innerHTML = `${dt[j].username}`;
+                                array[i].childNodes[j].innerHTML = `${data[j].username}`;
                             }
                         }
                     });
