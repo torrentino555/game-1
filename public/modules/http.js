@@ -1,7 +1,7 @@
 import Validate from '../blocks/forms/validation';
 
 const baseUrl = `${window.location.protocol}//${window.location.host}`;
-let dt = [{}]
+const dt = [{}]
 /**
  * Класс, предоставляющий методы для выполнения HTTP-запросов
  * @class Http
@@ -44,9 +44,7 @@ class Http {
         }
         return false;
     }
-static rewrite (set) {
-        set=dt;
-}
+
     /**
      * Выполняет GET-запрос по указанному адресу с использованием XMLHttpRequest
      * @param {string} url - адрес запроса
@@ -122,7 +120,7 @@ static rewrite (set) {
 
                     return json.then(response => {throw response;});
                 }
-            json.then(function(data) {
+            json.then(function(dt) {
                    dt = data
                     console.log(dt.userID);
                 });

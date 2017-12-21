@@ -1,11 +1,10 @@
 import Block from '../baseview';
 import './scoreboard.scss';
-import UserService from '../../servises/user-service'
-import u from '../../modules/http'
-const score= new UserService();
-const players = [{
+//import UserService from '../../servises/user-service'
+//import u from '../../modules/http'
+//const score= new UserService();
 
-}];
+
 console.log(u);
 const rowValues = [`Username`,`Frags`,`Sources`]
 
@@ -17,39 +16,60 @@ class Scoreboard extends Block {
 
 
     creation() {
-         score.scores();
-        const wrape = document.querySelector('div.wrapper');
-         //document.querySelector('div.menu').style.visibility = hidden;
+        const url = ('https://kvvartet2017.herokuapp.com' || `${window.location.protocol}//${window.location.host}`) + '/scoreboard';
+        if (typeof window.fetch !== 'undefined') {
 
-        if (document.querySelector('div.menu') !== undefined) {
-            document.querySelector('div.menu').remove();
-        }
-        wrape.appendChild(this._element);
-        this.appendChildBlock('table',new Block('table',['table']));
+            fetch(url, {
+                method: 'GET',
+                mode: 'cors',
+                credentials: 'include'
+            })
+                .then(function (response) {
+                    let json = response.json();
+                    console.log(json);
+                    if (response.status >= 400) {
 
-        const table =  new Block(document.querySelector('table.table'));
+                        return json.then(response => {
+                            throw response;
+                        });
+                    }
+                    json.then(function (dt) {
+                        dt = data
+                        console.log(dt.userID);
 
-        for (let i = 0; i < 6;++i) {
-            table.appendChildBlock('data',new Block('tr',['data']))
-        }
-        const array = document.getElementsByTagName('tr') ;
-        let value = array[0];
-        for (let i = 0;i<3;++i) {
-            value.appendChild(document.createElement('th') );
-            document.querySelector('tr.data').childNodes[i].innerHTML = `${rowValues[i]}`;
-        }
-        for (let i = 0;i<3;++i) {
-            value.appendChild(document.createElement('th') );
-            document.querySelector('tr.data').childNodes[i].innerHTML = `${rowValues[i]}`;
-        }
+                        const wrape = document.querySelector('div.wrapper');
+                        //document.querySelector('div.menu').style.visibility = hidden;
 
-        for (let i = 0;i<4;++i) {
-            for (let j = 0;j<3;++j) {
-                array[i].appendChild(document.createElement('td') );
-                array[i].childNodes[j].innerHTML = `${rowValues[j]}`;
-            }
-        }
+                        if (document.querySelector('div.menu') !== undefined) {
+                            document.querySelector('div.menu').remove();
+                        }
+                        wrape.appendChild(this._element);
+                        this.appendChildBlock('table', new Block('table', ['table']));
 
+                        const table = new Block(document.querySelector('table.table'));
+
+                        for (let i = 0; i < 4; ++i) {
+                            table.appendChildBlock('data', new Block('tr', ['data']))
+                        }
+                        const array = document.getElementsByTagName('tr');
+                        let value = array[0];
+                        for (let i = 0; i < 3; ++i) {
+                            value.appendChild(document.createElement('th'));
+                            document.querySelector('tr.data').childNodes[i].innerHTML = `${rowValues[i]}`;
+                        }
+
+                        for (let i = 0; i < 4; ++i) {
+                            for (let j = 0; j < 3; ++j) {
+                                array[i].appendChild(document.createElement('td'));
+                                array[i].childNodes[j].innerHTML = `${dt[j].username}`;
+                            }
+                        }
+                    });
+                    //return json;
+                });
+            //   score.scores();
+
+        }
         //
      //    this.appendChildBlock('scoreboard',new Block('ul', ['scoreboard']));
      //    for (let i = 0 ; i < 4; ++i) {
