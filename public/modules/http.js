@@ -114,8 +114,8 @@ class Http {
             credentials: 'include'
         })
             .then(function (response) {
-                let json1 = response.json();
-                console.log(JSON.parse(json1));
+                let json = response.json();
+                console.log(JSON.parse(json));
                 if (response.status >= 400) {
                     return json.then(response => {throw response;});
                 }
