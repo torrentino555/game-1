@@ -703,7 +703,6 @@ class Router {
                 const pathname = element.getAttribute('value');
 
                 if (pathname !== null) {
-                    console.log('secondwork');
                     this.go(pathname);
                 }
             }
@@ -730,7 +729,6 @@ class Router {
 
         view.creation();
         if (path === '/login') {
-
             Object(__WEBPACK_IMPORTED_MODULE_0__views_main__["signin"])(view);
         } else if (path === '/signup') {
             Object(__WEBPACK_IMPORTED_MODULE_0__views_main__["signup"])(view);
@@ -4090,87 +4088,93 @@ exports.push([module.i, ".menu .info a {\n  text-decoration: none;\n  color: whi
 //const score= new UserService();
 
 
-console.log(u);
-const rowValues = [`Username`, `Frags`, `Sources`];
-
+const rowValues = [`Username`, `Frags`, `Gold`];
 const buttons = [`first`, `second`, `third`, `four`];
+const data = [{ username: 'gamer', gold: 0, frags: 0 }, { username: 'lammer', gold: 110, frags: 8989 }, { username: 'lammer96', gold: 1680, frags: 1560 }];
+
 class Scoreboard extends __WEBPACK_IMPORTED_MODULE_0__baseview__["a" /* default */] {
     constructor() {
         super('div', ['score'], {});
     }
 
     creation() {
-        const url = ('https://kvvartet2017.herokuapp.com' || `${window.location.protocol}//${window.location.host}`) + '/scoreboard';
-        if (typeof window.fetch !== 'undefined') {
+        const wrape = document.querySelector('div.wrapper');
+        //document.querySelector('div.menu').style.visibility = hidden;
 
-            fetch(url, {
-                method: 'GET',
-                mode: 'cors',
-                credentials: 'include'
-            }).then(function (response) {
-                let json = response.json();
-                console.log(json);
-                if (response.status >= 400) {
-
-                    return json.then(response => {
-                        throw response;
-                    });
-                }
-                json.then(function (dt) {
-                    dt = data;
-                    console.log(dt.userID);
-
-                    const wrape = document.querySelector('div.wrapper');
-                    //document.querySelector('div.menu').style.visibility = hidden;
-
-                    if (document.querySelector('div.menu') !== undefined) {
-                        document.querySelector('div.menu').remove();
-                    }
-                    wrape.appendChild(this._element);
-                    this.appendChildBlock('table', new __WEBPACK_IMPORTED_MODULE_0__baseview__["a" /* default */]('table', ['table']));
-
-                    const table = new __WEBPACK_IMPORTED_MODULE_0__baseview__["a" /* default */](document.querySelector('table.table'));
-
-                    for (let i = 0; i < 4; ++i) {
-                        table.appendChildBlock('data', new __WEBPACK_IMPORTED_MODULE_0__baseview__["a" /* default */]('tr', ['data']));
-                    }
-                    const array = document.getElementsByTagName('tr');
-                    let value = array[0];
-                    for (let i = 0; i < 3; ++i) {
-                        value.appendChild(document.createElement('th'));
-                        document.querySelector('tr.data').childNodes[i].innerHTML = `${rowValues[i]}`;
-                    }
-
-                    for (let i = 0; i < 4; ++i) {
-                        for (let j = 0; j < 3; ++j) {
-                            array[i].appendChild(document.createElement('td'));
-                            array[i].childNodes[j].innerHTML = `${dt[j].username}`;
-                        }
-                    }
-                });
-                //return json;
-            });
-            //   score.scores();
+        if (document.querySelector('div.menu') !== undefined) {
+            document.querySelector('div.menu').remove();
         }
+        wrape.appendChild(this._element);
+        this.appendChildBlock('table', new __WEBPACK_IMPORTED_MODULE_0__baseview__["a" /* default */]('table', ['table']));
+
+        const table = new __WEBPACK_IMPORTED_MODULE_0__baseview__["a" /* default */](document.querySelector('table.table'));
+
         //
-        //    this.appendChildBlock('scoreboard',new Block('ul', ['scoreboard']));
-        //    for (let i = 0 ; i < 4; ++i) {
-        //        document.querySelector('ul','scoreboard').appendChild(document.createElement('li'));
-        //    }
-        //    let allPlayers = document.getElementsByTagName('li');
-        // for(let i = 0 ; i < 4; ++i) {
-        //        allPlayers[i].appendChild(document.createElement('span')).setAttribute('class','username'+ buttons[i]);
-        //        // document.querySelector('span.username').innerHTML = `test`;
-        //           allPlayers[i].appendChild(document.createElement('span')).setAttribute('class','points'+ buttons[i]);
-        //        // document.querySelector('span.points').innerHTML = `tester`;
+        // const url = ('https://kvvartet2017.herokuapp.com' || `${window.location.protocol}//${window.location.host}`) + '/scoreboard';
+        // if (typeof window.fetch !== 'undefined') {
         //
-        //    }
-        //    for (let i = 0; i<4 ;++i) {
-        //        let but = document.querySelector(`span.username` + buttons[i]);
-        //        but.innerHTML = `${buttons[i]}: `;
-        //        let sec = document.querySelector(`span.points` + buttons[i]);
-        //        sec.innerHTML = `${buttons[i]}`;
-        //    }
+        //     fetch(url, {
+        //         method: 'GET',
+        //         mode: 'cors',
+        //         credentials: 'include'
+        //     })
+        //         .then(function (response) {
+        //             let json = response.json();
+        //             console.log(json);
+        //             if (response.status >= 400) {
+        //
+        //                 return json.then(response => {
+        //                     throw response;
+        //                 });
+        //             }
+        //             json.then(function (data) {
+        //                 console.log(data.userID);
+        //
+        //                 for (let i = 0; i < data.length; ++i) {
+        //                     table.appendChildBlock('data', new Block('tr', ['data']))
+        //                 }
+        //                 const array = document.getElementsByTagName('tr');
+        //                 let value = array[0];
+        //                 for (let i = 0; i < data.length; ++i) {
+        //                     value.appendChild(document.createElement('th'));
+        //                     document.querySelector('tr.data').childNodes[i].innerHTML = `${rowValues[i]}`;
+        //                 }
+        //
+        //                 for (let i = 0; i < data.length; ++i) {
+        //                     for (let j = 0; j < 3; ++j) {
+        //                         array[i].appendChild(document.createElement('td'));
+        //                         array[i].childNodes[j].innerHTML = `${data[j].username}`;
+        //                     }
+        //                 }
+        //             });
+        //         });
+        //
+        //
+        // }
+
+        for (let i = 0; i < data.length + 1; ++i) {
+            table.appendChildBlock('data', new __WEBPACK_IMPORTED_MODULE_0__baseview__["a" /* default */]('tr', ['data']));
+        }
+        const array = document.getElementsByTagName('tr');
+        let value = array[0];
+        for (let i = 0; i < 3; ++i) {
+            value.appendChild(document.createElement('th'));
+            document.querySelector('tr.data').childNodes[i].innerHTML = `${rowValues[i]}`;
+        }
+
+        for (let i = 1; i < data.length + 1; ++i) {
+            for (let j = 0; j < 3; ++j) {
+                array[i].appendChild(document.createElement('td'));
+                if (j === 1) {
+                    array[i].childNodes[j].innerHTML = `${data[i - 1].gold}`;
+                    continue;
+                } else if (j === 2) {
+                    array[i].childNodes[j].innerHTML = `${data[i - 1].frags}`;
+                    continue;
+                }
+                array[i].childNodes[j].innerHTML = `${data[i - 1].username}`;
+            }
+        }
     }
 
 }

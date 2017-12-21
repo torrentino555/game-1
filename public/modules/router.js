@@ -31,7 +31,6 @@ export default  class Router {
                 const pathname = element.getAttribute('value');
 
                 if (pathname !== null) {
-                    console.log('secondwork')
                    this.go(pathname);
                 }
             }
@@ -60,7 +59,6 @@ export default  class Router {
 
         view.creation();
     if (path === '/login') {
-
         signin(view);
      }
      else if (path === '/signup') {
