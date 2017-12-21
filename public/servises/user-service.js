@@ -31,6 +31,14 @@ class UserService {
      * @return {Promise}
      */
     login(username, password) {
+        window.onerror = function myErrorHandler(errorMsg, url, lineNumber) {
+            if (gOldOnError)
+            // Вызвать прошлый обработчик события.
+                return gOldOnError(errorMsg, url, lineNumber);
+
+            // Просто запустить обработчик события по умолчанию.
+            return false;
+        }
         return Http.Post('/signin', {username, password});
     }
 

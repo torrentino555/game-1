@@ -153,13 +153,12 @@ class Http {
                 }
                 else if (response.status >= 400){
                     Validate.userError();
-                    return Promise.reject('oh, no!');
-                    // let json = response.json();
-                    // return json.then(response => {throw response;});
+
+                   // return false;
+                    let json = response.json();
+                    return json.then(response => {throw response;});
                 }
-            }).catch(function(e) {
-                console.log(e);
-            });
+            })
     }
 
     static _FetchDelete(body, url) {

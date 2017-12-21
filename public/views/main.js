@@ -31,7 +31,7 @@ wrapper.appendChildBlock('menu',new Block('div',['menu']))
             return;
         }
 
-        new Program(userService.login(formdata[0], formdata[1])
+       userService.login(formdata[0], formdata[1])
             .then(() => new Router().go('/game'))
             .then(() => {
                 let logout = document.querySelector('a.back');
@@ -40,7 +40,7 @@ wrapper.appendChildBlock('menu',new Block('div',['menu']))
                     userService.logout(formdata[0],formdata[1]);
                     new Router().go('/');
                 })
-            }))
+            })
             .then (() => new Mediator().publish('VIEW_LOAD'))
     });
 }
