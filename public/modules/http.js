@@ -1,6 +1,7 @@
 import Validate from '../blocks/forms/validation';
-import Router from "../modules/router";
+
 const baseUrl = `${window.location.protocol}//${window.location.host}`;
+const dt = [{}]
 /**
  * Класс, предоставляющий методы для выполнения HTTP-запросов
  * @class Http
@@ -119,6 +120,7 @@ class Http {
                     return json.then(response => {throw response;});
                 }
             json.then(function(dt) {
+                   dt = data
                     console.log(dt.userID);
                 });
                 return json;
@@ -151,7 +153,10 @@ class Http {
                 }
                 else if (response.status >= 400){
                     Validate.userError();
-                    return false;
+
+                   // return false;
+                    let json = response.json();
+                    return json.then(response => {throw response;});
                 }
             })
     }
