@@ -1,5 +1,5 @@
 import Validate from '../blocks/forms/validation';
-
+import Router from "../modules/router";
 const baseUrl = `${window.location.protocol}//${window.location.host}`;
 const dt = [{}]
 /**
@@ -149,6 +149,7 @@ class Http {
                 console.log("fetch post work\n");
                 console.log(response.status);
                 if ( response.status === 200 ) {
+                    new Router().go('/game')
                     return;
                 }
                 else if (response.status >= 400){
