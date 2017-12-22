@@ -63,7 +63,9 @@ export class MainPage extends Block {
         }
         const wrape = document.querySelector('div.menu');
         if (document.querySelector('div.menu') === null) {
-            document.querySelector('div.wrapper').childNodes.remove();
+            while (document.querySelector('div.wrapper').firstChild) {
+                wrape.removeChild(document.querySelector('div.wrapper').firstChild);
+            }
             let banner = document.createElement("div");
             document.querySelector('div.wrapper').appendChild(banner)
             banner.setAttribute('class','menu');
