@@ -127,12 +127,12 @@ export default class Choose extends Block{
     footbarCreate() {
         this.appendChildBlock('footbar',new Block ('a',['enter']).setText('ENTER'))
         wrape.appendChild(this._element)
-        document.querySelector('a.enter').addEventListener('click', () => {
-            document.querySelector('div.choose').remove();
-            new Router().go('/mode')
-        })
+
+        document.querySelector('a.back').setAttribute('value','/mode')
+
 
         this.appendChildBlock('footbar',new Block ('a',['back']).setText('BACK'))
+        document.querySelector('a.back').setAttribute('value','/')
         wrape.appendChild(this._element)
         let logout = document.querySelector('a.back')
         // logout.addEventListener('click', function () {

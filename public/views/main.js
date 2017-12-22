@@ -37,10 +37,6 @@ wrapper.appendChildBlock('menu',new Block('div',['menu']))
                 let logout = document.querySelector('a.back');
                 logout.addEventListener('click', function () {
                     userService.logout(formdata[0],formdata[1]);
-
-                    document.querySelector('div.choose').remove();
-                    new Router().go('/')
-
                 })
             })
             .then (() => new Mediator().publish('VIEW_LOAD'))
@@ -59,10 +55,6 @@ wrapper.appendChildBlock('menu',new Block('div',['menu']))
                   let logout = document.querySelector('a.back')
                   logout.addEventListener('click', function () {
                       userService.logout(formdata[0],formdata[1]);
-                      document.querySelector('div.choose').remove();
-                      new Router().go('/')
-
-
                   })
              })
      });
