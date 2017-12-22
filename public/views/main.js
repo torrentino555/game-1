@@ -58,7 +58,9 @@ wrapper.appendChildBlock('menu',new Block('div',['menu']))
                   logout.addEventListener('click', function () {
                      document.querySelector('div.choose').remove();
                       new Router().go('/')
-                 })
+                      userService.logout(formdata[0],formdata[1]);
+
+                  })
              })
      });
  }
