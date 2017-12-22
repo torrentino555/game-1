@@ -25,7 +25,7 @@ export default  class Router {
 
         document.body.addEventListener('click', event => {
 
-            if (event.target.tagName.toLowerCase() === 'li' || event.target.tagName.toLowerCase() === 'li' ) {
+            if (event.target.tagName.toLowerCase() === 'li' || event.target.tagName.toLowerCase() === 'a' ) {
                 event.preventDefault();
                 const element = event.target;
                 const pathname = element.getAttribute('value');
