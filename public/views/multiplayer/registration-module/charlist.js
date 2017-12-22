@@ -144,9 +144,8 @@ export default class Choose extends Block{
         // })
     }
     creation () {
-        if ( document.querySelector('div.wrapper').childNodes[0] !== null)
-        {
-            document.querySelector('div.wrapper').childNodes.remove();
+        while (wrape.firstChild) {
+            wrape.removeChild(wrape.firstChild);
         }
 
         wrape.appendChild(this._element);
