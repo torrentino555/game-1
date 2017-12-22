@@ -69,7 +69,7 @@ export default class Choose extends Block{
     }
 
     leftbar () {
-        let left_bar= document.querySelector('div.choose').appendChild(document.createElement('div'))
+        const left_bar= document.querySelector('div.choose').appendChild(document.createElement('div'))
         left_bar.setAttribute('class','left_bar')
         let list = document.createElement("ul");
         document.querySelector('div.left_bar').appendChild(list)
@@ -84,14 +84,15 @@ export default class Choose extends Block{
             enityName[i].innerHTML = name[i];
         }
         left_bar.appendChild(document.createElement('a'))
-        left_bar.document.querySelector('a').setAttribute('class','new_character')
+        let character = left_bar.document.querySelector('a').setAttribute('class','new_character')
+        character.innerHTML =`CREATE`
         document.querySelector('a.new_character').addEventListener('click', () => {
                 new Custom().creation('Coming soon....')
         })
 
        let del =  left_bar.appendChild(document.createElement('a'))
-        del.setAttribute('class','new_character')
-
+        del.setAttribute('class','delete')
+        del.innerHTML = `DELETE`
         document.querySelector('a.delete').addEventListener('click', () => {
                 new Custom().creation('Coming soon....')
         })
