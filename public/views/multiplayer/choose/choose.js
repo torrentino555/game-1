@@ -1,6 +1,7 @@
 import './choose.scss'
 import Custom from '../../custom-module/custom-module'
 const classes  = [`single`,`multi`]
+const wrape = document.querySelector('div.wrapper');
 
 export default class GameType {
     creation() {
