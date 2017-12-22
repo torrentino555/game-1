@@ -2,7 +2,7 @@
 import  Block from '../../baseview'
 import './module.scss'
 import Router from '../../../modules/router'
-import Transport from'../../../transport/transport'
+import userService from '../../../servises/user-service'
 const enity = [
     {
         src:'../../../images/warrior.png'
@@ -135,6 +135,13 @@ export default class Choose extends Block{
 
         this.appendChildBlock('footbar',new Block ('a',['back']).setText('BACK'))
         wrape.appendChild(this._element)
+        let logout = document.querySelector('a.back')
+        logout.addEventListener('click', function () {
+            document.querySelector('div.choose').remove();
+            new Router().go('/')
+            userService.logout(formdata[0],formdata[1]);
+
+        })
     }
     creation () {
         if ( document.querySelector('div.menu') !== null)
