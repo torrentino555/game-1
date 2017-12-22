@@ -2,6 +2,7 @@
 import  Block from '../../baseview'
 import './module.scss'
 import Router from '../../../modules/router'
+import Custom from '../../custom-module/custom-module'
 import userService from '../../../servises/user-service'
 const enity = [
     {
@@ -87,41 +88,18 @@ export default class Choose extends Block{
         wrape.appendChild(this._element)
 
         document.querySelector('a.new_character').addEventListener('click', () => {
-            if (globalCounter < 3) {
-                ++index;
-                let list = document.createElement("li");
-                document.querySelector('ul').appendChild(list)
-                let enityName = document.getElementsByTagName('li');
-                enityName[i].innerHTML = name[i];
-                ++globalCounter;
-            }
+            document.querySelector('a.multi').addEventListener('click',() =>{
+                new Custom().creation('Coming soon....')
+            })
         })
 
         this.appendChildBlock('new_character',new Block ('a',['delete']).setText('DELETE'))
         wrape.appendChild(this._element)
 
         document.querySelector('a.delete').addEventListener('click', () => {
-            if (globalCounter !==0) {
-                let enityName = document.getElementsByTagName('li');
-                document.querySelector('ul').removeChild(enityName[i]);
-                if (index === 0) {
-                    if (counter !== 3) {
-                        ++counter;
-                        document.querySelector('img.person').setAttribute('src', enity[index+counter].src);
-                        enityName[i].style.color = "white";
-                    }
-                    --globalCounter;
-                }
-                else {
-                    ++secondCounter;
-                    --index;
-                    --i;
-                    document.querySelector('img.person').setAttribute('src', enity[index ].src);
-                    console.log(index);
-                    enityName[i].style.color = "white";
-                    --globalCounter;
-                }
-            }
+            document.querySelector('a.multi').addEventListener('click',() =>{
+                new Custom().creation('Coming soon....')
+            })
         })
     }
     footbarCreate() {
@@ -135,13 +113,6 @@ export default class Choose extends Block{
         wrape.appendChild(this._element)
         document.querySelector('a.back').setAttribute('value','/')
 
-        let logout = document.querySelector('a.back')
-        // logout.addEventListener('click', function () {
-        //     document.querySelector('div.choose').remove();
-        //     new Router().go('/')
-        //     userService.logout(formdata[0],formdata[1]);
-        //
-        // })
     }
     creation () {
         while (wrape.firstChild) {
