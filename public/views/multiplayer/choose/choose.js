@@ -1,5 +1,7 @@
 import './choose.scss'
 import Custom from '../../custom-module/custom-module'
+import Router from '../../../modules/router'
+
 const classes  = [`single`,`multi`]
 const wrape = document.querySelector('div.wrapper');
 
@@ -19,6 +21,10 @@ export default class GameType {
         }
         document.querySelector('a.multi').addEventListener('click',() =>{
             new Custom().creation('Coming soon....')
+        })
+
+        document.querySelector('a.single').addEventListener('click',() =>{
+            new Router().go('/singleplay')
         })
     }
 }
