@@ -52,15 +52,17 @@ wrapper.appendChildBlock('menu',new Block('div',['menu']))
              return;
          }
          userService.signup(formdata[0], formdata[1], formdata[2])
+         new Router().go('/login')
+         userService.login(formdata[0], formdata[1])
              .then(() => new Router().go('/game'))
-              .then(() => {
-                  let logout = document.querySelector('a.back')
-                  logout.addEventListener('click', function () {
+             .then(() => {
+                 let logout = document.querySelector('a.back');
+                 logout.addEventListener('click', function () {
                      document.querySelector('div.choose').remove();
-                      new Router().go('/')
+                     new Router().go('/')
+                     userService.logout(formdata[0],formdata[1]);
                  })
              })
-            .then (() => new Mediator().publish('VIEW_LOAD'))
      });
  }
 
