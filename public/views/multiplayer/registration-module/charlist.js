@@ -132,8 +132,9 @@ export default class Choose extends Block{
 
 
         this.appendChildBlock('footbar',new Block ('a',['back']).setText('BACK'))
-        document.querySelector('a.back').setAttribute('value','/')
         wrape.appendChild(this._element)
+        document.querySelector('a.back').setAttribute('value','/')
+
         let logout = document.querySelector('a.back')
         // logout.addEventListener('click', function () {
         //     document.querySelector('div.choose').remove();
