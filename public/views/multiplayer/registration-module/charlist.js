@@ -88,18 +88,14 @@ export default class Choose extends Block{
         wrape.appendChild(this._element)
 
         document.querySelector('a.new_character').addEventListener('click', () => {
-            document.querySelector('a.multi').addEventListener('click',() =>{
                 new Custom().creation('Coming soon....')
-            })
         })
 
         this.appendChildBlock('new_character',new Block ('a',['delete']).setText('DELETE'))
         wrape.appendChild(this._element)
 
         document.querySelector('a.delete').addEventListener('click', () => {
-            document.querySelector('a.multi').addEventListener('click',() =>{
                 new Custom().creation('Coming soon....')
-            })
         })
     }
     footbarCreate() {

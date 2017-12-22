@@ -8,6 +8,9 @@ const wrape = document.querySelector('div.wrapper');
 
 export default class GameType {
     creation() {
+        while (document.querySelector('div.wrapper').firstChild) {
+            document.querySelector('div.wrapper').removeChild(document.querySelector('div.wrapper').firstChild);
+        }
         let variant = wrape.appendChild(document.createElement("div"));
         variant.setAttribute('class', 'variant')
 
