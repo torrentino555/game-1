@@ -934,12 +934,13 @@ function signin(login) {
         if (authValidation === false) {
             return;
         }
+
         userService.login(formdata[0], formdata[1]).then(() => new __WEBPACK_IMPORTED_MODULE_3__modules_router__["default"]().go('/game')).then(() => {
             let logout = document.querySelector('a.back');
             logout.addEventListener('click', function () {
                 document.querySelector('div.choose').remove();
-                userService.logout(formdata[0], formdata[1]);
                 new __WEBPACK_IMPORTED_MODULE_3__modules_router__["default"]().go('/');
+                userService.logout(formdata[0], formdata[1]);
             });
         }).then(() => new __WEBPACK_IMPORTED_MODULE_5__modules_mediator__["default"]().publish('VIEW_LOAD'));
     });
@@ -954,9 +955,7 @@ function signup(registration) {
         userService.signup(formdata[0], formdata[1], formdata[2]).then(() => new __WEBPACK_IMPORTED_MODULE_3__modules_router__["default"]().go('/game')).then(() => {
             let logout = document.querySelector('a.back');
             logout.addEventListener('click', function () {
-                console.log('back_work');
                 document.querySelector('div.choose').remove();
-                userService.logout(formdata[0], formdata[2]);
                 new __WEBPACK_IMPORTED_MODULE_3__modules_router__["default"]().go('/');
             });
         }).then(() => new __WEBPACK_IMPORTED_MODULE_5__modules_mediator__["default"]().publish('VIEW_LOAD'));
@@ -975,7 +974,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 const baseUrl = `${window.location.protocol}//${window.location.host}`;
-const dt = [{}];
 /**
  * Класс, предоставляющий методы для выполнения HTTP-запросов
  * @class Http
@@ -2287,7 +2285,8 @@ const buttons = [{
 
 
 const blockClass = 'button';
-
+const valuePage = [`/login`, `/singleplay`, '/signup', `/info`, `/scoreboard`];
+const text = [`New Game`, `Singleplayer`, `Registration`, `Authors`, `Scoreboard`];
 class MainPage extends __WEBPACK_IMPORTED_MODULE_0__baseview__["a" /* default */] {
     constructor() {
         super('ul', ['name'], {});
@@ -2323,18 +2322,32 @@ class MainPage extends __WEBPACK_IMPORTED_MODULE_0__baseview__["a" /* default */
                 console.log('remove');
             }
 
-            wrape.appendChild(this._element);
+            // wrape.appendChild(this._element);
+            wrape.appendChild(document.createElement('ul'));
+            wrape.querySelector('ul').setAttribute('class', 'name');
         }
         if (document.querySelector('div.score') !== null) {
             document.querySelector('div.score').remove();
         }
-        buttons.forEach(button => {
-            let newButtons = new __WEBPACK_IMPORTED_MODULE_0__baseview__["a" /* default */]('a', [blockClass + button.name]);
-            this.appendChildBlock('a', newButtons);
-            let but = document.querySelector('a.' + blockClass + button.name);
-            but.innerHTML = `<li>${button.text}</li>`;
-            but.querySelector('li').setAttribute('value', button.value);
-        });
+
+        // buttons.forEach((button) => {
+        //     const newButtons  =  new Block('a', [blockClass + button.name]);
+        //
+        //     this.appendChildBlock('a',newButtons);
+        //     let but  =  document.querySelector('a.' + blockClass + button.name);
+        //     but.innerHTML = `<li>${button.text}</li>`;
+        //     but.querySelector('li').setAttribute('value',button.value);
+        //
+        // });
+
+        for (let i = 0; i < 5; ++i) {
+            document.querySelector('ul.name').appendChild(document.createElement('a'));
+        }
+        let allButtons = document.getElementsByTagName('a');
+        for (let i = 0; i < 5; ++i) {
+            allButtons[i].innerHTML = `<li>${text[i]}</li>`;
+            allButtons[i].querySelector('li').setAttribute('value', valuePage[i]);
+        }
     }
 }
 /* unused harmony export MainPage */
@@ -4009,19 +4022,32 @@ class Info extends __WEBPACK_IMPORTED_MODULE_0__baseview__["a" /* default */] {
     }
 
     creation() {
-        const wrape = document.querySelector('div.menu');
 
         if (document.querySelector('div.menu').childNodes[0] !== undefined) {
             document.querySelector('div.menu').removeChild(document.querySelector('div.menu').childNodes[0]);
         }
-        wrape.appendChild(this._element);
+        const wrape = document.querySelector('div.menu');
+        wrape.appendChild(document.createElement('ul'));
+        wrape.querySelector('ul').setAttribute('class', 'name');
+        wrape.querySelector('ul').setAttribute('class', 'info');
 
-        authors.forEach(i => {
-            this.appendChildBlock('li', new __WEBPACK_IMPORTED_MODULE_0__baseview__["a" /* default */]('li', [i.name]));
-            let but = document.querySelector('li.' + i.name);
-            but.innerHTML = `<a>${i.name}</a>`;
-            but.querySelector('a').setAttribute('href', i.link);
-        });
+        for (let i = 0; i < 4; ++i) {
+            document.querySelector('ul.info').appendChild(document.createElement('li'));
+        }
+        let allButtons = document.getElementsByTagName('li');
+        for (let i = 0; i < 4; ++i) {
+            allButtons[i].innerHTML = `<a>${authors[i].name}</a>`;
+            allButtons[i].querySelector('a').setAttribute('href', authors[i].link);
+        }
+
+        // wrape.appendChild(this._element);
+        //
+        // authors.forEach((i) => {
+        //     this.appendChildBlock('li',new Block('li', [i.name]));
+        //     let but  =  document.querySelector('li.' + i.name);
+        //     but.innerHTML = `<a>${i.name}</a>`;
+        //     but.querySelector('a').setAttribute('href',i.link);
+        // });
     }
 
 }

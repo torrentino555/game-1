@@ -27,6 +27,8 @@ const info = new Info();
 const single = new SinglePlay();
 const choose = new Choose();
 const scoreboard = new Scoreboard();
+const typeGame = new Choose();
+
 
 
 // navigator.serviceWorker.register("/service_worker.js", { scope: "/" })
@@ -45,5 +47,6 @@ router.register('/', mainMenu)
     .register('/singleplay',single )
     .register('/game',choose)
     .register('/scoreboard',scoreboard)
+    .register('/mode',typeGame)
     .navigate();
 

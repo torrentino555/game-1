@@ -48,7 +48,8 @@ export default  class Router {
         if ((window.innerHeight > window.innerWidth) && ((typeof window.orientation !== "undefined") || (navigator.userAgent.indexOf('IEMobile') !== -1)))
         {
             const view  = new Custom();
-            view.creation();
+            const text = `It is game only for laptop view`;
+            view.creation(text);
             return ;
         }
 

@@ -1,6 +1,7 @@
 'use strict'
 import  Block from '../../baseview'
 import './module.scss'
+import GameType from '../choose/choose'
 import Transport from'../../../transport/transport'
 const enity = [
     {
@@ -129,18 +130,7 @@ export default class Choose extends Block{
         wrape.appendChild(this._element)
         document.querySelector('a.enter').addEventListener('click', () => {
             document.querySelector('div.choose').remove();
-            let variant =  wrape.appendChild(document.createElement("div"));
-            variant.setAttribute('class','variant')
-
-            for (let i = 0; i<2; ++i) {
-                variant.appendChild(document.createElement("a"));
-            }
-            let buttons = document.getElementsByTagName('a');
-
-            for (let i = 0; i<2;++i) {
-                buttons[i].setAttribute('class',classes[i])
-                buttons[i].innerHTML = button[i];
-            }
+            new GameType().creation();
         })
 
         this.appendChildBlock('footbar',new Block ('a',['back']).setText('BACK'))
