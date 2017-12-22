@@ -1,7 +1,7 @@
 'use strict'
 import  Block from '../../baseview'
 import './module.scss'
-import GameType from '../choose/choose'
+import Router from '../../../modules/router'
 import Transport from'../../../transport/transport'
 const enity = [
     {
@@ -130,7 +130,7 @@ export default class Choose extends Block{
         wrape.appendChild(this._element)
         document.querySelector('a.enter').addEventListener('click', () => {
             document.querySelector('div.choose').remove();
-            new GameType().creation();
+            new Router().go('/mode')
         })
 
         this.appendChildBlock('footbar',new Block ('a',['back']).setText('BACK'))
