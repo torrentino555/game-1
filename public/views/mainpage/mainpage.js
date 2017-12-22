@@ -1,7 +1,6 @@
 import Block from '../baseview';
 import './main-page.scss';
-const imageWall = "wall";
-const wrape = document.querySelector('div.menu');
+
 import DemoGameModule from '../singleplay/DemoGameModule'
 export const buttons = [
     {
@@ -64,7 +63,7 @@ export class MainPage extends Block {
         const wrape = document.querySelector('div.menu');
         if (document.querySelector('div.menu') === null) {
             while (document.querySelector('div.wrapper').firstChild) {
-                wrape.removeChild(document.querySelector('div.wrapper').firstChild);
+                document.querySelector('div.wrapper').removeChild(document.querySelector('div.wrapper').firstChild);
             }
             let banner = document.createElement("div");
             document.querySelector('div.wrapper').appendChild(banner)
