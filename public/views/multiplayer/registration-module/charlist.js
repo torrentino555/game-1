@@ -69,8 +69,8 @@ export default class Choose extends Block{
     }
 
     leftbar () {
-        this.appendChildBlock('left_bar',new Block ('div',['left_bar']))
-        wrape.appendChild(this._element)
+        let left_bar= document.querySelector('div.choose').appendChild(document.createElement('div'))
+        left_bar.setAttribute('class','left_bar')
         let list = document.createElement("ul");
         document.querySelector('div.left_bar').appendChild(list)
 
@@ -83,16 +83,14 @@ export default class Choose extends Block{
         for (let i = 0; i!==4;++i) {
             enityName[i].innerHTML = name[i];
         }
-
-        this.appendChildBlock('new_character',new Block ('a',['new_character']).setText('CREATE'))
-        wrape.appendChild(this._element)
-
+        left_bar.appendChild(document.createElement('a'))
+        left_bar.document.querySelector('a').setAttribute('class','new_character')
         document.querySelector('a.new_character').addEventListener('click', () => {
                 new Custom().creation('Coming soon....')
         })
 
-        this.appendChildBlock('new_character',new Block ('a',['delete']).setText('DELETE'))
-        wrape.appendChild(this._element)
+       let del =  left_bar.appendChild(document.createElement('a'))
+        del.setAttribute('class','new_character')
 
         document.querySelector('a.delete').addEventListener('click', () => {
                 new Custom().creation('Coming soon....')
@@ -102,11 +100,14 @@ export default class Choose extends Block{
         this.appendChildBlock('footbar',new Block ('a',['enter']).setText('ENTER'))
         wrape.appendChild(this._element)
 
+        let enter =  wrape.appendChild(document.createElement('a'))
+        enter.setAttribute('class','new_character')
+
         document.querySelector('a.enter').setAttribute('value','/mode')
 
 
-        this.appendChildBlock('footbar',new Block ('a',['back']).setText('BACK'))
-        wrape.appendChild(this._element)
+        let back =  wrape.appendChild(document.createElement('a'))
+        back.setAttribute('class','back')
         document.querySelector('a.back').setAttribute('value','/')
 
     }
