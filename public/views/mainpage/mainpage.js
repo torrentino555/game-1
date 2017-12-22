@@ -74,7 +74,6 @@ export class MainPage extends Block {
                 console.log('remove')
             }
 
-           // wrape.appendChild(this._element);
             wrape.appendChild(document.createElement('ul'))
             wrape.querySelector('ul').setAttribute('class','name')
         }
@@ -82,15 +81,6 @@ export class MainPage extends Block {
             document.querySelector('div.score').remove();
         }
 
-        // buttons.forEach((button) => {
-        //     const newButtons  =  new Block('a', [blockClass + button.name]);
-        //
-        //     this.appendChildBlock('a',newButtons);
-        //     let but  =  document.querySelector('a.' + blockClass + button.name);
-        //     but.innerHTML = `<li>${button.text}</li>`;
-        //     but.querySelector('li').setAttribute('value',button.value);
-        //
-        // });
 
         for (let i = 0;i<5;++i) {
             document.querySelector('ul.name').appendChild(document.createElement('a'));

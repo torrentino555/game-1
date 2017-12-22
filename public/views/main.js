@@ -35,10 +35,11 @@ wrapper.appendChildBlock('menu',new Block('div',['menu']))
             .then(() => new Router().go('/game'))
             .then(() => {
                 let logout = document.querySelector('a.back');
+                userService.logout(formdata[0],formdata[1]);
                 logout.addEventListener('click', function () {
                     document.querySelector('div.choose').remove();
                     new Router().go('/')
-                    userService.logout(formdata[0],formdata[1]);
+
                 })
             })
             .then (() => new Mediator().publish('VIEW_LOAD'))
@@ -55,10 +56,11 @@ wrapper.appendChildBlock('menu',new Block('div',['menu']))
              .then(() => new Router().go('/game'))
               .then(() => {
                   let logout = document.querySelector('a.back')
+                  userService.logout(formdata[0],formdata[1]);
                   logout.addEventListener('click', function () {
                      document.querySelector('div.choose').remove();
                       new Router().go('/')
-                      userService.logout(formdata[0],formdata[1]);
+
 
                   })
              })
