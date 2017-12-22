@@ -35,8 +35,9 @@ wrapper.appendChildBlock('menu',new Block('div',['menu']))
             .then(() => new Router().go('/game'))
             .then(() => {
                 let logout = document.querySelector('a.back');
-                userService.logout(formdata[0],formdata[1]);
                 logout.addEventListener('click', function () {
+                    userService.logout(formdata[0],formdata[1]);
+
                     document.querySelector('div.choose').remove();
                     new Router().go('/')
 
@@ -56,9 +57,9 @@ wrapper.appendChildBlock('menu',new Block('div',['menu']))
              .then(() => new Router().go('/game'))
               .then(() => {
                   let logout = document.querySelector('a.back')
-                  userService.logout(formdata[0],formdata[1]);
                   logout.addEventListener('click', function () {
-                     document.querySelector('div.choose').remove();
+                      userService.logout(formdata[0],formdata[1]);
+                      document.querySelector('div.choose').remove();
                       new Router().go('/')
 
 

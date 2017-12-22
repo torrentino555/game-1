@@ -143,9 +143,9 @@ export default class Choose extends Block{
         // })
     }
     creation () {
-        if ( document.querySelector('div.menu') !== null)
+        if ( document.querySelector('div.wrapper').childNodes[0] !== null)
         {
-            document.querySelector('div.menu').remove();
+            document.querySelector('div.wrapper').childNodes[0].remove();
         }
 
         wrape.appendChild(this._element);
