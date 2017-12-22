@@ -52,7 +52,7 @@ wrapper.appendChildBlock('menu',new Block('div',['menu']))
              return;
          }
          userService.signup(formdata[0], formdata[1], formdata[2])
-         new Router().go('/login')
+             .then(() => new Router().go('/login'))
      });
  }
 
