@@ -2,6 +2,7 @@ import './choose.scss'
 import Custom from '../../custom-module/custom-module'
 import Router from '../../../modules/router'
 
+const button = [`Single Play`,`MultiPlayer`];
 const classes  = [`single`,`multi`]
 const wrape = document.querySelector('div.wrapper');
 
@@ -13,7 +14,7 @@ export default class GameType {
         for (let i = 0; i < 2; ++i) {
             variant.appendChild(document.createElement("a"));
         }
-        let buttons = document.getElementsByTagName('a');
+        const buttons = document.getElementsByTagName('a');
 
         for (let i = 0; i < 2; ++i) {
             buttons[i].setAttribute('class', classes[i])

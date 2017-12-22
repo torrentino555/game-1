@@ -19,8 +19,7 @@ let secondCounter = 0;
 let counter = 0;
 let globalCounter = 3;
 const name = [`warrior`,`priest`,`mage`,`thief`];
-const button = [`Single Play`,`MultiPlayer`];
-const classes  = [`single`,`multi`]
+
 let index = 0;
 let i = 0;
 const wrape = document.querySelector('div.wrapper');
