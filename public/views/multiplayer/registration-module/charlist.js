@@ -128,7 +128,7 @@ export default class Choose extends Block{
         this.appendChildBlock('footbar',new Block ('a',['enter']).setText('ENTER'))
         wrape.appendChild(this._element)
 
-        document.querySelector('a.back').setAttribute('value','/mode')
+        document.querySelector('a.enter').setAttribute('value','/mode')
 
 
         this.appendChildBlock('footbar',new Block ('a',['back']).setText('BACK'))
