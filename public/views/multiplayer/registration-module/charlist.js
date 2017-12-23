@@ -1,6 +1,7 @@
 'use strict'
 import Block from '../../baseview'
 import './module.scss'
+import Custom from '../../custom-module/custom-module'
 
 import {setter} from '../../main'
 
@@ -117,6 +118,7 @@ export default class Choose extends Block{
         }
         wrape.appendChild(this._element);
         let test = setter();
+        console.log(test)
         this.appendChildBlock('name',new Block('h3',['name']).setText(test))
         this.footbarCreate();
         this.leftbar();

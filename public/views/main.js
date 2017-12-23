@@ -64,7 +64,7 @@ wrapper.appendChildBlock('menu',new Block('div',['menu']))
 
 function setter(input) {
     console.log(input);
-    return input;
+    return test;
 }
 export {signup,signin,setter };
 
