@@ -83,8 +83,9 @@ export default class Choose extends Block{
         for (let i = 0; i!==4;++i) {
             enityName[i].innerHTML = name[i];
         }
-        left_bar.appendChild(document.createElement('a'))
-        let character = left_bar.querySelector('a').setAttribute('class','new_character')
+
+        let character = left_bar.appendChild(document.createElement('a'))
+        character.setAttribute('class','new_character')
         character.innerHTML =`CREATE`
         document.querySelector('a.new_character').addEventListener('click', () => {
                 new Custom().creation('Coming soon....')
