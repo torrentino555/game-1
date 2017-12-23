@@ -1497,20 +1497,20 @@ class DemoGameModule {
                     if (i >= 0 && j >= 0 && i < this.WIDTH && j < this.HEIGHT) {
                         //GameManager.log('WTF is ' + i + ' ' + j);
                         if (global.tiledMap[i][j].isOccupied() && global.tiledMap[i][j].getInhabitant().type === action.sender.getInhabitant().type) {
-                            __WEBPACK_IMPORTED_MODULE_4__GameManager__["a" /* default */].log('this is AOE hill on someone: ' + i + ' ' + j);
+                            // GameManager.log('this is AOE hill on someone: ' + i + ' ' + j);
                             healedAllies.push(global.tiledMap[i][j].getInhabitant());
-                            __WEBPACK_IMPORTED_MODULE_4__GameManager__["a" /* default */].log('health before: ' + global.tiledMap[i][j].getInhabitant().healthpoint);
+                            // GameManager.log('health before: ' +global.tiledMap[i][j].getInhabitant().healthpoint);
                             action.sender.getInhabitant().useHealSkill(global.tiledMap[i][j].getInhabitant(), action.ability);
-                            __WEBPACK_IMPORTED_MODULE_4__GameManager__["a" /* default */].log('health after: ' + global.tiledMap[i][j].getInhabitant().healthpoint);
+                            // GameManager.log('health after: ' +global.tiledMap[i][j].getInhabitant().healthpoint);
                         }
                     }
                 }
             }
         } else {
-            __WEBPACK_IMPORTED_MODULE_4__GameManager__["a" /* default */].log('health before: ' + action.target.getInhabitant().healthpoint);
+            __WEBPACK_IMPORTED_MODULE_4__GameManager__["a" /* default */].log('health before: ' + action.target.getInhabitant().healthpoint[0]);
             action.sender.getInhabitant().useHealSkill(action.target.getInhabitant(), action.ability);
             healedAllies.push(action.target.getInhabitant());
-            __WEBPACK_IMPORTED_MODULE_4__GameManager__["a" /* default */].log('health after: ' + action.target.getInhabitant().healthpoint);
+            __WEBPACK_IMPORTED_MODULE_4__GameManager__["a" /* default */].log('health after: ' + action.target.getInhabitant().healthpoint[0]);
         }
         this.gameManager.unitManager.unitAttack(action.ability.name, action.sender, action.target, healedAllies);
     }
@@ -1527,10 +1527,10 @@ class DemoGameModule {
             __WEBPACK_IMPORTED_MODULE_4__GameManager__["a" /* default */].log('target on ' + action.target.xpos + ' ' + action.target.ypos);
             for (let i = action.target.xpos - action.ability.area; i <= action.target.xpos + action.ability.area; i++) {
                 for (let j = action.target.ypos - action.ability.area; j <= action.target.ypos + action.ability.area; j++) {
-                    __WEBPACK_IMPORTED_MODULE_4__GameManager__["a" /* default */].log("i: " + i + " j: " + j);
+                    // GameManager.log("i: " + i + " j: " + j);
                     if (i >= 0 && j >= 0 && i < this.WIDTH && j < this.HEIGHT) {
                         if (global.tiledMap[i][j].isOccupied() && global.tiledMap[i][j].getInhabitant().deadMark === false) {
-                            __WEBPACK_IMPORTED_MODULE_4__GameManager__["a" /* default */].log(global.tiledMap[i][j].getInhabitant().name + " IS WOUNDED");
+                            // GameManager.log(global.tiledMap[i][j].getInhabitant().name + " IS WOUNDED");
                             action.sender.getInhabitant().useDamageSkill(global.tiledMap[i][j].getInhabitant(), action.ability);
                             if (global.tiledMap[i][j].getInhabitant().isDead()) {
                                 deadEnemies.push(global.tiledMap[i][j].getInhabitant());
@@ -1543,9 +1543,9 @@ class DemoGameModule {
                 }
             }
         } else {
-            __WEBPACK_IMPORTED_MODULE_4__GameManager__["a" /* default */].log("health before: " + action.target.getInhabitant().healthpoint);
+            __WEBPACK_IMPORTED_MODULE_4__GameManager__["a" /* default */].log("health before: " + action.target.getInhabitant().healthpoint[0]);
             action.sender.getInhabitant().useDamageSkill(action.target.getInhabitant(), action.ability);
-            __WEBPACK_IMPORTED_MODULE_4__GameManager__["a" /* default */].log('health after: ' + action.target.getInhabitant().healthpoint);
+            __WEBPACK_IMPORTED_MODULE_4__GameManager__["a" /* default */].log('health after: ' + action.target.getInhabitant().healthpoint[0]);
             if (action.target.getInhabitant().isDead()) {
                 deadEnemies.push(action.target.getInhabitant());
             } else {
@@ -1557,11 +1557,11 @@ class DemoGameModule {
 
             this.gameManager.unitManager.unitAttackAndKill(action.ability.name, action.sender, action.target, deadEnemies, woundedEnemies);
             for (let i = 0; i < deadEnemies.length; i++) {
-                __WEBPACK_IMPORTED_MODULE_4__GameManager__["a" /* default */].log(deadEnemies[i].name + ' IS DEAD! ', 'red');
+                // GameManager.log(deadEnemies[i].name + ' IS DEAD! ', 'red');
                 this.initiativeLine.RemoveUnit(deadEnemies[i]);
             }
         } else {
-            __WEBPACK_IMPORTED_MODULE_4__GameManager__["a" /* default */].log('SOMEONE GET WOUNDED: ', woundedEnemies);
+            // GameManager.log('SOMEONE GET WOUNDED: ', woundedEnemies);
             this.gameManager.unitManager.unitAttack(action.ability.name, action.sender, action.target, woundedEnemies);
         }
     }
@@ -1608,7 +1608,7 @@ class DemoGameModule {
     generateEnemies() {
         let newEnemies = [];
         for (let i = 0; i < this.ENEMIESSIZE; i++) {
-            __WEBPACK_IMPORTED_MODULE_4__GameManager__["a" /* default */].log(i);
+            // GameManager.log(i);
             let Skeleton = new __WEBPACK_IMPORTED_MODULE_1__Unit__["a" /* default */]();
             let texture;
             if (i % 2 === 0) {
@@ -1703,8 +1703,7 @@ class DemoGameModule {
     beginTurn() {
         this.activeUnit = this.initiativeLine.NextUnit();
         __WEBPACK_IMPORTED_MODULE_4__GameManager__["a" /* default */].log('This turn: ');
-        __WEBPACK_IMPORTED_MODULE_4__GameManager__["a" /* default */].log(this.initiativeLine.ShowEveryoneInLine());
-        __WEBPACK_IMPORTED_MODULE_4__GameManager__["a" /* default */].log(this.activeUnit.name + ' = now your move! Cause initiative:' + this.activeUnit.initiative);
+        __WEBPACK_IMPORTED_MODULE_4__GameManager__["a" /* default */].log(this.activeUnit.name + ' = now your move!');
         this.activeUnit.actionPoint = 2;
         this.gameManager.unitManager.activeUnit(this.activeUnit);
         this.sendPossibleMoves();
@@ -3167,50 +3166,54 @@ class GameManager {
 
     initEvents() {
         this.mouseMoveListener = document.addEventListener('mousemove', function (event) {
-            let x = event.clientX / window.innerWidth;
-            let y = event.clientY / window.innerHeight;
-            let xMin = (1 + global.mapShiftX) / 2;
-            let xMax = xMin + 0.6;
-            let yMin = (1 - global.mapShiftY) / 2;
-            let yMax = yMin + 0.8;
-            this.tiles.forEach(function (tile) {
-                this.spriteManager.deleteSprite(tile);
-            }.bind(this));
-            this.tiles = [];
-            if (x >= xMin && x < xMax && y >= yMin && y < yMax && document.getElementById('win').style.display === 'none' && document.getElementsByClassName('settings')[0].style.display === 'none' && !this.state.state) {
-                let i = Math.floor((x - xMin) / 0.6 / (1 / 16));
-                let j = Math.floor((y - yMin) / 0.8 / (1 / 12));
-                if (i !== this.lastI && j !== this.lastJ && i < 16 && j < 12 && this.unitManager.massiveSkill) {
-                    let halfArea = Math.floor(this.unitManager.activeSkill.area / 2) + 1;
-                    let tiles = [];
-                    for (let ii = i - halfArea; ii <= i + halfArea; ii++) {
-                        for (let jj = j - halfArea; jj <= j + halfArea; jj++) {
-                            if (ii >= 0 && ii < 16 && jj >= 0 && jj < 12) {
-                                tiles.push(global.tiledMap[ii][jj]);
+            if (window.location.pathname === '/singleplay') {
+                let x = event.clientX / window.innerWidth;
+                let y = event.clientY / window.innerHeight;
+                let xMin = (1 + global.mapShiftX) / 2;
+                let xMax = xMin + 0.6;
+                let yMin = (1 - global.mapShiftY) / 2;
+                let yMax = yMin + 0.8;
+                this.tiles.forEach(function (tile) {
+                    this.spriteManager.deleteSprite(tile);
+                }.bind(this));
+                this.tiles = [];
+                if (x >= xMin && x < xMax && y >= yMin && y < yMax && document.getElementById('win').style.display === 'none' && document.getElementsByClassName('settings')[0].style.display === 'none' && !this.state.state) {
+                    let i = Math.floor((x - xMin) / 0.6 / (1 / 16));
+                    let j = Math.floor((y - yMin) / 0.8 / (1 / 12));
+                    if (i !== this.lastI && j !== this.lastJ && i < 16 && j < 12 && this.unitManager.massiveSkill) {
+                        let halfArea = Math.floor(this.unitManager.activeSkill.area / 2) + 1;
+                        let tiles = [];
+                        for (let ii = i - halfArea; ii <= i + halfArea; ii++) {
+                            for (let jj = j - halfArea; jj <= j + halfArea; jj++) {
+                                if (ii >= 0 && ii < 16 && jj >= 0 && jj < 12) {
+                                    tiles.push(global.tiledMap[ii][jj]);
+                                }
                             }
                         }
+                        this.unitManager.drawActiveTiles(tiles);
+                    } else if (i < 16 && j < 12 && global.tiledMap[i][j].active) {
+                        this.spriteManager.getSprite(this.activeElem).setTrans(__WEBPACK_IMPORTED_MODULE_3__Utils__["a" /* default */].translationOnMap(j, i));
+                    } else {
+                        this.spriteManager.getSprite(this.activeElem).setTrans([-2, -2]);
                     }
-                    this.unitManager.drawActiveTiles(tiles);
-                } else if (i < 16 && j < 12 && global.tiledMap[i][j].active) {
-                    this.spriteManager.getSprite(this.activeElem).setTrans(__WEBPACK_IMPORTED_MODULE_3__Utils__["a" /* default */].translationOnMap(j, i));
-                } else {
-                    this.spriteManager.getSprite(this.activeElem).setTrans([-2, -2]);
                 }
             }
         }.bind(this));
         this.clickListener = document.addEventListener('click', event => {
-            let x = event.clientX / this.engine.gl.canvas.clientWidth;
-            let y = event.clientY / this.engine.gl.canvas.clientHeight;
-            if (x >= 0.2 && x <= 0.3 && y <= 0.05 && document.getElementById('win').style.display === 'none' && document.getElementsByClassName('settings')[0].style.display === 'none') {
-                let action = new __WEBPACK_IMPORTED_MODULE_7__Action__["a" /* default */]();
-                action.sender = null;
-                action.target = null;
-                action.ability = null;
-                global.actionDeque.push(action);
-            } else if (x >= 0.94 && x <= 0.975 && y >= 0.015 && y <= 0.077222 && document.getElementById('win').style.display === 'none' && document.getElementsByClassName('settings')[0].style.display === 'none') {
-                document.getElementsByClassName('settings')[0].style.display = 'block';
-                let container = document.getElementsByClassName('container')[0];
-                container.className += ' overlay';
+            if (window.location.pathname === '/singleplay') {
+                let x = event.clientX / this.engine.gl.canvas.clientWidth;
+                let y = event.clientY / this.engine.gl.canvas.clientHeight;
+                if (x >= 0.2 && x <= 0.3 && y <= 0.05 && document.getElementById('win').style.display === 'none' && document.getElementsByClassName('settings')[0].style.display === 'none') {
+                    let action = new __WEBPACK_IMPORTED_MODULE_7__Action__["a" /* default */]();
+                    action.sender = null;
+                    action.target = null;
+                    action.ability = null;
+                    global.actionDeque.push(action);
+                } else if (x >= 0.94 && x <= 0.975 && y >= 0.015 && y <= 0.077222 && document.getElementById('win').style.display === 'none' && document.getElementsByClassName('settings')[0].style.display === 'none') {
+                    document.getElementsByClassName('settings')[0].style.display = 'block';
+                    let container = document.getElementsByClassName('container')[0];
+                    container.className += ' overlay';
+                }
             }
         });
         document.getElementsByClassName('settings')[0].lastElementChild.firstElementChild.addEventListener('click', function () {
@@ -3641,31 +3644,33 @@ class UnitManager {
         this.spriteManager.getSprite(this.actionPoint).setTexture(this.textures[6]);
         this.spriteManager.getSprite(this.activeTile).setTrans(__WEBPACK_IMPORTED_MODULE_1__Utils__["a" /* default */].translationOnMap(unit.ypos, unit.xpos));
         document.onmousedown = function (event) {
-            let x = event.clientX / window.innerWidth;
-            let y = event.clientY / window.innerHeight;
-            let xMin = (1 + global.mapShiftX) / 2;
-            let xMax = xMin + 0.6;
-            let yMin = (1 - global.mapShiftY) / 2;
-            let yMax = yMin + 0.8;
-            console.log('onmousedown STATE: ' + this.state.state);
-            if (event.which === 1 && x >= xMin && x < xMax && y >= yMin && y < yMax && document.getElementById('win').style.display === 'none' && document.getElementsByClassName('settings')[0].style.display === 'none' && !this.state.state) {
-                let i = Math.floor((x - xMin) / 0.6 / (1 / 16));
-                let j = Math.floor((y - yMin) / 0.8 / (1 / 12));
-                if (global.tiledMap[i][j].active || this.massiveSkill) {
-                    let action = new __WEBPACK_IMPORTED_MODULE_2__Action__["a" /* default */]();
-                    action.sender = global.tiledMap[unit.xpos][unit.ypos];
-                    action.target = global.tiledMap[i][j];
-                    action.ability = this.activeSkill.name === 'Move' ? null : this.activeSkill;
-                    global.actionDeque.push(action);
-                    if (this.massiveSkill) {
-                        this.deleteLastActiveTiles();
+            if (window.location.pathname === '/singleplay') {
+                let x = event.clientX / window.innerWidth;
+                let y = event.clientY / window.innerHeight;
+                let xMin = (1 + global.mapShiftX) / 2;
+                let xMax = xMin + 0.6;
+                let yMin = (1 - global.mapShiftY) / 2;
+                let yMax = yMin + 0.8;
+                console.log('onmousedown STATE: ' + this.state.state);
+                if (event.which === 1 && x >= xMin && x < xMax && y >= yMin && y < yMax && document.getElementById('win').style.display === 'none' && document.getElementsByClassName('settings')[0].style.display === 'none' && !this.state.state) {
+                    let i = Math.floor((x - xMin) / 0.6 / (1 / 16));
+                    let j = Math.floor((y - yMin) / 0.8 / (1 / 12));
+                    if (global.tiledMap[i][j].active || this.massiveSkill) {
+                        let action = new __WEBPACK_IMPORTED_MODULE_2__Action__["a" /* default */]();
+                        action.sender = global.tiledMap[unit.xpos][unit.ypos];
+                        action.target = global.tiledMap[i][j];
+                        action.ability = this.activeSkill.name === 'Move' ? null : this.activeSkill;
+                        global.actionDeque.push(action);
+                        if (this.massiveSkill) {
+                            this.deleteLastActiveTiles();
+                        }
                     }
+                } else if (event.which === 1 && x >= 0.33 && x <= 0.675 && y >= 0 && y <= 0.07 && document.getElementById('win').style.display === 'none' && document.getElementsByClassName('settings')[0].style.display === 'none') {
+                    let i = Math.floor((x - 0.33) / (0.35 / 10));
+                    this.setCurrentSkill(i);
                 }
-            } else if (event.which === 1 && x >= 0.33 && x <= 0.675 && y >= 0 && y <= 0.07 && document.getElementById('win').style.display === 'none' && document.getElementsByClassName('settings')[0].style.display === 'none') {
-                let i = Math.floor((x - 0.33) / (0.35 / 10));
-                this.setCurrentSkill(i);
+                return false;
             }
-            return false;
         }.bind(this);
     }
 
