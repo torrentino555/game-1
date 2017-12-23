@@ -93,7 +93,7 @@ export default class Choose extends Block{
         })
     }
     footbarCreate() {
-        let character = document.querySelector('div.').appendChild(document.createElement('a'))
+        let character = document.querySelector('div.choose').appendChild(document.createElement('a'))
         character.setAttribute('class','new_character')
         character.innerHTML =`CREATE`
         document.querySelector('a.new_character').addEventListener('click', () => {
