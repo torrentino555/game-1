@@ -6,6 +6,7 @@ export default class Skill{
         this.area = 1;
         this.damage = [0,0];
         this.cooldown = 0;
+        this.currentCooldown = 0;
     }
 
 
@@ -16,6 +17,7 @@ export default class Skill{
         this.area = area;
         this.damage = damage;
         this.cooldown = cooldown;
+        this.currentCooldown = 0;
     }
 
     getDesciption() {
