@@ -84,12 +84,6 @@ export default class Choose extends Block{
             enityName[i].innerHTML = name[i];
         }
 
-        let character = left_bar.appendChild(document.createElement('a'))
-        character.setAttribute('class','new_character')
-        character.innerHTML =`CREATE`
-        document.querySelector('a.new_character').addEventListener('click', () => {
-                new Custom().creation('Coming soon....')
-        })
 
        let del =  left_bar.appendChild(document.createElement('a'))
         del.setAttribute('class','delete')
@@ -99,6 +93,13 @@ export default class Choose extends Block{
         })
     }
     footbarCreate() {
+        let character = document.querySelector('div.').appendChild(document.createElement('a'))
+        character.setAttribute('class','new_character')
+        character.innerHTML =`CREATE`
+        document.querySelector('a.new_character').addEventListener('click', () => {
+            new Custom().creation('Coming soon....')
+        })
+
         this.appendChildBlock('footbar',new Block ('a',['enter']).setText('ENTER'))
         wrape.appendChild(this._element)
 
@@ -118,7 +119,6 @@ export default class Choose extends Block{
             wrape.removeChild(wrape.firstChild);
         }
 
-        wrape.appendChild(this._element);
         this.footbarCreate();
         this.leftbar();
         this.choose();
