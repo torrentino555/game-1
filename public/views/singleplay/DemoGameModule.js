@@ -42,11 +42,9 @@ export default class DemoGameModule {
         this.initiativeLine.PushEveryone(this.players, this.enemies);
         this.setPlayersPositions(this.players);
         this.setEnemiesPositions(this.enemies);
-        GameManager.log('Everyone on positions: ');
-        //отрисовка персонажей
+        GameManager.log('Everyone on positions!', green);
 
         for (let i = 0; i < this.PARTYSIZE + this.ENEMIESSIZE; i++) {
-            GameManager.log(this.enemies);
             this.gameManager.unitManager.addUnit(this.initiativeLine.queue[i]);
         }
 
@@ -68,7 +66,7 @@ export default class DemoGameModule {
             //где-то здесь есть работа с АИ
             //отрисовка скилов для каждого персонажа, информация для dropdown и позиций
             if (global.actionDeque.length > 0) {
-                GameManager.log('action begin', 'green');
+                GameManager.log('ACTION!', 'green');
                 this.activeUnit.actionPoint--;
                 let action = global.actionDeque.shift();
                 if (action.isMovement() && !action.target.isOccupied()) {
@@ -119,7 +117,7 @@ export default class DemoGameModule {
         let currentTile = action.target;
         while (allMoves.get(currentTile) !== null) {
             path.push(currentTile);
-            GameManager.log('current tile - [' + currentTile.xpos + ']' + '[' + currentTile.ypos + ']');
+            //GameManager.log('current tile - [' + currentTile.xpos + ']' + '[' + currentTile.ypos + ']');
             currentTile = allMoves.get(currentTile);
         }
         GameManager.log(path);
@@ -128,8 +126,8 @@ export default class DemoGameModule {
         action.target.occupy(toMove);
         this.activeUnit.xpos = action.target.xpos;
         this.activeUnit.ypos = action.target.ypos;
-        GameManager.log('check on unoccupy: ' + action.sender.isOccupied());
-        GameManager.log('check on occupy: ' + action.target.isOccupied());
+        //GameManager.log('check on unoccupy: ' + action.sender.isOccupied());
+        //GameManager.log('check on occupy: ' + action.target.isOccupied());
     }
 
     makeHill(action) {
@@ -140,20 +138,22 @@ export default class DemoGameModule {
             for(let i = action.target.xpos-action.ability.area; i <= action.target.xpos + action.ability.area; i++) {
                 for(let j = action.target.ypos-action.ability.area; j <= action.target.ypos + action.ability.area; j++) {
                     if(i >= 0 && j >= 0 && i < this.WIDTH && j < this.HEIGHT) {
-                        GameManager.log('WTF is ' + i + ' ' + j);
+                        //GameManager.log('WTF is ' + i + ' ' + j);
                         if(global.tiledMap[i][j].isOccupied() && global.tiledMap[i][j].getInhabitant().type === action.sender.getInhabitant().type) {
                             GameManager.log('this is AOE hill on someone: ' + i + ' ' + j);
                             healedAllies.push(global.tiledMap[i][j].getInhabitant());
+                            GameManager.log('health before: ' +global.tiledMap[i][j].getInhabitant().healthpoint);
                             action.sender.getInhabitant().useHealSkill(global.tiledMap[i][j].getInhabitant(), action.ability);
-                            GameManager.log('health end: ' +global.tiledMap[i][j].getInhabitant().healthpoint);
+                            GameManager.log('health after: ' +global.tiledMap[i][j].getInhabitant().healthpoint);
                         }
                     }
                 }
             }
         } else {
+            GameManager.log('health before: ' + action.target.getInhabitant().healthpoint);
             action.sender.getInhabitant().useHealSkill(action.target.getInhabitant(), action.ability);
             healedAllies.push(action.target.getInhabitant());
-            GameManager.log('health end: ' + action.target.getInhabitant().healthpoint);
+            GameManager.log('health after: ' + action.target.getInhabitant().healthpoint);
         }
         this.gameManager.unitManager.unitAttack(action.ability.name, action.sender, action.target, healedAllies);
     }
@@ -162,8 +162,7 @@ export default class DemoGameModule {
         let woundedEnemies = [];
         let deadEnemies = [];
         GameManager.log(action.sender.getInhabitant().name + ' make damage');
-        GameManager.log('this is damage: ' + action.ability.name);
-        // GameManager.log("health begin: " + action.target.getInhabitant().healthpoint);
+        GameManager.log('this is damage skill: ' + action.ability.name);
 
         //AOE DAMAGE
         if(action.ability.typeOfArea === 'circle') {
@@ -182,7 +181,6 @@ export default class DemoGameModule {
                             } else {
                                 woundedEnemies.push(global.tiledMap[i][j].getInhabitant());
                             }
-                            //GameManager.log("health end: " + action.target.getInhabitant().healthpoint);
                         }
                     }
 
@@ -190,24 +188,26 @@ export default class DemoGameModule {
             }
 
         } else {
+            GameManager.log("health before: " + action.target.getInhabitant().healthpoint);
             action.sender.getInhabitant().useDamageSkill(action.target.getInhabitant(), action.ability);
+            GameManager.log('health after: ' + action.target.getInhabitant().healthpoint);
             if(action.target.getInhabitant().isDead()) {
                 deadEnemies.push(action.target.getInhabitant());
             } else {
                 woundedEnemies.push(action.target.getInhabitant());
             }
-            GameManager.log('health end: ' + action.target.getInhabitant().healthpoint);
         }
 
         if (deadEnemies.length > 0) {
-            // GameManager.log(action.target.getInhabitant().name + " IS DEAD");
 
             this.gameManager.unitManager.unitAttackAndKill(action.ability.name, action.sender, action.target, deadEnemies, woundedEnemies);
             for(let i = 0; i < deadEnemies.length; i++) {
+                GameManager.log(deadEnemies[i].name + ' IS DEAD! ', red);
                 this.initiativeLine.RemoveUnit(deadEnemies[i]);
-            }            //graph.deleteFromLowBar(action.target.getInhabitant().barIndex);
+            }
         } else {
             GameManager.log('SOMEONE GET WOUNDED: ', woundedEnemies);
+            GameManager.log(action.target.getInhabitant().name + ' IS DEAD! ', red);
             this.gameManager.unitManager.unitAttack(action.ability.name, action.sender, action.target, woundedEnemies);
         }
     }
