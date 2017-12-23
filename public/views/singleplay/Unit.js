@@ -108,7 +108,7 @@ export default class Unit {
         let secondSkill = new Skill();
         secondSkill.createSkill('Shield Strike', 'Smash enemy with a shield, knocking him down for 1 turn', 'point', 1, this.damage, 2);
 
-        this.skills.push(attackSkill);
+        this.skills.push(attackSkill, firstSkill, secondSkill);
     }
 
     isDead() {
@@ -144,8 +144,24 @@ export default class Unit {
     }
 
     cooldownDecrement() {
-        this.skills[1].decrementCurrentCooldown();
         this.skills[2].decrementCurrentCooldown();
+        this.skills[3].decrementCurrentCooldown();
+    }
+
+    isCooldown(name) {
+        if (this.skills[2].name === name) {
+            return this.skills[2].currentCooldown !== 0;
+        } else if (this.skills[3].name === name) {
+            return this.skills[3].currentCooldown !== 0;
+        }
+    }
+
+    setCooldown(name){
+        if (this.skills[2].name === name) {
+            this.skills[2].currentCooldown = this.skills[2].cooldown;
+        } else if (this.skills[3].name === name) {
+            this.skills[3].currentCooldown = this.skills[3].cooldown;
+        }
     }
 
 }

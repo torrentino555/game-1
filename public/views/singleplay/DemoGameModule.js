@@ -42,7 +42,7 @@ export default class DemoGameModule {
         this.initiativeLine.PushEveryone(this.players, this.enemies);
         this.setPlayersPositions(this.players);
         this.setEnemiesPositions(this.enemies);
-        GameManager.log('Everyone on positions!', green);
+        GameManager.log('Everyone on positions!', 'green');
 
         for (let i = 0; i < this.PARTYSIZE + this.ENEMIESSIZE; i++) {
             this.gameManager.unitManager.addUnit(this.initiativeLine.queue[i]);
@@ -66,19 +66,19 @@ export default class DemoGameModule {
             //где-то здесь есть работа с АИ
             //отрисовка скилов для каждого персонажа, информация для dropdown и позиций
             if (global.actionDeque.length > 0) {
-                if (global.actionDeque.ability.isAbility() && global.actionDeque.ability.currentCooldown > 0) {
-                    GameManager.log("YOU CAN'T USE SKILLS WITH CURRENT COOLDOWN > 0", red);
+                let action = global.actionDeque.shift();
+                if (action.isAbility() && this.activeUnit.isCooldown(action.ability.name) > 0) {
+                    GameManager.log("YOU CAN'T USE SKILLS WITH CURRENT COOLDOWN > 0", 'red');
                 } else {
                     GameManager.log('ACTION!', 'green');
                     this.activeUnit.actionPoint--;
                     this.activeUnit.cooldownDecrement();
-                    let action = global.actionDeque.shift();
                     if (action.isMovement() && !action.target.isOccupied()) {
                         this.makeMove(action);
                         // } else if (action.isPrepareAbility()) {
                         //     this.makePrepareAbility(action);
                     } else if (action.isAbility()) {
-                        action.ability.currentCooldown = action.ability.cooldown;
+                        this.activeUnit.setCooldown(action.ability.name);
                         GameManager.log('this is ability: ' + action.ability.name);
                         if (action.ability.damage[1] < 0) {
                             this.makeHill(action);
@@ -126,7 +126,6 @@ export default class DemoGameModule {
             //GameManager.log('current tile - [' + currentTile.xpos + ']' + '[' + currentTile.ypos + ']');
             currentTile = allMoves.get(currentTile);
         }
-        GameManager.log(path);
         this.gameManager.animtaionManager.movingTo(action.sender, path);
         action.sender.unoccupy();
         action.target.occupy(toMove);
@@ -208,12 +207,11 @@ export default class DemoGameModule {
 
             this.gameManager.unitManager.unitAttackAndKill(action.ability.name, action.sender, action.target, deadEnemies, woundedEnemies);
             for(let i = 0; i < deadEnemies.length; i++) {
-                GameManager.log(deadEnemies[i].name + ' IS DEAD! ', red);
+                GameManager.log(deadEnemies[i].name + ' IS DEAD! ', 'red');
                 this.initiativeLine.RemoveUnit(deadEnemies[i]);
             }
         } else {
             GameManager.log('SOMEONE GET WOUNDED: ', woundedEnemies);
-            GameManager.log(action.target.getInhabitant().name + ' IS DEAD! ', red);
             this.gameManager.unitManager.unitAttack(action.ability.name, action.sender, action.target, woundedEnemies);
         }
     }
