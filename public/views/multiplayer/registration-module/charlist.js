@@ -102,7 +102,7 @@ export default class Choose extends Block{
         wrape.appendChild(this._element)
 
         let enter =  wrape.appendChild(document.createElement('a'))
-        enter.setAttribute('class','new_character')
+        enter.setAttribute('class','enter')
 
         document.querySelector('a.enter').setAttribute('value','/mode')
 
