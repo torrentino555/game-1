@@ -66,6 +66,6 @@ function setter(input) {
     console.log(input);
     return input;
 }
-export {signup,signin,setter};
+export {signup,signin,setter };
 
 

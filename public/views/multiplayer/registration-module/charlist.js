@@ -2,7 +2,7 @@
 import Block from '../../baseview'
 import './module.scss'
 
-import setter from '../../main'
+import {setter} from '../../main'
 
 const enity = [
     {
