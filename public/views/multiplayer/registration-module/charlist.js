@@ -1,9 +1,9 @@
 'use strict'
-import  Block from '../../baseview'
+import Block from '../../baseview'
 import './module.scss'
-import Router from '../../../modules/router'
-import Custom from '../../custom-module/custom-module'
-import userService from '../../../servises/user-service'
+
+import setter from '../../main'
+
 const enity = [
     {
         src:'../../../images/warrior.png'
@@ -31,7 +31,6 @@ export default class Choose extends Block{
         return this;
     }
 
-
     createChildren () {
         this.appendChildBlock('img',new Block('img', ['person']));
     }
@@ -57,11 +56,11 @@ export default class Choose extends Block{
 
         document.querySelector('a.choose_left').addEventListener('click', () => {
             if (index !==0) {
-                --i;
+            --i;
                 if (i !== 3) {
                     enityName[i + 1 ].style.color = "#c58818"
                 }
-                --index;
+--index;
                 enityName[i].style.color = "white";
                 document.querySelector('img.person').setAttribute('src', enity[index].src);
             }
@@ -69,8 +68,7 @@ export default class Choose extends Block{
     }
 
     leftbar () {
-        let left_bar= document.querySelector('div.choose').appendChild(document.createElement('div'))
-        left_bar.setAttribute('class','left_bar')
+        this.appendChildBlock('left_bar',new Block ('div',['left_bar']))
         wrape.appendChild(this._element)
         let list = document.createElement("ul");
         document.querySelector('div.left_bar').appendChild(list)
@@ -84,18 +82,22 @@ export default class Choose extends Block{
         for (let i = 0; i!==4;++i) {
             enityName[i].innerHTML = name[i];
         }
-        left_bar.appendChild(document.createElement('a'))
-        left_bar.document.querySelector('a').setAttribute('class','new_character')
+
+        this.appendChildBlock('new_character',new Block ('a',['new_character']).setText('CREATE'))
+        wrape.appendChild(this._element)
+
         document.querySelector('a.new_character').addEventListener('click', () => {
-                new Custom().creation('Coming soon....')
+            new Custom().creation('Coming soon....')
         })
+
 
         this.appendChildBlock('new_character',new Block ('a',['delete']).setText('DELETE'))
         wrape.appendChild(this._element)
 
         document.querySelector('a.delete').addEventListener('click', () => {
-                new Custom().creation('Coming soon....')
+            new Custom().creation('Coming soon....')
         })
+
     }
     footbarCreate() {
         this.appendChildBlock('footbar',new Block ('a',['enter']).setText('ENTER'))
@@ -103,18 +105,19 @@ export default class Choose extends Block{
 
         document.querySelector('a.enter').setAttribute('value','/mode')
 
-
         this.appendChildBlock('footbar',new Block ('a',['back']).setText('BACK'))
         wrape.appendChild(this._element)
         document.querySelector('a.back').setAttribute('value','/')
 
+
     }
     creation () {
-        while (wrape.firstChild) {
-            wrape.removeChild(wrape.firstChild);
+        while (document.querySelector('div.wrapper').firstChild) {
+            document.querySelector('div.wrapper').removeChild(document.querySelector('div.wrapper').firstChild);
         }
-
         wrape.appendChild(this._element);
+        let test = setter();
+        this.appendChildBlock('name',new Block('h3',['name']).setText(test))
         this.footbarCreate();
         this.leftbar();
         this.choose();
