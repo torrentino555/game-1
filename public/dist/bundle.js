@@ -149,8 +149,8 @@ class Block {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__views_main__ = __webpack_require__(8);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__views_custom_module_custom_module__ = __webpack_require__(12);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__views_main__ = __webpack_require__(9);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__views_custom_module_custom_module__ = __webpack_require__(8);
 
 
 class Router {
@@ -221,88 +221,6 @@ class Router {
 
 /***/ }),
 /* 2 */
-/***/ (function(module, exports) {
-
-/*
-	MIT License http://www.opensource.org/licenses/mit-license.php
-	Author Tobias Koppers @sokra
-*/
-// css base code, injected by the css-loader
-module.exports = function(useSourceMap) {
-	var list = [];
-
-	// return the list of modules as css string
-	list.toString = function toString() {
-		return this.map(function (item) {
-			var content = cssWithMappingToString(item, useSourceMap);
-			if(item[2]) {
-				return "@media " + item[2] + "{" + content + "}";
-			} else {
-				return content;
-			}
-		}).join("");
-	};
-
-	// import a list of modules into the list
-	list.i = function(modules, mediaQuery) {
-		if(typeof modules === "string")
-			modules = [[null, modules, ""]];
-		var alreadyImportedModules = {};
-		for(var i = 0; i < this.length; i++) {
-			var id = this[i][0];
-			if(typeof id === "number")
-				alreadyImportedModules[id] = true;
-		}
-		for(i = 0; i < modules.length; i++) {
-			var item = modules[i];
-			// skip already imported module
-			// this implementation is not 100% perfect for weird media query combinations
-			//  when a module is imported multiple times with different media queries.
-			//  I hope this will never occur (Hey this way we have smaller bundles)
-			if(typeof item[0] !== "number" || !alreadyImportedModules[item[0]]) {
-				if(mediaQuery && !item[2]) {
-					item[2] = mediaQuery;
-				} else if(mediaQuery) {
-					item[2] = "(" + item[2] + ") and (" + mediaQuery + ")";
-				}
-				list.push(item);
-			}
-		}
-	};
-	return list;
-};
-
-function cssWithMappingToString(item, useSourceMap) {
-	var content = item[1] || '';
-	var cssMapping = item[3];
-	if (!cssMapping) {
-		return content;
-	}
-
-	if (useSourceMap && typeof btoa === 'function') {
-		var sourceMapping = toComment(cssMapping);
-		var sourceURLs = cssMapping.sources.map(function (source) {
-			return '/*# sourceURL=' + cssMapping.sourceRoot + source + ' */'
-		});
-
-		return [content].concat(sourceURLs).concat([sourceMapping]).join('\n');
-	}
-
-	return [content].join('\n');
-}
-
-// Adapted from convert-source-map (MIT)
-function toComment(sourceMap) {
-	// eslint-disable-next-line no-undef
-	var base64 = btoa(unescape(encodeURIComponent(JSON.stringify(sourceMap))));
-	var data = 'sourceMappingURL=data:application/json;charset=utf-8;base64,' + base64;
-
-	return '/*# ' + data + ' */';
-}
-
-
-/***/ }),
-/* 3 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /*
@@ -661,6 +579,88 @@ function updateLink (link, options, obj) {
 
 
 /***/ }),
+/* 3 */
+/***/ (function(module, exports) {
+
+/*
+	MIT License http://www.opensource.org/licenses/mit-license.php
+	Author Tobias Koppers @sokra
+*/
+// css base code, injected by the css-loader
+module.exports = function(useSourceMap) {
+	var list = [];
+
+	// return the list of modules as css string
+	list.toString = function toString() {
+		return this.map(function (item) {
+			var content = cssWithMappingToString(item, useSourceMap);
+			if(item[2]) {
+				return "@media " + item[2] + "{" + content + "}";
+			} else {
+				return content;
+			}
+		}).join("");
+	};
+
+	// import a list of modules into the list
+	list.i = function(modules, mediaQuery) {
+		if(typeof modules === "string")
+			modules = [[null, modules, ""]];
+		var alreadyImportedModules = {};
+		for(var i = 0; i < this.length; i++) {
+			var id = this[i][0];
+			if(typeof id === "number")
+				alreadyImportedModules[id] = true;
+		}
+		for(i = 0; i < modules.length; i++) {
+			var item = modules[i];
+			// skip already imported module
+			// this implementation is not 100% perfect for weird media query combinations
+			//  when a module is imported multiple times with different media queries.
+			//  I hope this will never occur (Hey this way we have smaller bundles)
+			if(typeof item[0] !== "number" || !alreadyImportedModules[item[0]]) {
+				if(mediaQuery && !item[2]) {
+					item[2] = mediaQuery;
+				} else if(mediaQuery) {
+					item[2] = "(" + item[2] + ") and (" + mediaQuery + ")";
+				}
+				list.push(item);
+			}
+		}
+	};
+	return list;
+};
+
+function cssWithMappingToString(item, useSourceMap) {
+	var content = item[1] || '';
+	var cssMapping = item[3];
+	if (!cssMapping) {
+		return content;
+	}
+
+	if (useSourceMap && typeof btoa === 'function') {
+		var sourceMapping = toComment(cssMapping);
+		var sourceURLs = cssMapping.sources.map(function (source) {
+			return '/*# sourceURL=' + cssMapping.sourceRoot + source + ' */'
+		});
+
+		return [content].concat(sourceURLs).concat([sourceMapping]).join('\n');
+	}
+
+	return [content].join('\n');
+}
+
+// Adapted from convert-source-map (MIT)
+function toComment(sourceMap) {
+	// eslint-disable-next-line no-undef
+	var base64 = btoa(unescape(encodeURIComponent(JSON.stringify(sourceMap))));
+	var data = 'sourceMappingURL=data:application/json;charset=utf-8;base64,' + base64;
+
+	return '/*# ' + data + ' */';
+}
+
+
+/***/ }),
 /* 4 */
 /***/ (function(module, exports) {
 
@@ -824,7 +824,7 @@ var transform;
 var options = {}
 options.transform = transform
 // add the styles to the DOM
-var update = __webpack_require__(3)(content, options);
+var update = __webpack_require__(2)(content, options);
 if(content.locals) module.exports = content.locals;
 // Hot Module Replacement
 if(false) {
@@ -845,6 +845,50 @@ if(false) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__baseview__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__custom_module_scss__ = __webpack_require__(25);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__custom_module_scss___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__custom_module_scss__);
+
+
+
+
+class Custom extends __WEBPACK_IMPORTED_MODULE_0__baseview__["a" /* default */] {
+    constructor() {
+        super('div', ['win'], {});
+    }
+
+    creation(text) {
+        const wrape = document.querySelector('div.wrapper');
+
+        wrape.appendChild(this._element);
+        const overlay = new __WEBPACK_IMPORTED_MODULE_0__baseview__["a" /* default */]('div', ['overlay']);
+        const visible = new __WEBPACK_IMPORTED_MODULE_0__baseview__["a" /* default */]('div', ['visible']);
+        this.appendChildBlock('div', overlay);
+        this.appendChildBlock('div', visible);
+        document.querySelector('div.visible').innerHTML = `<h3>${text}</h3>`;
+        visible.appendChildBlock('p', new __WEBPACK_IMPORTED_MODULE_0__baseview__["a" /* default */]('p', ['link']));
+        const button = document.querySelector('p');
+        button.innerHTML = `<a class="remove">Close</a>`;
+        document.querySelector('a.remove').addEventListener('click', () => {
+            document.querySelector('div.win').remove();
+        });
+        // visible.appendChildBlock()
+        // authors.forEach((i) => {
+        //     this.appendChildBlock('li',new Block('li', [i.name]));
+        //     let but  =  document.querySelector('li.' + i.name);
+        //     but.innerHTML = `<a>${i.name}</a>`;
+        //     but.querySelector('a').setAttribute('href',i.link);
+        // });
+    }
+
+}
+/* harmony default export */ __webpack_exports__["a"] = (Custom);
+
+/***/ }),
+/* 9 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "signup", function() { return signup; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "signin", function() { return signin; });
@@ -852,8 +896,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__blocks_autheficate_registrationAuth__ = __webpack_require__(23);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__blocks_autheficate_loginAuth__ = __webpack_require__(24);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__modules_router__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__servises_user_service__ = __webpack_require__(9);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__modules_mediator__ = __webpack_require__(11);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__servises_user_service__ = __webpack_require__(10);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__modules_mediator__ = __webpack_require__(12);
 
 
 
@@ -887,6 +931,7 @@ function signin(login) {
         }
 
         userService.login(formdata[0], formdata[1]).then(() => new __WEBPACK_IMPORTED_MODULE_3__modules_router__["default"]().go('/game')).then(() => {
+            setter(formdata[0]);
             let logout = document.querySelector('a.back');
             logout.addEventListener('click', function () {
                 userService.logout(formdata[0], formdata[1]);
@@ -902,6 +947,7 @@ function signup(registration) {
             return;
         }
         userService.signup(formdata[0], formdata[1], formdata[2]).then(() => new __WEBPACK_IMPORTED_MODULE_3__modules_router__["default"]().go('/game')).then(() => {
+            setter(formdata[0]);
             let logout = document.querySelector('a.back');
             logout.addEventListener('click', function () {
                 userService.logout(formdata[0], formdata[1]);
@@ -910,14 +956,18 @@ function signup(registration) {
     });
 }
 
+function setter(input) {
+    console.log(input);
+    return input;
+}
 
 
 /***/ }),
-/* 9 */
+/* 10 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__modules_http__ = __webpack_require__(10);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__modules_http__ = __webpack_require__(11);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__blocks_forms_validation__ = __webpack_require__(6);
 
 
@@ -986,7 +1036,7 @@ class UserService {
 /* harmony default export */ __webpack_exports__["a"] = (UserService);
 
 /***/ }),
-/* 10 */
+/* 11 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1185,7 +1235,7 @@ Http.BaseUrl = null;
 /* harmony default export */ __webpack_exports__["default"] = (Http);
 
 /***/ }),
-/* 11 */
+/* 12 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1233,50 +1283,6 @@ class Mediator {
 }
 /* harmony export (immutable) */ __webpack_exports__["default"] = Mediator;
 
-
-/***/ }),
-/* 12 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__baseview__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__custom_module_scss__ = __webpack_require__(25);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__custom_module_scss___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__custom_module_scss__);
-
-
-
-
-class Custom extends __WEBPACK_IMPORTED_MODULE_0__baseview__["a" /* default */] {
-    constructor() {
-        super('div', ['win'], {});
-    }
-
-    creation(text) {
-        const wrape = document.querySelector('div.wrapper');
-
-        wrape.appendChild(this._element);
-        const overlay = new __WEBPACK_IMPORTED_MODULE_0__baseview__["a" /* default */]('div', ['overlay']);
-        const visible = new __WEBPACK_IMPORTED_MODULE_0__baseview__["a" /* default */]('div', ['visible']);
-        this.appendChildBlock('div', overlay);
-        this.appendChildBlock('div', visible);
-        document.querySelector('div.visible').innerHTML = `<h3>${text}</h3>`;
-        visible.appendChildBlock('p', new __WEBPACK_IMPORTED_MODULE_0__baseview__["a" /* default */]('p', ['link']));
-        const button = document.querySelector('p');
-        button.innerHTML = `<a class="remove">Close</a>`;
-        document.querySelector('a.remove').addEventListener('click', () => {
-            document.querySelector('div.win').remove();
-        });
-        // visible.appendChildBlock()
-        // authors.forEach((i) => {
-        //     this.appendChildBlock('li',new Block('li', [i.name]));
-        //     let but  =  document.querySelector('li.' + i.name);
-        //     but.innerHTML = `<a>${i.name}</a>`;
-        //     but.querySelector('a').setAttribute('href',i.link);
-        // });
-    }
-
-}
-/* harmony default export */ __webpack_exports__["a"] = (Custom);
 
 /***/ }),
 /* 13 */
@@ -2012,7 +2018,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 function requireAll(r) {
     r.keys().forEach(r);
 }
-__webpack_require__(8);
+__webpack_require__(9);
 __webpack_require__(63);
 
 requireAll(__webpack_require__(68));
@@ -2118,7 +2124,7 @@ var transform;
 var options = {}
 options.transform = transform
 // add the styles to the DOM
-var update = __webpack_require__(3)(content, options);
+var update = __webpack_require__(2)(content, options);
 if(content.locals) module.exports = content.locals;
 // Hot Module Replacement
 if(false) {
@@ -2138,7 +2144,7 @@ if(false) {
 /* 26 */
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(2)(undefined);
+exports = module.exports = __webpack_require__(3)(undefined);
 // imports
 
 
@@ -2254,8 +2260,7 @@ module.exports = function (css) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__singleplay_DemoGameModule__ = __webpack_require__(13);
 
 
-const imageWall = "wall";
-const wrape = document.querySelector('div.menu');
+
 
 const buttons = [{
     name: 'First',
@@ -2313,6 +2318,9 @@ class MainPage extends __WEBPACK_IMPORTED_MODULE_0__baseview__["a" /* default */
         }
         const wrape = document.querySelector('div.menu');
         if (document.querySelector('div.menu') === null) {
+            while (document.querySelector('div.wrapper').firstChild) {
+                document.querySelector('div.wrapper').removeChild(document.querySelector('div.wrapper').firstChild);
+            }
             let banner = document.createElement("div");
             document.querySelector('div.wrapper').appendChild(banner);
             banner.setAttribute('class', 'menu');
@@ -2359,7 +2367,7 @@ var transform;
 var options = {}
 options.transform = transform
 // add the styles to the DOM
-var update = __webpack_require__(3)(content, options);
+var update = __webpack_require__(2)(content, options);
 if(content.locals) module.exports = content.locals;
 // Hot Module Replacement
 if(false) {
@@ -2379,7 +2387,7 @@ if(false) {
 /* 30 */
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(2)(undefined);
+exports = module.exports = __webpack_require__(3)(undefined);
 // imports
 
 
@@ -3890,7 +3898,7 @@ class Login extends __WEBPACK_IMPORTED_MODULE_0__blocks_block_block__["a" /* def
 /* 47 */
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(2)(undefined);
+exports = module.exports = __webpack_require__(3)(undefined);
 // imports
 
 
@@ -4058,7 +4066,7 @@ var transform;
 var options = {}
 options.transform = transform
 // add the styles to the DOM
-var update = __webpack_require__(3)(content, options);
+var update = __webpack_require__(2)(content, options);
 if(content.locals) module.exports = content.locals;
 // Hot Module Replacement
 if(false) {
@@ -4078,7 +4086,7 @@ if(false) {
 /* 51 */
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(2)(undefined);
+exports = module.exports = __webpack_require__(3)(undefined);
 // imports
 
 
@@ -4188,7 +4196,7 @@ var transform;
 var options = {}
 options.transform = transform
 // add the styles to the DOM
-var update = __webpack_require__(3)(content, options);
+var update = __webpack_require__(2)(content, options);
 if(content.locals) module.exports = content.locals;
 // Hot Module Replacement
 if(false) {
@@ -4206,17 +4214,9 @@ if(false) {
 
 /***/ }),
 /* 54 */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, exports) {
 
-exports = module.exports = __webpack_require__(2)(undefined);
-// imports
-
-
-// module
-exports.push([module.i, ".score {\n  color: #FAE7B5; }\n\ntable {\n  background-color: #b7a77e;\n  border-radius: 40px;\n  font-size: 2.1em;\n  width: 50%;\n  color: black;\n  padding: 10px;\n  border-spacing: 66px;\n  margin-left: 360px; }\n\ntable th {\n  color: #c58818; }\n\ntable tr:hover {\n  color: green; }\n", ""]);
-
-// exports
-
+throw new Error("Module build failed: \n  transition: all 0.4s cubic-bezier(0.42, 0, 0.58, 1);\n                                                     ^\n      Invalid CSS after \"...2, 0, 0.58, 1);\": expected \"}\", was \"0s;\"\n      in /Users/user/Desktop/Frontend/For-site/test/public/views/scoreboard/scoreboard.scss (line 34, column 55)");
 
 /***/ }),
 /* 55 */
@@ -4261,7 +4261,9 @@ module.exports = "<!DOCTYPE html>\n<html lang=\"en\">\n\n<head>\n  <meta charset
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__module_scss__ = __webpack_require__(58);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__module_scss___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__module_scss__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__modules_router__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__servises_user_service__ = __webpack_require__(9);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__custom_module_custom_module__ = __webpack_require__(8);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__servises_user_service__ = __webpack_require__(10);
+
 
 
 
@@ -4329,7 +4331,8 @@ class Choose extends __WEBPACK_IMPORTED_MODULE_0__baseview__["a" /* default */] 
     }
 
     leftbar() {
-        this.appendChildBlock('left_bar', new __WEBPACK_IMPORTED_MODULE_0__baseview__["a" /* default */]('div', ['left_bar']));
+        let left_bar = document.querySelector('div.choose').appendChild(document.createElement('div'));
+        left_bar.setAttribute('class', 'left_bar');
         wrape.appendChild(this._element);
         let list = document.createElement("ul");
         document.querySelector('div.left_bar').appendChild(list);
@@ -4343,45 +4346,17 @@ class Choose extends __WEBPACK_IMPORTED_MODULE_0__baseview__["a" /* default */] 
         for (let i = 0; i !== 4; ++i) {
             enityName[i].innerHTML = name[i];
         }
-
-        this.appendChildBlock('new_character', new __WEBPACK_IMPORTED_MODULE_0__baseview__["a" /* default */]('a', ['new_character']).setText('CREATE'));
-        wrape.appendChild(this._element);
-
+        left_bar.appendChild(document.createElement('a'));
+        left_bar.document.querySelector('a').setAttribute('class', 'new_character');
         document.querySelector('a.new_character').addEventListener('click', () => {
-            if (globalCounter < 3) {
-                ++index;
-                let list = document.createElement("li");
-                document.querySelector('ul').appendChild(list);
-                let enityName = document.getElementsByTagName('li');
-                enityName[i].innerHTML = name[i];
-                ++globalCounter;
-            }
+            new __WEBPACK_IMPORTED_MODULE_3__custom_module_custom_module__["a" /* default */]().creation('Coming soon....');
         });
 
         this.appendChildBlock('new_character', new __WEBPACK_IMPORTED_MODULE_0__baseview__["a" /* default */]('a', ['delete']).setText('DELETE'));
         wrape.appendChild(this._element);
 
         document.querySelector('a.delete').addEventListener('click', () => {
-            if (globalCounter !== 0) {
-                let enityName = document.getElementsByTagName('li');
-                document.querySelector('ul').removeChild(enityName[i]);
-                if (index === 0) {
-                    if (counter !== 3) {
-                        ++counter;
-                        document.querySelector('img.person').setAttribute('src', enity[index + counter].src);
-                        enityName[i].style.color = "white";
-                    }
-                    --globalCounter;
-                } else {
-                    ++secondCounter;
-                    --index;
-                    --i;
-                    document.querySelector('img.person').setAttribute('src', enity[index].src);
-                    console.log(index);
-                    enityName[i].style.color = "white";
-                    --globalCounter;
-                }
-            }
+            new __WEBPACK_IMPORTED_MODULE_3__custom_module_custom_module__["a" /* default */]().creation('Coming soon....');
         });
     }
     footbarCreate() {
@@ -4393,18 +4368,10 @@ class Choose extends __WEBPACK_IMPORTED_MODULE_0__baseview__["a" /* default */] 
         this.appendChildBlock('footbar', new __WEBPACK_IMPORTED_MODULE_0__baseview__["a" /* default */]('a', ['back']).setText('BACK'));
         wrape.appendChild(this._element);
         document.querySelector('a.back').setAttribute('value', '/');
-
-        let logout = document.querySelector('a.back');
-        // logout.addEventListener('click', function () {
-        //     document.querySelector('div.choose').remove();
-        //     new Router().go('/')
-        //     userService.logout(formdata[0],formdata[1]);
-        //
-        // })
     }
     creation() {
-        if (document.querySelector('div.wrapper').childNodes[0] !== null) {
-            document.querySelector('div.wrapper').childNodes[0].remove();
+        while (wrape.firstChild) {
+            wrape.removeChild(wrape.firstChild);
         }
 
         wrape.appendChild(this._element);
@@ -4433,7 +4400,7 @@ var transform;
 var options = {}
 options.transform = transform
 // add the styles to the DOM
-var update = __webpack_require__(3)(content, options);
+var update = __webpack_require__(2)(content, options);
 if(content.locals) module.exports = content.locals;
 // Hot Module Replacement
 if(false) {
@@ -4453,12 +4420,12 @@ if(false) {
 /* 59 */
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(2)(undefined);
+exports = module.exports = __webpack_require__(3)(undefined);
 // imports
 
 
 // module
-exports.push([module.i, ".person {\n  top: 30%;\n  left: 32%;\n  font-size: 120%;\n  position: absolute; }\n\n.enter {\n  display: inline-block;\n  width: 12vw;\n  height: 6vh;\n  line-height: 50px;\n  text-align: center;\n  text-decoration: none;\n  text-shadow: 0 1px rgba(154, 33, 33, 0.2), 0 -1px rgba(82, 11, 11, 0.8);\n  border-radius: 17px;\n  background: #731509 radial-gradient(150% 100% at 50% 5px, rgba(255, 255, 255, 0.2), transparent);\n  box-shadow: inset rgba(0, 0, 0, 0.6) 0 -2px 5px, inset rgba(252, 255, 255, 0.7) 0 2px 5px, rgba(0, 0, 0, 0.8) 0 2px 5px -1px;\n  color: #c58818;\n  /* user-select: none; */\n  position: absolute;\n  border: 2px solid;\n  top: 90%;\n  left: 44%;\n  font-size: 150%; }\n\n.enter:hover {\n  color: white;\n  cursor: pointer; }\n\n.enter:active {\n  padding-bottom: 1px;\n  box-shadow: inset black 0 1px 3px, inset rgba(0, 0, 0, 0.6) 0 -2px 5px, inset rgba(252, 255, 255, 0.7) 0 2px 5px, 0 1px rgba(255, 255, 255, 0.08);\n  color: #80cfd6; }\n\n.back {\n  display: inline-block;\n  width: 10vw;\n  height: 6vh;\n  line-height: 50px;\n  text-align: center;\n  text-decoration: none;\n  text-shadow: 0 1px rgba(154, 33, 33, 0.2), 0 -1px rgba(82, 11, 11, 0.8);\n  border-radius: 17px;\n  background: #731509 radial-gradient(150% 100% at 50% 5px, rgba(255, 255, 255, 0.2), transparent);\n  box-shadow: inset rgba(0, 0, 0, 0.6) 0 -2px 5px, inset rgba(252, 255, 255, 0.7) 0 2px 5px, rgba(0, 0, 0, 0.8) 0 2px 5px -1px;\n  color: #c58818;\n  /* user-select: none; */\n  position: absolute;\n  border: 2px solid;\n  top: 90%;\n  right: 6%;\n  font-size: 150%; }\n\n.back:hover {\n  color: white;\n  cursor: pointer; }\n\n.back:active {\n  padding-bottom: 1px;\n  box-shadow: inset black 0 1px 3px, inset rgba(0, 0, 0, 0.6) 0 -2px 5px, inset rgba(252, 255, 255, 0.7) 0 2px 5px, 0 1px rgba(255, 255, 255, 0.08);\n  color: #80cfd6; }\n\n.choose_left {\n  display: inline-block;\n  outline: none;\n  border: 3px black;\n  border-radius: 100px;\n  transition: 0.2s;\n  background-size: cover;\n  font-family: fantasy;\n  position: absolute;\n  padding: 20px;\n  background-image: url(" + __webpack_require__(21) + ");\n  top: 77%;\n  left: 42%;\n  font-size: 150%;\n  cursor: pointer; }\n\n.choose_left:hover {\n  background: green; }\n\n.choose_right {\n  display: inline-block;\n  outline: none;\n  border: 3px black;\n  border-radius: 100px;\n  transition: 0.2s;\n  background-size: cover;\n  font-family: fantasy;\n  position: absolute;\n  padding: 20px;\n  background-image: url(" + __webpack_require__(21) + ");\n  top: 77%;\n  left: 53%;\n  font-size: 150%;\n  cursor: pointer;\n  transform: rotate(180deg); }\n\n.choose_right:hover {\n  background: green; }\n\n.left_bar {\n  width: 20vw;\n  height: 50vh;\n  background: #382c2f;\n  margin: -215px 0 0 -125px;\n  position: absolute;\n  top: 60%;\n  left: 15%;\n  padding: 10px;\n  border: solid 3px #5b2d0c;\n  color: #c58818;\n  font-family: fantasy;\n  font-size: 150%;\n  background-size: cover; }\n\n.new_character {\n  display: inline-block;\n  width: 12vw;\n  height: 6vh;\n  line-height: 50px;\n  text-align: center;\n  text-decoration: none;\n  text-shadow: 0 1px rgba(154, 33, 33, 0.2), 0 -1px rgba(82, 11, 11, 0.8);\n  border-radius: 17px;\n  background: #731509 radial-gradient(150% 100% at 50% 5px, rgba(255, 255, 255, 0.2), transparent);\n  box-shadow: inset rgba(0, 0, 0, 0.6) 0 -2px 5px, inset rgba(252, 255, 255, 0.7) 0 2px 5px, rgba(0, 0, 0, 0.8) 0 2px 5px -1px;\n  color: #c58818;\n  /* user-select: none; */\n  position: absolute;\n  border: 2px solid;\n  top: 90%;\n  left: 10%;\n  font-size: 150%; }\n\n.new_character:hover {\n  color: white;\n  cursor: pointer; }\n\n.new_character:active {\n  padding-bottom: 1px;\n  box-shadow: inset black 0 1px 3px, inset rgba(0, 0, 0, 0.6) 0 -2px 5px, inset rgba(252, 255, 255, 0.7) 0 2px 5px, 0 1px rgba(255, 255, 255, 0.08);\n  color: #80cfd6; }\n\n.delete {\n  display: inline-block;\n  width: 11vw;\n  height: 5vh;\n  line-height: 50px;\n  text-align: center;\n  text-decoration: none;\n  text-shadow: 0 1px rgba(154, 33, 33, 0.2), 0 -1px rgba(82, 11, 11, 0.8);\n  border-radius: 17px;\n  background: #731509 radial-gradient(150% 100% at 50% 5px, rgba(255, 255, 255, 0.2), transparent);\n  box-shadow: inset rgba(0, 0, 0, 0.6) 0 -2px 5px, inset rgba(252, 255, 255, 0.7) 0 2px 5px, rgba(0, 0, 0, 0.8) 0 2px 5px -1px;\n  color: #c58818;\n  /* user-select: none; */\n  position: absolute;\n  border: 2px solid;\n  top: 75%;\n  left: 10%;\n  font-size: 120%; }\n\n.delete:hover {\n  color: white;\n  cursor: pointer; }\n\n.delete:active {\n  padding-bottom: 1px;\n  box-shadow: inset black 0 1px 3px, inset rgba(0, 0, 0, 0.6) 0 -2px 5px, inset rgba(252, 255, 255, 0.7) 0 2px 5px, 0 1px rgba(255, 255, 255, 0.08);\n  color: #80cfd6; }\n\n@media screen and (min-width: 960px) and (max-width: 1280px) and (orientation: landscape) {\n  .delete {\n    width: 12vw;\n    height: 7vh;\n    top: 91%;\n    left: 8%; }\n  .person {\n    top: 20%;\n    left: 25%; }\n  .enter {\n    top: 115%;\n    left: 43%;\n    font-size: 138%; }\n  .choose_right {\n    top: 99%; }\n  .choose_left {\n    top: 99%; }\n  .back {\n    width: 11vw;\n    height: 7vh;\n    top: 114%;\n    right: 6%; }\n  .left_bar {\n    top: 84%; }\n  .new_character {\n    top: 112%;\n    left: 6%; } }\n\n@media (min-width: 481px) and (max-width: 767px) and (orientation: landscape) {\n  .person {\n    width: 33vw; }\n  .choose_left {\n    padding: 16px;\n    top: 88%; }\n  .choose_right {\n    padding: 16px;\n    top: 88%; }\n  .enter {\n    top: 119%;\n    left: 40%;\n    font-size: 129%;\n    line-height: 44px;\n    width: 19vw;\n    height: 11vh; }\n  .back {\n    top: 119%;\n    font-size: 129%;\n    line-height: 44px;\n    width: 19vw;\n    height: 11vh; }\n  .new_character {\n    top: 119%;\n    font-size: 106%;\n    line-height: 44px;\n    width: 19vw;\n    height: 11vh; }\n  .left_bar {\n    font-size: 95%;\n    width: 20vw;\n    height: 50vh;\n    top: 110%;\n    left: 26%; }\n  .delete {\n    width: 12vw;\n    height: 7vh;\n    line-height: 30px;\n    top: 89%;\n    left: 10%;\n    font-size: 90%; } }\n\n@media (min-width: 481px) and (max-width: 767px) and (orientation: landscape) {\n  .single {\n    font-size: 1.5em;\n    left: 40%; }\n  .multi {\n    font-size: 1.5em;\n    top: 73%;\n    left: 40%; } }\n", ""]);
+exports.push([module.i, ".person {\n  top: 30%;\n  left: 32%;\n  font-size: 120%;\n  position: absolute; }\n\n.enter {\n  display: inline-block;\n  width: 12vw;\n  height: 6vh;\n  line-height: 50px;\n  text-align: center;\n  text-decoration: none;\n  text-shadow: 0 1px rgba(154, 33, 33, 0.2), 0 -1px rgba(82, 11, 11, 0.8);\n  border-radius: 17px;\n  background: #731509 radial-gradient(150% 100% at 50% 5px, rgba(255, 255, 255, 0.2), transparent);\n  box-shadow: inset rgba(0, 0, 0, 0.6) 0 -2px 5px, inset rgba(252, 255, 255, 0.7) 0 2px 5px, rgba(0, 0, 0, 0.8) 0 2px 5px -1px;\n  color: #c58818;\n  /* user-select: none; */\n  position: absolute;\n  border: 2px solid;\n  top: 90%;\n  left: 44%;\n  font-size: 150%; }\n\n.enter:hover {\n  color: white;\n  cursor: pointer; }\n\n.enter:active {\n  padding-bottom: 1px;\n  box-shadow: inset black 0 1px 3px, inset rgba(0, 0, 0, 0.6) 0 -2px 5px, inset rgba(252, 255, 255, 0.7) 0 2px 5px, 0 1px rgba(255, 255, 255, 0.08);\n  color: #80cfd6; }\n\n.back {\n  display: inline-block;\n  width: 10vw;\n  height: 6vh;\n  line-height: 50px;\n  text-align: center;\n  text-decoration: none;\n  text-shadow: 0 1px rgba(154, 33, 33, 0.2), 0 -1px rgba(82, 11, 11, 0.8);\n  border-radius: 17px;\n  background: #731509 radial-gradient(150% 100% at 50% 5px, rgba(255, 255, 255, 0.2), transparent);\n  box-shadow: inset rgba(0, 0, 0, 0.6) 0 -2px 5px, inset rgba(252, 255, 255, 0.7) 0 2px 5px, rgba(0, 0, 0, 0.8) 0 2px 5px -1px;\n  color: #c58818;\n  /* user-select: none; */\n  position: absolute;\n  border: 2px solid;\n  top: 90%;\n  right: 6%;\n  font-size: 150%; }\n\n.back:hover {\n  color: white;\n  cursor: pointer; }\n\n.back:active {\n  padding-bottom: 1px;\n  box-shadow: inset black 0 1px 3px, inset rgba(0, 0, 0, 0.6) 0 -2px 5px, inset rgba(252, 255, 255, 0.7) 0 2px 5px, 0 1px rgba(255, 255, 255, 0.08);\n  color: #80cfd6; }\n\n.choose_left {\n  display: inline-block;\n  outline: none;\n  border: 3px black;\n  border-radius: 100px;\n  transition: 0.2s;\n  background-size: cover;\n  font-family: fantasy;\n  position: absolute;\n  padding: 20px;\n  background-image: url(" + __webpack_require__(21) + ");\n  top: 77%;\n  left: 42%;\n  font-size: 150%;\n  cursor: pointer; }\n\n.choose_left:hover {\n  background: green; }\n\n.choose_right {\n  display: inline-block;\n  outline: none;\n  border: 3px black;\n  border-radius: 100px;\n  transition: 0.2s;\n  background-size: cover;\n  font-family: fantasy;\n  position: absolute;\n  padding: 20px;\n  background-image: url(" + __webpack_require__(21) + ");\n  top: 77%;\n  left: 53%;\n  font-size: 150%;\n  cursor: pointer;\n  transform: rotate(180deg); }\n\n.choose_right:hover {\n  background: green; }\n\n.left_bar {\n  width: 20vw;\n  height: 50vh;\n  background: #382c2f;\n  margin: -215px 0 0 -125px;\n  position: absolute;\n  top: 60%;\n  left: 15%;\n  padding: 10px;\n  border: solid 3px #5b2d0c;\n  color: #c58818;\n  font-family: fantasy;\n  font-size: 150%;\n  background-size: cover; }\n\n.new_character {\n  display: inline-block;\n  width: 12vw;\n  height: 6vh;\n  line-height: 50px;\n  text-align: center;\n  text-decoration: none;\n  text-shadow: 0 1px rgba(154, 33, 33, 0.2), 0 -1px rgba(82, 11, 11, 0.8);\n  border-radius: 17px;\n  background: #731509 radial-gradient(150% 100% at 50% 5px, rgba(255, 255, 255, 0.2), transparent);\n  box-shadow: inset rgba(0, 0, 0, 0.6) 0 -2px 5px, inset rgba(252, 255, 255, 0.7) 0 2px 5px, rgba(0, 0, 0, 0.8) 0 2px 5px -1px;\n  color: #c58818;\n  /* user-select: none; */\n  position: absolute;\n  border: 2px solid;\n  top: 90%;\n  left: 10%;\n  font-size: 150%; }\n\n.new_character:hover {\n  color: white;\n  cursor: pointer; }\n\n.new_character:active {\n  padding-bottom: 1px;\n  box-shadow: inset black 0 1px 3px, inset rgba(0, 0, 0, 0.6) 0 -2px 5px, inset rgba(252, 255, 255, 0.7) 0 2px 5px, 0 1px rgba(255, 255, 255, 0.08);\n  color: #80cfd6; }\n\n.delete {\n  display: inline-block;\n  width: 11vw;\n  height: 5vh;\n  line-height: 41px;\n  text-align: center;\n  text-decoration: none;\n  text-shadow: 0 1px rgba(154, 33, 33, 0.2), 0 -1px rgba(82, 11, 11, 0.8);\n  border-radius: 17px;\n  background: #731509 radial-gradient(150% 100% at 50% 5px, rgba(255, 255, 255, 0.2), transparent);\n  box-shadow: inset rgba(0, 0, 0, 0.6) 0 -2px 5px, inset rgba(252, 255, 255, 0.7) 0 2px 5px, rgba(0, 0, 0, 0.8) 0 2px 5px -1px;\n  color: #c58818;\n  /* user-select: none; */\n  position: absolute;\n  border: 2px solid;\n  top: 75%;\n  left: 10%;\n  font-size: 120%; }\n\n.delete:hover {\n  color: white;\n  cursor: pointer; }\n\n.delete:active {\n  padding-bottom: 1px;\n  box-shadow: inset black 0 1px 3px, inset rgba(0, 0, 0, 0.6) 0 -2px 5px, inset rgba(252, 255, 255, 0.7) 0 2px 5px, 0 1px rgba(255, 255, 255, 0.08);\n  color: #80cfd6; }\n\n@media screen and (min-width: 960px) and (max-width: 1280px) and (orientation: landscape) {\n  .delete {\n    width: 12vw;\n    height: 7vh;\n    top: 91%;\n    left: 8%; }\n  .person {\n    top: 20%;\n    left: 25%; }\n  .enter {\n    top: 115%;\n    left: 43%;\n    font-size: 138%; }\n  .choose_right {\n    top: 99%; }\n  .choose_left {\n    top: 99%; }\n  .back {\n    width: 11vw;\n    height: 7vh;\n    top: 114%;\n    right: 6%; }\n  .left_bar {\n    top: 84%; }\n  .new_character {\n    top: 112%;\n    left: 6%; } }\n\n@media (min-width: 481px) and (max-width: 767px) and (orientation: landscape) {\n  .person {\n    width: 33vw; }\n  .choose_left {\n    padding: 16px;\n    top: 88%; }\n  .choose_right {\n    padding: 16px;\n    top: 88%; }\n  .enter {\n    top: 119%;\n    left: 40%;\n    font-size: 129%;\n    line-height: 44px;\n    width: 19vw;\n    height: 11vh; }\n  .back {\n    top: 119%;\n    font-size: 129%;\n    line-height: 44px;\n    width: 19vw;\n    height: 11vh; }\n  .new_character {\n    top: 119%;\n    font-size: 106%;\n    line-height: 44px;\n    width: 19vw;\n    height: 11vh; }\n  .left_bar {\n    font-size: 95%;\n    width: 20vw;\n    height: 50vh;\n    top: 110%;\n    left: 26%; }\n  .delete {\n    width: 12vw;\n    height: 7vh;\n    line-height: 30px;\n    top: 89%;\n    left: 10%;\n    font-size: 90%; } }\n\n@media (min-width: 481px) and (max-width: 767px) and (orientation: landscape) {\n  .single {\n    font-size: 1.5em;\n    left: 40%; }\n  .multi {\n    font-size: 1.5em;\n    top: 73%;\n    left: 40%; } }\n", ""]);
 
 // exports
 
@@ -4470,7 +4437,7 @@ exports.push([module.i, ".person {\n  top: 30%;\n  left: 32%;\n  font-size: 120%
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__choose_scss__ = __webpack_require__(61);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__choose_scss___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__choose_scss__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__custom_module_custom_module__ = __webpack_require__(12);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__custom_module_custom_module__ = __webpack_require__(8);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__modules_router__ = __webpack_require__(1);
 
 
@@ -4482,6 +4449,9 @@ const wrape = document.querySelector('div.wrapper');
 
 class GameType {
     creation() {
+        while (document.querySelector('div.wrapper').firstChild) {
+            document.querySelector('div.wrapper').removeChild(document.querySelector('div.wrapper').firstChild);
+        }
         let variant = wrape.appendChild(document.createElement("div"));
         variant.setAttribute('class', 'variant');
 
@@ -4521,7 +4491,7 @@ var transform;
 var options = {}
 options.transform = transform
 // add the styles to the DOM
-var update = __webpack_require__(3)(content, options);
+var update = __webpack_require__(2)(content, options);
 if(content.locals) module.exports = content.locals;
 // Hot Module Replacement
 if(false) {
@@ -4541,7 +4511,7 @@ if(false) {
 /* 62 */
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(2)(undefined);
+exports = module.exports = __webpack_require__(3)(undefined);
 // imports
 
 
@@ -4638,8 +4608,8 @@ webpackContext.id = 70;
 /***/ (function(module, exports, __webpack_require__) {
 
 var map = {
-	"./http.js": 10,
-	"./mediator.js": 11,
+	"./http.js": 11,
+	"./mediator.js": 12,
 	"./router.js": 1
 };
 function webpackContext(req) {
