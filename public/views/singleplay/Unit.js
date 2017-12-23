@@ -164,4 +164,11 @@ export default class Unit {
         }
     }
 
+    getCurrentCooldown(name) {
+        if (this.skills[2].name === name) {
+            return this.skills[2].currentCooldown;
+        } else if (this.skills[3].name === name) {
+            return this.skills[3].currentCooldown;
+        }
+    }
 }
