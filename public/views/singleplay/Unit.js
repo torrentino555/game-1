@@ -103,6 +103,11 @@ export default class Unit {
 
         let attackSkill = new Skill();
         attackSkill.createSkill('Attack', 'Deals damage', 'point', 1, this.damage, 0);
+        let firstSkill = new Skill();
+        firstSkill.createSkill('Heavy blow', 'Attack your enemy with double damage', 'point', 1, [this.damage[0] * 2, this.damage[1] * 2], 3);
+        let secondSkill = new Skill();
+        secondSkill.createSkill('Shield Strike', 'Smash enemy with a shield, knocking him down for 1 turn', 'point', 1, this.damage, 2);
+
         this.skills.push(attackSkill);
     }
 
@@ -137,4 +142,10 @@ export default class Unit {
             unit.healthpoint[0] = unit.healthpoint[1];
         }
     }
+
+    cooldownDecrement() {
+        this.skills[1].decrementCurrentCooldown();
+        this.skills[2].decrementCurrentCooldown();
+    }
+
 }

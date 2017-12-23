@@ -22,11 +22,17 @@ export default class Skill{
 
     getDesciption() {
         if(this.damage[1] >= 0) {
-            return this.name + '\nDam: ' + this.damage[0] + '-' + this.damage[1] + ' Type: ' + this.typeOfArea + ' with area: ' + this.area + '\n' + ' Cooldown: ' + this.cooldown + '\n' + this.description;
+            return this.name + '\nDam: ' + this.damage[0] + '-' + this.damage[1] + ' Type: ' + this.typeOfArea + ' with area: ' + this.area + '\n' + ' Cooldown: ' + this.cooldown + ' Current cooldown: ' + this.currentCooldown + '\n' + this.description;
         }
 
         return name + '\nHeal: ' + Math.abs(this.damage[0]) + '-' + Math.abs(this.damage[1]) + ' Type: ' + this.typeOfArea + ' with area: ' + this.area + '\n' + ' Cooldown: ' + this.cooldown + '\n'  + this.description;
 
+    }
+
+    decrementCurrentCooldown() {
+        if (this.currentCooldown > 0) {
+            this.currentCooldown--;
+        }
     }
 
 }
